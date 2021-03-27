@@ -1,0 +1,66 @@
+import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+class ContactUs extends StatefulWidget {
+  ContactUs({Key key}) : super(key: key);
+
+  @override
+  _ContactUsState createState() => _ContactUsState();
+}
+
+class _ContactUsState extends State<ContactUs> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Contact Us'),
+      ),
+      // drawer: Riderdrawer(),
+      body: Container(
+        child: Column(
+          children: <Widget>[
+            RaisedButton(
+              onPressed: () async {
+                const emailid =
+                    'mailto:clickandpick@gmail.com ?subject=Huston we in trouble, send Help';
+                if (await canLaunch(emailid)) {
+                  await launch(emailid);
+                } else {
+                  throw 'Could not email $emailid';
+                }
+              },
+              child: Text('Have complaints? Mail Us'),
+            ),
+            RaisedButton(
+              onPressed: () async {
+                const tellNumber = 'tel:+9230008812584';
+                if (await canLaunch(tellNumber)) {
+                  await launch(tellNumber);
+                } else {
+                  throw 'Could not call $tellNumber';
+                }
+              },
+              child: Text('Have complaints? Call Us'),
+            ),
+            RaisedButton(
+              onPressed: () {
+                openMap(-3.823216, -38.481700);
+              },
+              child: Text('Have complaints? Call Us'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  static Future<void> openMap(double latitude, double longitude) async {
+    String googleUrl =
+        'https://www.google.com/maps/search/?api=1&query=$latitude,$longitude';
+    if (await canLaunch(googleUrl)) {
+      await launch(googleUrl);
+    } else {
+      throw 'Could not open the map.';
+    }
+  }
+}
