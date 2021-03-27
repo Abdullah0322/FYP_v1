@@ -4,7 +4,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:ClickandPick/BuyerDashboard/title_text.dart';
+import 'package:ClickandPick/BuyerDashboard/light_color.dart';
 
 class Checkout extends StatefulWidget {
   final Data data;
@@ -26,6 +29,39 @@ class _CheckoutState extends State<Checkout> {
     } catch (e) {
       print(e);
     }
+  }
+
+  void initState() {
+    getprice();
+    super.initState();
+  }
+
+  double price = 0;
+
+  int length;
+  double gettol = 0;
+
+  getprice() async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('user')
+          .doc(user.email)
+          .collection('cart')
+          .snapshots()
+          .listen((event) {
+        double abc = 0;
+        setState(() {
+          event.docs.forEach((x) {
+            abc += int.parse(x['price']) * x['quantity'];
+          });
+          price = abc;
+        });
+      });
+    } on Exception catch (e) {
+      print(e);
+      Fluttertoast.showToast(msg: '$e');
+    }
+    return price;
   }
 
   User user = FirebaseAuth.instance.currentUser;
@@ -249,7 +285,7 @@ class _CheckoutState extends State<Checkout> {
                                                               children: <
                                                                   Widget>[
                                                                 Text(
-                                                                  ds['price']
+                                                                  ds['total']
                                                                       .toString(),
                                                                   style: CustomTextStyle
                                                                       .textFormFieldBlack
@@ -335,137 +371,117 @@ class _CheckoutState extends State<Checkout> {
                                                       horizontal: 12),
                                                   child: RaisedButton(
                                                     onPressed: () {
-                                                      showDialog(
+                                                      return showDialog(
                                                           context: context,
                                                           builder: (BuildContext
                                                               context) {
-                                                            return Dialog(
-                                                              child: Stack(
-                                                                  children: <
-                                                                      Widget>[
-                                                                    Container(
-                                                                      height:
-                                                                          300,
-                                                                      padding: EdgeInsets.only(
-                                                                          left: Constants
-                                                                              .padding,
-                                                                          top: Constants.avatarRadius +
-                                                                              Constants
-                                                                                  .padding,
-                                                                          right: Constants
-                                                                              .padding,
-                                                                          bottom:
-                                                                              Constants.padding),
-                                                                      margin: EdgeInsets.only(
-                                                                          top: Constants
-                                                                              .avatarRadius),
-                                                                      decoration: BoxDecoration(
-                                                                          shape: BoxShape
-                                                                              .rectangle,
-                                                                          color: Colors
-                                                                              .white,
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(Constants.padding),
-                                                                          boxShadow: [
-                                                                            BoxShadow(
-                                                                                color: Colors.black,
-                                                                                offset: Offset(0, 10),
-                                                                                blurRadius: 10),
-                                                                          ]),
-                                                                      child:
-                                                                          Column(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.min,
-                                                                        children: <
-                                                                            Widget>[
-                                                                          Text(
-                                                                            ' Are you sure to buy this product?',
-                                                                            style:
-                                                                                TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
-                                                                          ),
-                                                                          SizedBox(
-                                                                            height:
-                                                                                15,
-                                                                          ),
-                                                                          Text(
-                                                                            'You can Pick this Product from Nearest Collection Centre',
-                                                                            style:
-                                                                                TextStyle(fontSize: 14),
-                                                                            textAlign:
-                                                                                TextAlign.center,
-                                                                          ),
-                                                                          SizedBox(
-                                                                            height:
-                                                                                22,
-                                                                          ),
-                                                                          Row(children: <
-                                                                              Widget>[
-                                                                            Align(
-                                                                              alignment: Alignment.bottomRight,
-                                                                              child: FlatButton(
-                                                                                  onPressed: () {
-                                                                                    Navigator.of(context).pop();
-                                                                                  },
-                                                                                  child: Text(
-                                                                                    'NO',
-                                                                                    style: TextStyle(fontSize: 18),
-                                                                                  )),
-                                                                            ),
-                                                                            Align(
-                                                                              alignment: Alignment.bottomRight,
-                                                                              child: FlatButton(
-                                                                                  onPressed: () {
-                                                                                    User user = FirebaseAuth.instance.currentUser;
-                                                                                    FirebaseFirestore.instance.collection('user').doc(user.email).collection('orders').doc(ds['id'].toString()).set({
-                                                                                      'name': ds['name'],
-                                                                                      'selleremail': ds['selleremail'].toString(),
-                                                                                      'id': ds['id'].toString(),
-                                                                                      'quantity': ds['quantity'].toString()
-                                                                                    });
+                                                            return AlertDialog(
+                                                              title: Text(
+                                                                'Are you sure you want to buy this product',
+                                                                style: TextStyle(
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontFamily:
+                                                                        'Segoe'),
+                                                              ),
+                                                              actions: <Widget>[
+                                                                FlatButton(
+                                                                  child: Text(
+                                                                    "Cancel",
+                                                                    style: TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontFamily:
+                                                                            'Segoe'),
+                                                                  ),
+                                                                  onPressed:
+                                                                      () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                  },
+                                                                ),
+                                                                FlatButton(
+                                                                  child: Text(
+                                                                    "Yes",
+                                                                    style: TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontFamily:
+                                                                            'Segoe'),
+                                                                  ),
+                                                                  onPressed:
+                                                                      () {
+                                                                    User user = FirebaseAuth
+                                                                        .instance
+                                                                        .currentUser;
+                                                                    FirebaseFirestore
+                                                                        .instance
+                                                                        .collection(
+                                                                            'user')
+                                                                        .doc(user
+                                                                            .email)
+                                                                        .collection(
+                                                                            'orders')
+                                                                        .doc()
+                                                                        .set({
+                                                                      'name': ds[
+                                                                          'name'],
+                                                                      'selleremail':
+                                                                          ds['selleremail']
+                                                                              .toString(),
+                                                                      'id': ds[
+                                                                              'id']
+                                                                          .toString(),
+                                                                      'quantity':
+                                                                          ds['quantity']
+                                                                              .toString()
+                                                                    });
 
-                                                                                    FirebaseFirestore.instance.collection('orders').doc().set({
-                                                                                      'name': ds['name'],
-                                                                                      'selleremail': ds['selleremail'].toString(),
-                                                                                      'id': ds['id'].toString(),
-                                                                                      'quantity': ds['quantity'].toString(),
-                                                                                      'buyeremail': user.email,
-                                                                                      'picked from vendor': false,
-                                                                                      'Order Dilevered to Collection Point': false,
-                                                                                      'Order Recieved to Collection Point': false,
-                                                                                    });
-                                                                                    Navigator.of(context).pop();
-                                                                                  },
-                                                                                  child: Text(
-                                                                                    'Yes',
-                                                                                    style: TextStyle(fontSize: 18),
-                                                                                  )),
-                                                                            ),
-                                                                          ]),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                    Positioned(
-                                                                      left: Constants
-                                                                          .padding,
-                                                                      right: Constants
-                                                                          .padding,
-                                                                      child:
-                                                                          CircleAvatar(
-                                                                        backgroundColor:
-                                                                            Colors.transparent,
-                                                                        radius:
-                                                                            Constants.avatarRadius,
-                                                                        child: ClipRRect(
-                                                                            borderRadius:
-                                                                                BorderRadius.all(Radius.circular(Constants.avatarRadius)),
-                                                                            child: Image.asset("assets/model.jpeg")),
-                                                                      ),
-                                                                    ),
-                                                                  ]),
+                                                                    FirebaseFirestore
+                                                                        .instance
+                                                                        .collection(
+                                                                            'orders')
+                                                                        .doc()
+                                                                        .set({
+                                                                      'name': ds[
+                                                                          'name'],
+                                                                      'selleremail':
+                                                                          ds['selleremail']
+                                                                              .toString(),
+                                                                      'id': ds[
+                                                                              'id']
+                                                                          .toString(),
+                                                                      'quantity':
+                                                                          ds['quantity']
+                                                                              .toString(),
+                                                                      'buyeremail':
+                                                                          user.email,
+                                                                      'picked from vendor':
+                                                                          false,
+                                                                      'Order Dilevered to Collection Point':
+                                                                          false,
+                                                                      'Order Recieved to Collection Point':
+                                                                          false,
+                                                                    });
+                                                                    FirebaseFirestore
+                                                                        .instance
+                                                                        .collection(
+                                                                            'user')
+                                                                        .doc(user
+                                                                            .email)
+                                                                        .collection(
+                                                                            'cart')
+                                                                        .doc(ds
+                                                                            .id)
+                                                                        .delete();
+                                                                    Navigator.of(
+                                                                            context)
+                                                                        .pop();
+                                                                  },
+                                                                ),
+                                                              ],
                                                             );
                                                           });
-                                                      User user = FirebaseAuth
-                                                          .instance.currentUser;
                                                     },
                                                     child: Text(
                                                       "Place Order",
@@ -496,11 +512,40 @@ class _CheckoutState extends State<Checkout> {
                                     child: Center(
                                         child: CircularProgressIndicator()));
                           }),
-                      priceSection()
                     ],
                   ),
                 ),
-                flex: 90,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 100.0),
+                child: Align(
+                  alignment: FractionalOffset.bottomCenter,
+                  child: Container(
+                    height: 50.0,
+                    width: 300.0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: TitleText(
+                            text: 'Total',
+                            color: LightColor.red,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: TitleText(
+                            text: '${price}' ?? "",
+                            fontSize: 18,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ],
           );
@@ -585,102 +630,6 @@ class _CheckoutState extends State<Checkout> {
         strAddress,
         style: CustomTextStyle.textFormFieldMedium
             .copyWith(fontSize: 12, color: Colors.grey.shade800),
-      ),
-    );
-  }
-
-  priceSection() {
-    return Container(
-      margin: EdgeInsets.all(4),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(4)),
-      ),
-      child: Card(
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(4))),
-        child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(4)),
-              border: Border.all(color: Colors.grey.shade200)),
-          padding: EdgeInsets.only(left: 12, top: 8, right: 12, bottom: 8),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                height: 4,
-              ),
-              Text(
-                "PRICE DETAILS",
-                style: CustomTextStyle.textFormFieldMedium.copyWith(
-                    fontSize: 12,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600),
-              ),
-              SizedBox(
-                height: 4,
-              ),
-              Container(
-                width: double.infinity,
-                height: 0.5,
-                margin: EdgeInsets.symmetric(vertical: 4),
-                color: Colors.grey.shade400,
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Container(
-                width: double.infinity,
-                height: 0.5,
-                margin: EdgeInsets.symmetric(vertical: 4),
-                color: Colors.grey.shade400,
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    "Total",
-                    style: CustomTextStyle.textFormFieldSemiBold
-                        .copyWith(color: Colors.black, fontSize: 12),
-                  ),
-                  Text(
-                    'HI',
-                    style: CustomTextStyle.textFormFieldMedium
-                        .copyWith(color: Colors.black, fontSize: 12),
-                  )
-                ],
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  createPriceItem(String key, String value, Color color) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 3),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Text(
-            key,
-            style: CustomTextStyle.textFormFieldMedium
-                .copyWith(color: Colors.grey.shade700, fontSize: 12),
-          ),
-          Text(
-            value,
-            style: CustomTextStyle.textFormFieldMedium
-                .copyWith(color: color, fontSize: 12),
-          )
-        ],
       ),
     );
   }

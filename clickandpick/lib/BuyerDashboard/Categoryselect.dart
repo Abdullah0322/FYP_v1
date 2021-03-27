@@ -110,7 +110,9 @@ class _CategorySelectedState extends State<CategorySelected> {
                                               shopaddress: snapshot.data
                                                   .docs[index]['shopaddress'],
                                               selleremail: snapshot.data
-                                                  .docs[index]['selleremail']),
+                                                  .docs[index]['selleremail'],
+                                              rating: snapshot.data.docs[index]
+                                                  ['rating']),
                                         ),
                                       ));
                                 },
