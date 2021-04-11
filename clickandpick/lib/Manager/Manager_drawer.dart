@@ -6,6 +6,7 @@ import 'package:ClickandPick/RiderDashboard/riderContactUs.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ClickandPick/Manager/ManageOrders.dart';
 
 class ManagerDrawer extends StatelessWidget {
   ManagerDrawer({Key key}) : super(key: key);
@@ -80,8 +81,15 @@ class ManagerDrawer extends StatelessWidget {
               //);
             },
           ),
+          Divider(
+            height: 64,
+            thickness: 0.5,
+            color: Colors.blueGrey.withOpacity(0.3),
+            indent: 32,
+            endIndent: 32,
+          ),
           ListTile(
-            leading: Icon(Icons.bike_scooter),
+            leading: Icon(Icons.shop_two),
             title: Text(
               'Manage Shops',
               style: TextStyle(
@@ -98,15 +106,27 @@ class ManagerDrawer extends StatelessWidget {
               );
             },
           ),
-          Divider(
-            height: 64,
-            thickness: 0.5,
-            color: Colors.blueGrey.withOpacity(0.3),
-            indent: 32,
-            endIndent: 32,
+          ListTile(
+            leading: Icon(Icons.shop_two),
+            title: Text(
+              'Manage Orders',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ManageOrders(
+                      //type: Manager.userData.email,
+                      ),
+                ),
+              );
+            },
           ),
           ListTile(
-            leading: Icon(Icons.shopping_bag_outlined),
+            leading: Icon(Icons.bike_scooter),
             title: Text(
               'Manage Riders',
               style: TextStyle(

@@ -53,6 +53,9 @@ class _ManageOrdersState extends State<ManageOrders> {
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Orders"),
+      ),
       drawer: ManagerDrawer(),
       body: StreamBuilder(
         stream: getOrders(),
@@ -65,127 +68,118 @@ class _ManageOrdersState extends State<ManageOrders> {
                     return Center(
                       child: Card(
                         child: InkWell(
-                          splashColor: Colors.blue.withAlpha(30),
+                          splashColor: Colors.red.withAlpha(30),
                           onTap: () {
                             print('Card tapped.');
                           },
-                          child: SizedBox(
+                          child: Container(
                               width: width * 0.93,
-                              height: 120,
-                              child: Stack(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 25.0, top: 10),
-                                    child: Container(
-                                      child: Text(
-                                        ds['id'],
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 20),
-                                      ),
+                                  Container(
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          'ID:',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          ds['id'],
+                                          style: TextStyle(
+                                              color: Colors.blue,
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 15),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 38.0, left: 25),
-                                    child: Container(
-                                      child: Text(
-                                        ds['name'],
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 17),
-                                      ),
+                                  Container(
+                                    child: Text(
+                                      ds['name'],
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 17),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 68.0, left: 25),
-                                    child: Container(
-                                      child: Text(
-                                        ds['buyeremail'],
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 17),
-                                      ),
+                                  Container(
+                                    child: Text(
+                                      ds['buyeremail'],
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 17),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 68.0, left: 25),
-                                    child: Container(
-                                      child: Text(
-                                        ds.id,
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 17),
-                                      ),
+                                  Container(
+                                    child: Text(
+                                      ds.id,
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 17),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 88.0, left: 100),
-                                    child: Container(
-                                      height: 30,
-                                      width: 150,
-                                      child: RaisedButton(
-                                        color: Colors.green[300],
-                                        onPressed: () {
-                                          ds.id;
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ManageRiders(
-                                                        data: Data(
-                                                          id: ds.id,
-                                                          name: snapshot.data
-                                                                  .docs[index]
-                                                              ['name'],
-                                                          selleremail: snapshot
-                                                                  .data
-                                                                  .docs[index]
-                                                              ['selleremail'],
-                                                          quantity: snapshot
-                                                                  .data
-                                                                  .docs[index]
-                                                              ['quantity'],
-                                                          buyeremail: snapshot
-                                                                  .data
-                                                                  .docs[index]
-                                                              ['buyeremail'],
-                                                        ),
-                                                      )));
-                                        },
-                                        child: Text('Assign Rider'),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        height: 30,
+                                        width: 150,
+                                        child: RaisedButton(
+                                          color: Colors.green[300],
+                                          onPressed: () {
+                                            ds.id;
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        ManageRiders(
+                                                          data: Data(
+                                                            id: ds.id,
+                                                            name: snapshot.data
+                                                                    .docs[index]
+                                                                ['name'],
+                                                            selleremail: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['selleremail'],
+                                                            quantity: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['quantity'],
+                                                            buyeremail: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['buyeremail'],
+                                                          ),
+                                                        )));
+                                          },
+                                          child: Text('Assign Rider'),
+                                        ),
                                       ),
-                                    ),
+                                      Container(
+                                        height: 30,
+                                        width: 150,
+                                        child: RaisedButton(
+                                          color: Colors.green[300],
+                                          onPressed: () {
+                                            FirebaseFirestore.instance
+                                                .collection('orders')
+                                                .doc(ds.id)
+                                                .update({
+                                              'Order Recieved to Collection Point':
+                                                  true
+                                            });
+                                          },
+                                          child: Text('Order Recieved'),
+                                        ),
+                                      )
+                                    ],
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 88.0, left: 200),
-                                    child: Container(
-                                      height: 30,
-                                      width: 150,
-                                      child: RaisedButton(
-                                        color: Colors.green[300],
-                                        onPressed: () {
-                                          FirebaseFirestore.instance
-                                              .collection('orders')
-                                              .doc(ds.id)
-                                              .update({
-                                            'Order Recieved to Collection Point':
-                                                true
-                                          });
-                                        },
-                                        child: Text('Order Recieved'),
-                                      ),
-                                    ),
-                                  )
                                 ],
                               )),
                         ),
