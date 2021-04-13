@@ -1,4 +1,4 @@
-import 'package:ClickandPick/Login/login.dart';
+import 'package:ClickandPick/Login/LoginPage.dart';
 import 'package:ClickandPick/Manager/Collectionpointinfo.dart';
 import 'package:ClickandPick/Manager/Riders.dart';
 import 'package:ClickandPick/Manager/Shops.dart';
@@ -192,8 +192,8 @@ class ManagerDrawer extends StatelessWidget {
               } catch (e) {
                 print(e);
               }
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => Login()));
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => LoginPage()));
             },
           ),
         ],

@@ -1,4 +1,3 @@
-import 'package:ClickandPick/Login/login.dart';
 import 'package:ClickandPick/SellerDashboard/data.dart';
 import 'package:ClickandPick/utils/colors.dart';
 import 'package:cached_network_image/cached_network_image.dart';

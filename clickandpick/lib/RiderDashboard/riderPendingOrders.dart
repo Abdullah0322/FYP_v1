@@ -1,9 +1,9 @@
-import 'package:ClickandPick/Login/login.dart';
 import 'package:ClickandPick/RiderDashboard/Rider_Drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:ClickandPick/Login/LoginPage.dart';
 
 class PendingOrders extends StatefulWidget {
   PendingOrders({Key key}) : super(key: key);

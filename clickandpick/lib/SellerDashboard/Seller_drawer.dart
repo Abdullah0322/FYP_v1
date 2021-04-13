@@ -1,10 +1,10 @@
-import 'package:ClickandPick/Login/login.dart';
 import 'package:ClickandPick/RiderDashboard/riderContactUs.dart';
 import 'package:ClickandPick/SellerDashboard/ManageOrders.dart';
 import 'package:ClickandPick/SellerDashboard/dileveredorders.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ClickandPick/Login/LoginPage.dart';
 
 class SellerDrawer extends StatefulWidget {
   const SellerDrawer({Key key}) : super(key: key);
@@ -143,7 +143,7 @@ class _SellerDrawerState extends State<SellerDrawer> {
                       print(e);
                     }
                     Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => Login()));
+                        MaterialPageRoute(builder: (context) => LoginPage()));
                   },
                 ),
               ],

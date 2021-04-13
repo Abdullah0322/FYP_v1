@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:ClickandPick/BuyerDashboard/buyerdashboard.dart';
-import 'package:ClickandPick/Intro.dart';
 import 'package:ClickandPick/Manager/ManageOrders.dart';
 import 'package:ClickandPick/Register/registerbuyer.dart';
 import 'package:ClickandPick/Register/registertype.dart';
@@ -12,17 +11,129 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import '../BuyerDashboard/buyerdashboard.dart';
-import '../utils/colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
-class Login extends StatefulWidget {
+import 'bezierContainer.dart';
+
+class LoginPage extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginPageState extends State<LoginPage> {
+  Widget _divider() {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
+      child: Row(
+        children: <Widget>[
+          SizedBox(
+            width: 20,
+          ),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Divider(
+                thickness: 1,
+              ),
+            ),
+          ),
+          Text('or'),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Divider(
+                thickness: 1,
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 20,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _createAccountLabel() {
+    return InkWell(
+      onTap: () {
+        //  Navigator.push(
+        //    context, MaterialPageRoute(builder: (context) => SignUpPage()));
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 20),
+        padding: EdgeInsets.all(15),
+        alignment: Alignment.bottomCenter,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Don\'t have an account ?',
+              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RegisterInterface(),
+                    ));
+              },
+              child: Text(
+                'Register',
+                style: TextStyle(
+                    color: Color(0xfff79c4f),
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _title() {
+    return RichText(
+      textAlign: TextAlign.center,
+      text: TextSpan(
+          text: 'C',
+          style: GoogleFonts.portLligatSans(
+            textStyle: Theme.of(context).textTheme.display1,
+            fontSize: 30,
+            fontWeight: FontWeight.w700,
+            color: Color(0xffe46b10),
+          ),
+          children: [
+            TextSpan(
+              text: 'li',
+              style: TextStyle(color: Colors.black, fontSize: 30),
+            ),
+            TextSpan(
+              text: 'ck',
+              style: TextStyle(color: Color(0xffe46b10), fontSize: 30),
+            ),
+            TextSpan(
+              text: '&',
+              style: TextStyle(color: Colors.black, fontSize: 30),
+            ),
+            TextSpan(
+              text: 'Pi',
+              style: TextStyle(color: Color(0xffe46b10), fontSize: 30),
+            ),
+            TextSpan(
+              text: 'ck',
+              style: TextStyle(color: Colors.black, fontSize: 30),
+            ),
+          ]),
+    );
+  }
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final password = TextEditingController();
   final email = TextEditingController();
@@ -424,249 +535,161 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    print(type);
-    //height of the screen
-    var height = MediaQuery.of(context).size.height;
-    //width of the screen
     var width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: containercolor,
-      body: ModalProgressHUD(
-        inAsyncCall: _isInAsyncCall,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Stack(
-                children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.fromLTRB(25, 110, 0, 0),
-                    child: Text(
-                      'Hello!',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: headingcolor,
-                        fontSize: 35,
-                        letterSpacing: 1,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.fromLTRB(25, 150, 0, 0),
-                    child: Text(
-                      'Please',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: headingcolor,
-                        fontSize: 35,
-                        letterSpacing: 1,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.fromLTRB(25, 190, 0, 0),
-                    child: Text(
-                      'Signin',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: headingcolor,
-                        fontSize: 35,
-                        letterSpacing: 1,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Form(
-                key: _formKey,
+        body: ModalProgressHUD(
+      inAsyncCall: _isInAsyncCall,
+      child: Container(
+        height: height,
+        child: Stack(
+          children: <Widget>[
+            Positioned(
+                top: -height * .15,
+                right: -MediaQuery.of(context).size.width * .4,
+                child: BezierContainer()),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: SingleChildScrollView(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Center(
-                      child: Container(
-                        width: width * 0.8,
-                        decoration: new BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white,
-                          border: new Border.all(
-                            color: Colors.white,
-                            width: 1.0,
-                          ),
-                        ),
-                        child: TextFormField(
-                          controller: email,
-                          validator: validateEmail,
-                          decoration: InputDecoration(
-                            contentPadding: EdgeInsets.only(left: 10),
-                            hintText: 'Email Address',
-                            hintStyle: TextStyle(color: headingcolor),
-                            border: InputBorder.none,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Center(
-                      child: Container(
-                        width: width * 0.8,
-                        decoration: new BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white,
-                          border: new Border.all(
-                            color: Colors.white,
-                            width: 1.0,
-                          ),
-                        ),
-                        child: TextFormField(
-                          obscureText: true,
-                          controller: password,
-                          validator: (input) {
-                            return input.length < 8
-                                ? "Password must be greater than 7 charaters"
-                                : null;
-                          },
-                          decoration: InputDecoration(
-                            contentPadding: EdgeInsets.only(left: 10),
-                            hintText: 'Password',
-                            hintStyle: TextStyle(color: headingcolor),
-                            border: InputBorder.none,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
-                      child: Container(
-                        child: RadioButtonGroup(
-                            labels: <String>[
-                              "Buyer",
-                              "Seller",
-                              "Rider",
-                              "Manager",
-                            ],
-                            onChange: (String a, int b) {
-                              setState(() {
-                                type = a;
-                              });
-                            },
-                            onSelected: (String selected) => print(selected)),
-                      ),
-                    ),
-                    Container(
-                      width: width - width * 0.08,
-                      child: GestureDetector(
-                        onTap: () async {
-                          FormState fs = _formKey.currentState;
-                          fs.validate();
-
-                          try {
-                            final result =
-                                await InternetAddress.lookup('google.com');
-                            if (result.isNotEmpty &&
-                                result[0].rawAddress.isNotEmpty) {
-                              print('connected');
-                              setState(() {
-                                login = false;
-                              });
-                              logIn(type);
-                            }
-                          } on SocketException catch (_) {
-                            print('not connected');
-                            setState(() {
-                              login = false;
-                            });
-                            Fluttertoast.showToast(
-                              msg: "You're not connected to the internet",
-                              toastLength: Toast.LENGTH_LONG,
-                              gravity: ToastGravity.BOTTOM,
-                              timeInSecForIosWeb: 3,
-                              backgroundColor: Colors.red[400],
-                              textColor: Colors.white,
-                              fontSize: 15,
-                            );
-                          }
-                        },
-                        child: Center(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Color(0xFF667EEA),
-                                    offset: Offset(0, 6),
-                                    blurRadius: 3,
-                                    spreadRadius: -4)
-                              ],
-                              borderRadius: BorderRadius.circular(6),
-                              color: buttoncolor,
-                            ),
-                            height: 55,
-                            width: MediaQuery.of(context).size.width * 0.8,
-                            child: Center(
-                              child: Text(
-                                'Log in',
+                    SizedBox(height: height * .2),
+                    _title(),
+                    SizedBox(height: 50),
+                    Form(
+                        key: _formKey,
+                        child: Container(
+                          margin: EdgeInsets.symmetric(vertical: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                'Email Id',
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: 15),
+                                    fontWeight: FontWeight.bold, fontSize: 15),
                               ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    Row(
-                      children: <Widget>[
-                        Container(
-                            child: InkWell(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 40.0),
-                            child: Text(
-                              'Forgot your Password?',
-                              style: TextStyle(
-                                color: headingcolor,
-                                fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.underline,
+                              SizedBox(
+                                height: 10,
                               ),
-                            ),
+                              TextFormField(
+                                  controller: email,
+                                  validator: validateEmail,
+                                  decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      fillColor: Color(0xfff3f3f4),
+                                      filled: true)),
+                              Text(
+                                'Password',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 15),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              TextFormField(
+                                  controller: password,
+                                  validator: (input) {
+                                    return input.length < 8
+                                        ? "Password must be greater than 7 charaters"
+                                        : null;
+                                  },
+                                  obscureText: true,
+                                  decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      fillColor: Color(0xfff3f3f4),
+                                      filled: true)),
+                              Container(
+                                child: RadioButtonGroup(
+                                    labels: <String>[
+                                      "Buyer",
+                                      "Seller",
+                                      "Rider",
+                                      "Manager",
+                                    ],
+                                    onChange: (String a, int b) {
+                                      setState(() {
+                                        type = a;
+                                      });
+                                    },
+                                    onSelected: (String selected) =>
+                                        print(selected)),
+                              ),
+                              SizedBox(height: 20),
+                              GestureDetector(
+                                onTap: () async {
+                                  FormState fs = _formKey.currentState;
+                                  fs.validate();
+                                  try {
+                                    final result = await InternetAddress.lookup(
+                                        'google.com');
+                                    if (result.isNotEmpty &&
+                                        result[0].rawAddress.isNotEmpty) {
+                                      print('connected');
+                                      setState(() {
+                                        login = false;
+                                      });
+                                      logIn(type);
+                                    }
+                                  } on SocketException catch (_) {
+                                    print('not connected');
+                                    setState(() {
+                                      login = false;
+                                    });
+                                    Fluttertoast.showToast(
+                                      msg:
+                                          "You're not connected to the internet",
+                                      toastLength: Toast.LENGTH_LONG,
+                                      gravity: ToastGravity.BOTTOM,
+                                      timeInSecForIosWeb: 3,
+                                      backgroundColor: Colors.red[400],
+                                      textColor: Colors.white,
+                                      fontSize: 15,
+                                    );
+                                  }
+                                },
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  padding: EdgeInsets.symmetric(vertical: 15),
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(5)),
+                                      boxShadow: <BoxShadow>[
+                                        BoxShadow(
+                                            color: Colors.grey.shade200,
+                                            offset: Offset(2, 4),
+                                            blurRadius: 5,
+                                            spreadRadius: 2)
+                                      ],
+                                      gradient: LinearGradient(
+                                          begin: Alignment.centerLeft,
+                                          end: Alignment.centerRight,
+                                          colors: [
+                                            Color(0xfffbb448),
+                                            Color(0xfff7892b)
+                                          ])),
+                                  child: Text(
+                                    'Login',
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         )),
-                        Container(
-                            child: InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => RegisterInterface(),
-                                ));
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 120.0),
-                            child: Text(
-                              'Signup',
-                              style: TextStyle(
-                                color: headingcolor,
-                                fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
-                        )),
-                      ],
-                    ),
+                    _divider(),
+                    _createAccountLabel(),
                   ],
                 ),
-              )
-            ],
-          ),
+              ),
+            ),
+          ],
         ),
       ),
-    );
+    ));
   }
 }
 

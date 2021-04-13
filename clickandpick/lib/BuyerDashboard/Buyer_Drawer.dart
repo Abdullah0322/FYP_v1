@@ -1,7 +1,7 @@
 import 'package:ClickandPick/BuyerDashboard/Category.dart';
 import 'package:ClickandPick/BuyerDashboard/favourites.dart';
 import 'package:ClickandPick/Cart/cart.dart';
-import 'package:ClickandPick/Login/login.dart';
+import 'package:ClickandPick/Login/LoginPage.dart';
 import 'package:ClickandPick/RiderDashboard/riderContactUs.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -189,7 +189,7 @@ class _BuyerDrawerState extends State<BuyerDrawer> {
                       print(e);
                     }
                     Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => Login()));
+                        MaterialPageRoute(builder: (context) => LoginPage()));
                   },
                 ),
               ],
