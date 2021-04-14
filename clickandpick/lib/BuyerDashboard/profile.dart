@@ -17,13 +17,13 @@ class _ProfileState extends State<Profile> {
       bottomNavigationBar: CurvedNavigationBar(
           height: 50,
           color: Colors.black54,
-          backgroundColor: containercolor,
+          backgroundColor: Color(0xFFA579A3),
           buttonBackgroundColor: Colors.black54,
           items: <Widget>[
-            Icon(Icons.home, size: 20, color: Colors.orange[300]),
-            Icon(Icons.category, size: 20, color: Colors.orange[300]),
-            Icon(Icons.shopping_bag, size: 20, color: Colors.orange[300]),
-            Icon(Icons.people, size: 20, color: Colors.orange[300]),
+            Icon(Icons.home, size: 20, color: Color(0xFFFFFFFF)),
+            Icon(Icons.category, size: 20, color: Color(0xFFFFFFFF)),
+            Icon(Icons.shopping_bag, size: 20, color: Color(0xFFFFFFFF)),
+            Icon(Icons.people, size: 20, color: Color(0xFFFFFFFF)),
           ],
           animationDuration: Duration(milliseconds: 300),
           animationCurve: Curves.easeInOut,

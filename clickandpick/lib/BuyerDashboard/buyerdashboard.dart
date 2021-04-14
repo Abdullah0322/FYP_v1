@@ -157,14 +157,14 @@ class _BuyerDashboardState extends State<BuyerDashboard>
           },
           child: Scaffold(
             key: scaffoldKey,
-            backgroundColor: containercolor,
+            backgroundColor: Color(0xFFFFFFFF),
             appBar: AppBar(
-              backgroundColor: Colors.transparent,
+              backgroundColor: Color(0xFFA579A3),
               elevation: 0.0,
               title: Center(
                 child: Text("Click and Pick",
                     style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontWeight: FontWeight.w300,
                         fontSize: 20)),
               ),
@@ -782,13 +782,13 @@ class _BuyerDashboardState extends State<BuyerDashboard>
             bottomNavigationBar: CurvedNavigationBar(
               height: 50,
               color: Colors.black54,
-              backgroundColor: containercolor,
+              backgroundColor: Color(0xFFA579A3),
               buttonBackgroundColor: Colors.black54,
               items: <Widget>[
-                Icon(Icons.home, size: 20, color: Colors.orange[300]),
-                Icon(Icons.category, size: 20, color: Colors.orange[300]),
-                Icon(Icons.shopping_bag, size: 20, color: Colors.orange[300]),
-                Icon(Icons.people, size: 20, color: Colors.orange[300]),
+                Icon(Icons.home, size: 20, color: Color(0xFFFFFFFF)),
+                Icon(Icons.category, size: 20, color: Color(0xFFFFFFFF)),
+                Icon(Icons.shopping_bag, size: 20, color: Color(0xFFFFFFFF)),
+                Icon(Icons.people, size: 20, color: Color(0xFFFFFFFF)),
               ],
               animationDuration: Duration(milliseconds: 300),
               animationCurve: Curves.easeInOut,

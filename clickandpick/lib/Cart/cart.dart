@@ -283,11 +283,13 @@ class _CartState extends State<Cart> {
                 height: 50.0,
                 width: 300.0,
                 child: RaisedButton(
-                  color: Colors.black,
+                  color: Color(0xFFA579A3),
                   child: Text(
-                    'CHECKOUT',
+                    'CHECK OUT',
                     style: TextStyle(
-                        fontWeight: FontWeight.w300, color: Colors.white),
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white),
                   ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0),
@@ -309,13 +311,13 @@ class _CartState extends State<Cart> {
       bottomNavigationBar: CurvedNavigationBar(
           height: 50,
           color: Colors.black54,
-          backgroundColor: containercolor,
+          backgroundColor: Color(0xFFA579A3),
           buttonBackgroundColor: Colors.black54,
           items: <Widget>[
-            Icon(Icons.home, size: 20, color: Colors.orange[300]),
-            Icon(Icons.category, size: 20, color: Colors.orange[300]),
-            Icon(Icons.shopping_bag, size: 20, color: Colors.orange[300]),
-            Icon(Icons.people, size: 20, color: Colors.orange[300]),
+            Icon(Icons.home, size: 20, color: Color(0xFFFFFFFF)),
+            Icon(Icons.category, size: 20, color: Color(0xFFFFFFFF)),
+            Icon(Icons.shopping_bag, size: 20, color: Color(0xFFFFFFFF)),
+            Icon(Icons.people, size: 20, color: Color(0xFFFFFFFF)),
           ],
           animationDuration: Duration(milliseconds: 300),
           animationCurve: Curves.easeInOut,
