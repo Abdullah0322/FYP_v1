@@ -54,6 +54,7 @@ class _ManageOrdersState extends State<ManageOrders> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFFA579A3),
         title: Text("Orders"),
       ),
       drawer: ManagerDrawer(),
@@ -130,7 +131,7 @@ class _ManageOrdersState extends State<ManageOrders> {
                                         height: 30,
                                         width: 150,
                                         child: RaisedButton(
-                                          color: Colors.green[300],
+                                          color: Color(0xFFAC42A6),
                                           onPressed: () {
                                             ds.id;
                                             Navigator.push(
@@ -158,14 +159,16 @@ class _ManageOrdersState extends State<ManageOrders> {
                                                           ),
                                                         )));
                                           },
-                                          child: Text('Assign Rider'),
+                                          child: Text('Assign Rider',
+                                              style: TextStyle(
+                                                  color: Color(0xFFFFFFFF))),
                                         ),
                                       ),
                                       Container(
                                         height: 30,
                                         width: 150,
                                         child: RaisedButton(
-                                          color: Colors.green[300],
+                                          color: Color(0xFFAC42A6),
                                           onPressed: () {
                                             FirebaseFirestore.instance
                                                 .collection('orders')
@@ -175,7 +178,9 @@ class _ManageOrdersState extends State<ManageOrders> {
                                                   true
                                             });
                                           },
-                                          child: Text('Order Recieved'),
+                                          child: Text('Order Recieved',
+                                              style: TextStyle(
+                                                  color: Color(0xFFFFFFFF))),
                                         ),
                                       )
                                     ],

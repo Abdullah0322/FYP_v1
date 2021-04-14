@@ -273,8 +273,9 @@ class _SellerDashboardState extends State<SellerDashboard>
         },
         child: Scaffold(
           key: scaffoldKey,
-          backgroundColor: containercolor,
+          backgroundColor: Color(0xFFFFFFFF),
           appBar: AppBar(
+            backgroundColor: Color(0xFFA579A3),
             title: Text(
               'Products',
               style: TextStyle(
@@ -320,7 +321,6 @@ class _SellerDashboardState extends State<SellerDashboard>
               ],
             ),
             elevation: 0,
-            backgroundColor: Colors.green[400],
           ),
           drawer: SellerDrawer(),
           body: TabBarView(
