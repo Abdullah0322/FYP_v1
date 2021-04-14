@@ -1,4 +1,3 @@
-import 'package:ClickandPick/Login/login.dart';
 import 'package:ClickandPick/Register/registerbuyer.dart';
 import 'package:flutter/material.dart';
 

@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:ClickandPick/Login/login.dart';
+import 'package:ClickandPick/Login/LoginPage.dart';
 import 'package:ClickandPick/utils/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
-import '../Login/login.dart';
-import '../Login/login.dart';
 import '../utils/colors.dart';
 
 final FirebaseAuth mauth = FirebaseAuth.instance;
@@ -95,7 +93,7 @@ class _RegisterState extends State<Register> {
                     }
                     Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => Login()),
+                        MaterialPageRoute(builder: (context) => LoginPage()),
                         (route) => false);
                   },
                 ),
@@ -107,8 +105,10 @@ class _RegisterState extends State<Register> {
         } catch (e) {
           print(e);
         }
-        Navigator.pushAndRemoveUntil(context,
-            MaterialPageRoute(builder: (context) => Login()), (route) => false);
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => LoginPage()),
+            (route) => false);
       });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -412,7 +412,7 @@ class _RegisterState extends State<Register> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => Login(),
+                                  builder: (context) => LoginPage(),
                                 ));
                           },
                           child: Padding(

@@ -477,6 +477,8 @@ class _CheckoutState extends State<Checkout> {
                                                                     Navigator.of(
                                                                             context)
                                                                         .pop();
+                                                                    showThankYouBottomSheet(
+                                                                        context);
                                                                   },
                                                                 ),
                                                               ],
@@ -596,10 +598,12 @@ class _CheckoutState extends State<Checkout> {
                       height: 24,
                     ),
                     RaisedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                       padding: EdgeInsets.only(left: 48, right: 48),
                       child: Text(
-                        "Track Order",
+                        "Place another order",
                         style: CustomTextStyle.textFormFieldMedium
                             .copyWith(color: Colors.white),
                       ),

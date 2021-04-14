@@ -1,5 +1,4 @@
 import 'package:ClickandPick/Cart/cart.dart';
-import 'package:ClickandPick/Login/login.dart';
 import 'package:ClickandPick/SellerDashboard/Seller_drawer.dart';
 import 'package:ClickandPick/utils/colors.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -17,6 +16,7 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'dart:async';
 import 'dart:io';
 import 'data.dart';
+import 'package:ClickandPick/Login/LoginPage.dart';
 
 class SellerDashboard extends StatefulWidget {
   @override

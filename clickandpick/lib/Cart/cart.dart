@@ -1,6 +1,7 @@
 import 'package:ClickandPick/BuyerDashboard/Category.dart';
 import 'package:ClickandPick/BuyerDashboard/buyerdashboard.dart';
 import 'package:ClickandPick/BuyerDashboard/light_color.dart';
+import 'package:ClickandPick/BuyerDashboard/profile.dart';
 import 'package:ClickandPick/BuyerDashboard/title_text.dart';
 import 'package:ClickandPick/Cart/CheckoutPage.dart';
 import 'package:ClickandPick/SellerDashboard/data.dart';
@@ -337,6 +338,13 @@ class _CartState extends State<Cart> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => Cart(),
+                  ));
+            }
+            if (index == 3) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Profile(),
                   ));
             }
           }

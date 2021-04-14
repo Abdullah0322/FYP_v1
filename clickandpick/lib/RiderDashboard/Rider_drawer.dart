@@ -6,9 +6,9 @@ import 'package:ClickandPick/SellerDashboard/dileveredorders.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ClickandPick/Login/login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:toggle_switch/toggle_switch.dart';
+import 'package:ClickandPick/Login/LoginPage.dart';
 
 class Riderdrawer extends StatefulWidget {
   @override
@@ -202,8 +202,8 @@ class _RiderdrawerState extends State<Riderdrawer> {
               } catch (e) {
                 print(e);
               }
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => Login()));
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => LoginPage()));
             },
           ),
         ],

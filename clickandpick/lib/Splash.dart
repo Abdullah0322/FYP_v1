@@ -1,6 +1,6 @@
 import 'package:ClickandPick/BuyerDashboard/buyerdashboard.dart';
 import 'package:ClickandPick/Intro.dart';
-import 'package:ClickandPick/Login/login.dart';
+import 'package:ClickandPick/Login/LoginPage.dart';
 import 'package:ClickandPick/Manager/ManageOrders.dart';
 import 'package:ClickandPick/RiderDashboard/riderPendingOrders.dart';
 import 'package:ClickandPick/SellerDashboard/seller.dart';
@@ -8,7 +8,6 @@ import 'package:ClickandPick/utils/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ClickandPick/setting/settings_page.dart';
 
 class Splash extends StatefulWidget {
   @override
@@ -22,7 +21,7 @@ class _SplashState extends State<Splash> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => Login(),
+            builder: (context) => LoginPage(),
           ));
     });
 

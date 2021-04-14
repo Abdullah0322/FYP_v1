@@ -1,3 +1,4 @@
+import 'package:ClickandPick/BuyerDashboard/profile.dart';
 import 'package:ClickandPick/Cart/cart.dart';
 import 'package:ClickandPick/utils/colors.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -28,33 +29,19 @@ class _CategoryState extends State<Category> {
 
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          title: Center(
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        title: Center(
+          child: Padding(
+            padding: const EdgeInsets.only(right: 30.0),
             child: Text("Category",
                 style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w300,
                     fontSize: 20)),
           ),
-          leading: GestureDetector(
-            onTap: () {/* Write listener code here */},
-            child: Icon(Icons.arrow_back,
-                color: Colors.black // add custom icons also
-                ),
-          ),
-          actions: <Widget>[
-            Padding(
-                padding: EdgeInsets.only(right: 20.0),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Icon(
-                    Icons.search,
-                    size: 26.0,
-                    color: Colors.black,
-                  ),
-                )),
-          ]),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -222,6 +209,13 @@ class _CategoryState extends State<Category> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => Cart(),
+                  ));
+            }
+            if (index == 3) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Profile(),
                   ));
             }
           }

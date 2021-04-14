@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:ClickandPick/Login/login.dart';
+import 'package:ClickandPick/Login/LoginPage.dart';
 import 'package:ClickandPick/Register/registerbuyer.dart';
 import 'package:ClickandPick/utils/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -81,7 +81,7 @@ class _RegisterRiderState extends State<RegisterRider> {
                     }
                     Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => Login()),
+                        MaterialPageRoute(builder: (context) => LoginPage()),
                         (route) => false);
                   },
                 ),
@@ -93,8 +93,10 @@ class _RegisterRiderState extends State<RegisterRider> {
         } catch (e) {
           print(e);
         }
-        Navigator.pushAndRemoveUntil(context,
-            MaterialPageRoute(builder: (context) => Login()), (route) => false);
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => LoginPage()),
+            (route) => false);
       });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -433,8 +435,7 @@ class _RegisterRiderState extends State<RegisterRider> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => Login(),
-                                ));
+                                    builder: (context) => LoginPage()));
                           },
                           child: Padding(
                             padding: const EdgeInsets.only(left: 120.0),

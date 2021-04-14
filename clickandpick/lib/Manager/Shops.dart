@@ -1,12 +1,12 @@
 import 'dart:io';
 
-import 'package:ClickandPick/Login/login.dart';
 import 'package:ClickandPick/Manager/Manager_drawer.dart';
 import 'package:ClickandPick/utils/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:ClickandPick/Login/LoginPage.dart';
 
 class ManageShops extends StatefulWidget {
   String type;

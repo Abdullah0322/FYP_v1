@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:ClickandPick/Login/login.dart';
+import 'package:ClickandPick/Login/LoginPage.dart';
 import 'package:ClickandPick/utils/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -62,7 +62,7 @@ class _RegisterManagerState extends State<RegisterManager> {
                     }
                     Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => Login()),
+                        MaterialPageRoute(builder: (context) => LoginPage()),
                         (route) => false);
                   },
                 ),
@@ -74,8 +74,10 @@ class _RegisterManagerState extends State<RegisterManager> {
         } catch (e) {
           print(e);
         }
-        Navigator.pushAndRemoveUntil(context,
-            MaterialPageRoute(builder: (context) => Login()), (route) => false);
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => LoginPage()),
+            (route) => false);
       });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
