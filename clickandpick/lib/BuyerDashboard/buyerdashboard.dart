@@ -162,11 +162,14 @@ class _BuyerDashboardState extends State<BuyerDashboard>
               backgroundColor: Color(0xFFA579A3),
               elevation: 0.0,
               title: Center(
-                child: Text("Click and Pick",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w300,
-                        fontSize: 20)),
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 18.0),
+                  child: Text("Click and Pick",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w300,
+                          fontSize: 20)),
+                ),
               ),
               leading: GestureDetector(
                 onTap: () {

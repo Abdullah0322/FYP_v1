@@ -11,9 +11,62 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final passwordcontroller = TextEditingController();
+  final newpassword = TextEditingController();
+  final repeatpass = TextEditingController();
+  final displayname = TextEditingController();
+  bool checkCurrentPasswordValid = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: Center(
+        child: Container(
+          child: Form(
+              key: _formKey,
+              child: Column(
+                children: <Widget>[
+                  TextFormField(
+                      controller: passwordcontroller,
+                      validator: (input) {
+                        return input.length < 8
+                            ? "Password must be greater than 7 charaters"
+                            : null;
+                      },
+                      decoration: InputDecoration(
+                          hintText: 'Password',
+                          border: InputBorder.none,
+                          fillColor: Color(0xFFF4F3F4),
+                          filled: true)),
+                  TextFormField(
+                      controller: newpassword,
+                      validator: (input) {
+                        return input.length < 8
+                            ? "Password must be greater than 7 charaters"
+                            : null;
+                      },
+                      decoration: InputDecoration(
+                          hintText: 'New Password',
+                          border: InputBorder.none,
+                          fillColor: Color(0xFFF4F3F4),
+                          filled: true)),
+                  TextFormField(
+                      controller: repeatpass,
+                      validator: (value) {
+                        newpassword.text == value
+                            ? null
+                            : 'Password is not valid';
+                      },
+                      decoration: InputDecoration(
+                          hintText: 'Repeat Password',
+                          border: InputBorder.none,
+                          fillColor: Color(0xFFF4F3F4),
+                          filled: true)),
+                  RaisedButton(child: Text('Save'), onPressed: () {})
+                ],
+              )),
+        ),
+      ),
       bottomNavigationBar: CurvedNavigationBar(
           height: 50,
           color: Colors.black54,

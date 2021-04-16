@@ -1,5 +1,7 @@
 import 'package:ClickandPick/BuyerDashboard/Category.dart';
 import 'package:ClickandPick/BuyerDashboard/favourites.dart';
+import 'package:ClickandPick/BuyerDashboard/myorders.dart';
+import 'package:ClickandPick/BuyerDashboard/profile.dart';
 import 'package:ClickandPick/Cart/cart.dart';
 import 'package:ClickandPick/Login/LoginPage.dart';
 import 'package:ClickandPick/RiderDashboard/riderContactUs.dart';
@@ -94,14 +96,14 @@ class _BuyerDrawerState extends State<BuyerDrawer> {
                     ),
                   ),
                   onTap: () {
-                    //       Navigator.push(
-                    ///       context,
-                    //    MaterialPageRoute(builder: (context) => RiderProfile()),
-                    //);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Profile()),
+                    );
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.bike_scooter),
+                  leading: Icon(Icons.favorite),
                   title: Text(
                     'Favourites',
                     style: TextStyle(
@@ -112,6 +114,21 @@ class _BuyerDrawerState extends State<BuyerDrawer> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Favorites()),
+                    );
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.shopping_bag),
+                  title: Text(
+                    'My Orders',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Myorders()),
                     );
                   },
                 ),
