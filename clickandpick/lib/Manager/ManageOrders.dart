@@ -134,6 +134,7 @@ class _ManageOrdersState extends State<ManageOrders> {
                                           color: Color(0xFFAC42A6),
                                           onPressed: () {
                                             ds.id;
+
                                             Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
@@ -170,13 +171,56 @@ class _ManageOrdersState extends State<ManageOrders> {
                                         child: RaisedButton(
                                           color: Color(0xFFAC42A6),
                                           onPressed: () {
-                                            FirebaseFirestore.instance
-                                                .collection('orders')
-                                                .doc(ds.id)
-                                                .update({
-                                              'Order Recieved to Collection Point':
-                                                  true
-                                            });
+                                            return showDialog(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return AlertDialog(
+                                                    title: Text(
+                                                      'Are you sure you want to assign this rider?',
+                                                      style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontFamily: 'Segoe'),
+                                                    ),
+                                                    actions: <Widget>[
+                                                      FlatButton(
+                                                        child: Text(
+                                                          "Cancel",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontFamily:
+                                                                  'Segoe'),
+                                                        ),
+                                                        onPressed: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                      ),
+                                                      FlatButton(
+                                                        child: Text(
+                                                          "Yes",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontFamily:
+                                                                  'Segoe'),
+                                                        ),
+                                                        onPressed: () {
+                                                          FirebaseFirestore
+                                                              .instance
+                                                              .collection(
+                                                                  'orders')
+                                                              .doc(ds.id)
+                                                              .update({
+                                                            'Order Recieved to Collection Point':
+                                                                true
+                                                          });
+                                                        },
+                                                      ),
+                                                    ],
+                                                  );
+                                                });
                                           },
                                           child: Text('Order Recieved',
                                               style: TextStyle(

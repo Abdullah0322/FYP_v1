@@ -125,7 +125,7 @@ class _PendingOrdersState extends State<PendingOrders> {
                                               builder: (BuildContext context) {
                                                 return AlertDialog(
                                                   title: Text(
-                                                    'Are you sure the item is picked by Rider?',
+                                                    'Are you sure the item is Dilevered to Collection Centre?',
                                                     style: TextStyle(
                                                         color: Colors.black,
                                                         fontFamily: 'Segoe'),

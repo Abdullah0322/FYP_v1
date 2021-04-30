@@ -1,4 +1,7 @@
+import 'package:ClickandPick/Login/loginPage.dart';
 import 'package:ClickandPick/app_properties.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,13 +11,84 @@ class ChangePasswordPage extends StatefulWidget {
 }
 
 class _ChangePasswordPageState extends State<ChangePasswordPage> {
+  User firebaseUser = FirebaseAuth.instance.currentUser;
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final newname = TextEditingController();
+
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  var message;
+  getUser() async {
+    try {
+      DocumentSnapshot snap1 = await FirebaseFirestore.instance
+          .collection("user")
+          .doc(user.email)
+          .get();
+      setState(() {
+        Buyer.userData.username = snap1['username'].toString();
+        Buyer.userData.email = snap1['email'].toString();
+        Buyer.userData.address = snap1['address'].toString();
+        Buyer.userData.phone = snap1['phone'].toString();
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void initState() {
+    getUser();
+
+    super.initState();
+  }
+
+  User user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double bottomPadding = MediaQuery.of(context).padding.bottom;
 
     Widget changePasswordButton = InkWell(
-      onTap: () {},
+      onTap: () {
+        return showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(
+                  'Are you sure you want to change your name?',
+                  style: TextStyle(color: Colors.black, fontFamily: 'Segoe'),
+                ),
+                actions: <Widget>[
+                  FlatButton(
+                    child: Text(
+                      "Cancel",
+                      style:
+                          TextStyle(color: Colors.black, fontFamily: 'Segoe'),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  FlatButton(
+                    child: Text(
+                      "Yes",
+                      style:
+                          TextStyle(color: Colors.black, fontFamily: 'Segoe'),
+                    ),
+                    onPressed: () {
+                      User user = FirebaseAuth.instance.currentUser;
+                      FirebaseFirestore.instance
+                          .collection('user')
+                          .doc(user.email)
+                          .update({
+                        'username': newname.text,
+                      });
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              );
+            });
+      },
       child: Container(
         height: 80,
         width: width / 1.5,
@@ -40,6 +114,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
     );
 
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
         iconTheme: IconThemeData(
@@ -71,7 +146,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                             padding:
                                 const EdgeInsets.only(bottom: 48.0, top: 16.0),
                             child: Text(
-                              'Change Password',
+                              'Change Name',
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
@@ -81,7 +156,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 12.0),
                             child: Text(
-                              'Enter your current password',
+                              'Existing Name',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -93,16 +168,17 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(5))),
                               child: TextField(
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: 'Existing Password',
-                                    hintStyle: TextStyle(fontSize: 12.0)),
-                              )),
+                                  decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: Buyer.userData.username,
+                                      hintStyle: TextStyle(
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.bold)))),
                           Padding(
                             padding:
                                 const EdgeInsets.only(top: 24, bottom: 12.0),
                             child: Text(
-                              'Enter new password',
+                              'Enter new Name',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -114,30 +190,10 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(5))),
                               child: TextField(
+                                controller: newname,
                                 decoration: InputDecoration(
                                     border: InputBorder.none,
-                                    hintText: 'New Password',
-                                    hintStyle: TextStyle(fontSize: 12.0)),
-                              )),
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 24, bottom: 12.0),
-                            child: Text(
-                              'Retype new password',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 16.0, vertical: 8.0),
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5))),
-                              child: TextField(
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: 'Retype Password',
+                                    hintText: 'New Name',
                                     hintStyle: TextStyle(fontSize: 12.0)),
                               )),
                         ],

@@ -132,10 +132,48 @@ class _ManageRidersState extends State<ManageRiders>
                                       child: RaisedButton(
                                         color: Colors.green[300],
                                         onPressed: () {
-                                          FirebaseFirestore.instance
+                                           return showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return AlertDialog(
+                                                  title: Text(
+                                                    'Are you sure you want to assign this rider?',
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontFamily: 'Segoe'),
+                                                  ),
+                                                  actions: <Widget>[
+                                                    FlatButton(
+                                                      child: Text(
+                                                        "Cancel",
+                                                        style: TextStyle(
+                                                            color: Colors.black,
+                                                            fontFamily:
+                                                                'Segoe'),
+                                                      ),
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                      },
+                                                    ),
+                                                    FlatButton(
+                                                      child: Text(
+                                                        "Yes",
+                                                        style: TextStyle(
+                                                            color: Colors.black,
+                                                            fontFamily:
+                                                                'Segoe'),
+                                                      ),
+                                                      onPressed: () {
+                                                          FirebaseFirestore.instance
                                               .collection('orders')
                                               .doc(widget.data.id)
                                               .update({'Rider': ds['email']});
+                                                      },
+                                                    ),
+                                                  ],
+                                                );
+                                              });
+                                        
                                         },
                                         child: Text('Assign Order'),
                                       ),

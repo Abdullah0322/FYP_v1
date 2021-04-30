@@ -99,14 +99,6 @@ class SettingsPage extends StatelessWidget {
                                       builder: (_) => ChangePasswordPage())),
                             ),
                             ListTile(
-                              title: Text('Change Password'),
-                              leading:
-                                  Image.asset('assets/icons/change_pass.png'),
-                              onTap: () => Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                      builder: (_) => ChangePasswordPage())),
-                            ),
-                            ListTile(
                               leading: Icon(Icons.exit_to_app),
                               title: Text(
                                 'Log Out',
