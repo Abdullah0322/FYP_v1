@@ -1,10 +1,10 @@
 import 'package:ClickandPick/BuyerDashboard/Category.dart';
 import 'package:ClickandPick/BuyerDashboard/favourites.dart';
 import 'package:ClickandPick/BuyerDashboard/myorders.dart';
-import 'package:ClickandPick/BuyerDashboard/profile.dart';
 import 'package:ClickandPick/Cart/cart.dart';
 import 'package:ClickandPick/Login/LoginPage.dart';
 import 'package:ClickandPick/RiderDashboard/riderContactUs.dart';
+import 'package:ClickandPick/settings.dart/setting_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -98,7 +98,7 @@ class _BuyerDrawerState extends State<BuyerDrawer> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Profile()),
+                      MaterialPageRoute(builder: (context) => SettingsPage()),
                     );
                   },
                 ),

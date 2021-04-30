@@ -454,6 +454,12 @@ class _CheckoutState extends State<Checkout> {
                                                                       'quantity':
                                                                           ds['quantity']
                                                                               .toString(),
+                                                                      'price': ds[
+                                                                          'price'],
+                                                                      'total': ds[
+                                                                          'total'],
+                                                                      'image': ds[
+                                                                          'image'],
                                                                       'buyeremail':
                                                                           user.email,
                                                                       'picked from vendor':

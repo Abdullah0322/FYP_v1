@@ -1,3 +1,4 @@
+import 'package:ClickandPick/SellerDashboard/Seller_drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +46,11 @@ class _DileveredOrdersState extends State<DileveredOrders> {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFFA579A3),
+        title: Text("Dilevered Orders"),
+      ),
+      drawer: SellerDrawer(),
       body: StreamBuilder(
         stream: getOrders(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -104,25 +110,6 @@ class _DileveredOrdersState extends State<DileveredOrders> {
                                       ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 88.0, left: 100),
-                                    child: Container(
-                                      height: 30,
-                                      width: 150,
-                                      child: RaisedButton(
-                                        color: Colors.green[300],
-                                        onPressed: () {
-                                          FirebaseFirestore.instance
-                                              .collection('orders')
-                                              .doc(ds.id)
-                                              .update(
-                                                  {'picked from vendor': true});
-                                        },
-                                        child: Text('Picked by Rider'),
-                                      ),
-                                    ),
-                                  )
                                 ],
                               )),
                         ),

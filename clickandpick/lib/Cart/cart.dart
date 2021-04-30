@@ -1,10 +1,10 @@
 import 'package:ClickandPick/BuyerDashboard/Category.dart';
 import 'package:ClickandPick/BuyerDashboard/buyerdashboard.dart';
 import 'package:ClickandPick/BuyerDashboard/light_color.dart';
-import 'package:ClickandPick/BuyerDashboard/profile.dart';
 import 'package:ClickandPick/BuyerDashboard/title_text.dart';
 import 'package:ClickandPick/Cart/CheckoutPage.dart';
 import 'package:ClickandPick/SellerDashboard/data.dart';
+import 'package:ClickandPick/settings.dart/setting_page.dart';
 import 'package:ClickandPick/utils/colors.dart';
 import 'package:ClickandPick/widgets/DialogueBox.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -346,7 +346,7 @@ class _CartState extends State<Cart> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Profile(),
+                    builder: (context) => SettingsPage(),
                   ));
             }
           }

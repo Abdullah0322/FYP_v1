@@ -1,6 +1,7 @@
 import 'package:ClickandPick/RiderDashboard/riderContactUs.dart';
 import 'package:ClickandPick/SellerDashboard/ManageOrders.dart';
 import 'package:ClickandPick/SellerDashboard/dileveredorders.dart';
+import 'package:ClickandPick/SellerDashboard/seller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -76,9 +77,9 @@ class _SellerDrawerState extends State<SellerDrawer> {
                   ),
                 ),
                 ListTile(
-                  leading: Icon(Icons.person),
+                  leading: Icon(Icons.shopping_bag_sharp),
                   title: Text(
-                    'My Profile',
+                    'Dilevered Orders',
                     style: TextStyle(
                       fontSize: 18,
                     ),
@@ -94,7 +95,7 @@ class _SellerDrawerState extends State<SellerDrawer> {
                 ListTile(
                   leading: Icon(Icons.shopping_bag_outlined),
                   title: Text(
-                    'My Orders',
+                    'Pending Orders',
                     style: TextStyle(
                       fontSize: 18,
                     ),
@@ -112,6 +113,22 @@ class _SellerDrawerState extends State<SellerDrawer> {
                   color: Colors.blueGrey.withOpacity(0.3),
                   indent: 32,
                   endIndent: 32,
+                ),
+                ListTile(
+                  leading: Icon(Icons.shop),
+                  title: Text(
+                    'Manage Products',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SellerDashboard()),
+                    );
+                  },
                 ),
                 ListTile(
                   leading: Icon(Icons.phone),

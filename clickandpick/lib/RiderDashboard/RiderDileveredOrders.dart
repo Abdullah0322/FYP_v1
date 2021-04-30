@@ -1,19 +1,16 @@
+import 'package:ClickandPick/Login/loginPage.dart';
+import 'package:ClickandPick/RiderDashboard/Rider_drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'package:ClickandPick/Login/LoginPage.dart';
-
-import 'Rider_Drawer.dart';
-
-class DeliveredOrders extends StatefulWidget {
-  DeliveredOrders({Key key}) : super(key: key);
+class RiderDilevered extends StatefulWidget {
   @override
-  _DeliveredOrdersState createState() => _DeliveredOrdersState();
+  _RiderDileveredState createState() => _RiderDileveredState();
 }
 
-class _DeliveredOrdersState extends State<DeliveredOrders> {
+class _RiderDileveredState extends State<RiderDilevered> {
   var gg;
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -113,27 +110,6 @@ class _DeliveredOrdersState extends State<DeliveredOrders> {
                                       ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 88.0, left: 100),
-                                    child: Container(
-                                      height: 30,
-                                      width: 150,
-                                      child: RaisedButton(
-                                        color: Colors.green[300],
-                                        onPressed: () {
-                                          FirebaseFirestore.instance
-                                              .collection('orders')
-                                              .doc(ds.id)
-                                              .update({
-                                            'Order Dilevered to Collection Point':
-                                                true
-                                          });
-                                        },
-                                        child: Text('Order Delivered'),
-                                      ),
-                                    ),
-                                  )
                                 ],
                               )),
                         ),

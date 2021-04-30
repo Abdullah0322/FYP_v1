@@ -1,5 +1,5 @@
-import 'package:ClickandPick/BuyerDashboard/profile.dart';
 import 'package:ClickandPick/Cart/cart.dart';
+import 'package:ClickandPick/settings.dart/setting_page.dart';
 import 'package:ClickandPick/utils/colors.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -215,7 +215,7 @@ class _CategoryState extends State<Category> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Profile(),
+                    builder: (context) => SettingsPage(),
                   ));
             }
           }

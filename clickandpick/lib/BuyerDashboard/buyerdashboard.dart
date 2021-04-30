@@ -6,10 +6,10 @@ import 'package:ClickandPick/BuyerDashboard/Category.dart';
 import 'package:ClickandPick/BuyerDashboard/Categoryselect.dart';
 import 'package:ClickandPick/BuyerDashboard/details.dart';
 import 'package:ClickandPick/BuyerDashboard/favourites.dart';
-import 'package:ClickandPick/BuyerDashboard/profile.dart';
 import 'package:ClickandPick/BuyerDashboard/title_text.dart';
 import 'package:ClickandPick/Cart/cart.dart';
 import 'package:ClickandPick/SellerDashboard/data.dart';
+import 'package:ClickandPick/settings.dart/setting_page.dart';
 import 'package:ClickandPick/utils/colors.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -822,7 +822,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Profile(),
+                        builder: (context) => SettingsPage(),
                       ));
                 }
               },

@@ -1,10 +1,14 @@
 import 'package:ClickandPick/BuyerDashboard/Buyer_Drawer.dart';
+import 'package:ClickandPick/BuyerDashboard/title_text.dart';
 import 'package:ClickandPick/Manager/Riders.dart';
 import 'package:ClickandPick/SellerDashboard/data.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
+import 'light_color.dart';
 
 class Myorders extends StatefulWidget {
   @override
@@ -55,68 +59,78 @@ class _MyordersState extends State<Myorders> {
                   itemCount: snapshot.data.docs.length,
                   itemBuilder: (context, index) {
                     DocumentSnapshot ds = snapshot.data.docs[index];
-                    return Center(
-                      child: Card(
-                        child: InkWell(
-                          splashColor: Colors.red.withAlpha(30),
-                          onTap: () {
-                            print('Card tapped.');
-                          },
-                          child: Container(
-                              width: width * 0.93,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Container(
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          'ID:',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold),
+                    return Column(children: <Widget>[
+                      Container(
+                        height: 80,
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Row(children: <Widget>[
+                            AspectRatio(
+                                aspectRatio: 1.2,
+                                child: Stack(children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 18.0),
+                                    child: Container(
+                                        height: 100,
+                                        width: 100,
+                                        child: Stack(children: <Widget>[
+                                          Align(
+                                            alignment: Alignment.bottomLeft,
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  color: LightColor.lightGrey,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10)),
+                                            ),
+                                          ),
+                                          CachedNetworkImage(
+                                              imageUrl: ds['image']),
+                                        ])),
+                                  ),
+                                ])),
+                            Expanded(
+                                child: ListTile(
+                                    title: TitleText(
+                                      text: ds['name'].toString(),
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                    subtitle: Row(
+                                      children: <Widget>[
+                                        TitleText(
+                                          text: '\RS ',
+                                          color: LightColor.red,
+                                          fontSize: 12,
                                         ),
-                                        Text(
-                                          ds['id'],
-                                          style: TextStyle(
-                                              color: Colors.blue,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 15),
+                                        TitleText(
+                                          text: ds['total'].toString(),
+                                          fontSize: 14,
                                         ),
                                       ],
                                     ),
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      ds['name'],
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 17),
-                                    ),
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      ds['buyeremail'],
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 17),
-                                    ),
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      ds.id,
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 17),
-                                    ),
-                                  ),
-                                ],
-                              )),
+                                    trailing: Container(
+                                      width: 35,
+                                      height: 35,
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                          color: LightColor.lightGrey
+                                              .withAlpha(150),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: TitleText(
+                                        text: ds['quantity'].toString(),
+                                        fontSize: 12,
+                                      ),
+                                    ))),
+                          ]),
                         ),
                       ),
-                    );
+                      Divider(
+                        thickness: 1,
+                        height: 40,
+                      ),
+                    ]);
                   })
               : Container();
         },

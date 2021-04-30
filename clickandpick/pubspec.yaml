@@ -99,6 +99,10 @@ flutter:
   - assets/women.jpg
   - assets/Bags.jpg
   - assets/Shoes.jpg
+  - assets/icons/about_us.png
+  - assets/icons/legal.png
+  - assets/icons/change_pass.png
+  - assets/icons/notifications.png
   
 
   

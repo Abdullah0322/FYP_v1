@@ -1,6 +1,7 @@
 import 'package:ClickandPick/BuyerDashboard/Category.dart';
 import 'package:ClickandPick/BuyerDashboard/favourites.dart';
 import 'package:ClickandPick/Cart/cart.dart';
+import 'package:ClickandPick/RiderDashboard/RiderDileveredOrders.dart';
 import 'package:ClickandPick/RiderDashboard/riderContactUs.dart';
 import 'package:ClickandPick/SellerDashboard/dileveredorders.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -114,42 +115,12 @@ class _RiderdrawerState extends State<Riderdrawer> {
               //);
             },
           ),
-          ListTile(
-            leading: Icon(Icons.bike_scooter),
-            title: Text(
-              'Favourites',
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Favorites()),
-              );
-            },
-          ),
           Divider(
             height: 64,
             thickness: 0.5,
             color: Colors.blueGrey.withOpacity(0.3),
             indent: 32,
             endIndent: 32,
-          ),
-          ListTile(
-            leading: Icon(Icons.shopping_bag_outlined),
-            title: Text(
-              'Categories',
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Category()),
-              );
-            },
           ),
           ListTile(
             leading: Icon(Icons.shopping_bag_outlined),
@@ -162,7 +133,7 @@ class _RiderdrawerState extends State<Riderdrawer> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => DileveredOrders()),
+                MaterialPageRoute(builder: (context) => RiderDilevered()),
               );
             },
           ),

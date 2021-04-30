@@ -1,4 +1,6 @@
 import 'package:ClickandPick/Manager/Riders.dart';
+import 'package:ClickandPick/SellerDashboard/Seller_drawer.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -50,6 +52,11 @@ class _SellerOrdersState extends State<SellerOrders> {
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFFA579A3),
+        title: Text("Pending Orders"),
+      ),
+      drawer: SellerDrawer(),
       body: StreamBuilder(
         stream: getOrders(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -83,17 +90,28 @@ class _SellerOrdersState extends State<SellerOrders> {
                                       ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 38.0, left: 25),
-                                    child: Container(
-                                      child: Text(
-                                        ds['name'],
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 17),
+                                  Row(
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 38.0, left: 25),
+                                        child: Container(
+                                          child: Text(
+                                            ds['name'],
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w300,
+                                                fontSize: 17),
+                                          ),
+                                        ),
                                       ),
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 280),
+                                    child: Container(
+                                      child: CachedNetworkImage(
+                                          imageUrl: ds['image']),
                                     ),
                                   ),
                                   Padding(
@@ -118,11 +136,52 @@ class _SellerOrdersState extends State<SellerOrders> {
                                       child: RaisedButton(
                                         color: Colors.green[300],
                                         onPressed: () {
-                                          FirebaseFirestore.instance
-                                              .collection('orders')
-                                              .doc(ds.id)
-                                              .update(
-                                                  {'picked from vendor': true});
+                                          return showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return AlertDialog(
+                                                  title: Text(
+                                                    'Are you sure the item is picked by Rider?',
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontFamily: 'Segoe'),
+                                                  ),
+                                                  actions: <Widget>[
+                                                    FlatButton(
+                                                      child: Text(
+                                                        "Cancel",
+                                                        style: TextStyle(
+                                                            color: Colors.black,
+                                                            fontFamily:
+                                                                'Segoe'),
+                                                      ),
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                      },
+                                                    ),
+                                                    FlatButton(
+                                                      child: Text(
+                                                        "Yes",
+                                                        style: TextStyle(
+                                                            color: Colors.black,
+                                                            fontFamily:
+                                                                'Segoe'),
+                                                      ),
+                                                      onPressed: () {
+                                                        FirebaseFirestore
+                                                            .instance
+                                                            .collection(
+                                                                'orders')
+                                                            .doc(ds.id)
+                                                            .update({
+                                                          'picked from vendor':
+                                                              true
+                                                        });
+                                                      },
+                                                    ),
+                                                  ],
+                                                );
+                                              });
                                         },
                                         child: Text('Picked by Rider'),
                                       ),

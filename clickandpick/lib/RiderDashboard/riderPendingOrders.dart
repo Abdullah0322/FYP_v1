@@ -120,13 +120,52 @@ class _PendingOrdersState extends State<PendingOrders> {
                                       child: RaisedButton(
                                         color: Colors.green[300],
                                         onPressed: () {
-                                          FirebaseFirestore.instance
-                                              .collection('orders')
-                                              .doc(ds.id)
-                                              .update({
-                                            'Order Dilevered to Collection Point':
-                                                true
-                                          });
+                                          return showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return AlertDialog(
+                                                  title: Text(
+                                                    'Are you sure the item is picked by Rider?',
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontFamily: 'Segoe'),
+                                                  ),
+                                                  actions: <Widget>[
+                                                    FlatButton(
+                                                      child: Text(
+                                                        "Cancel",
+                                                        style: TextStyle(
+                                                            color: Colors.black,
+                                                            fontFamily:
+                                                                'Segoe'),
+                                                      ),
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                      },
+                                                    ),
+                                                    FlatButton(
+                                                      child: Text(
+                                                        "Yes",
+                                                        style: TextStyle(
+                                                            color: Colors.black,
+                                                            fontFamily:
+                                                                'Segoe'),
+                                                      ),
+                                                      onPressed: () {
+                                                        FirebaseFirestore
+                                                            .instance
+                                                            .collection(
+                                                                'orders')
+                                                            .doc(ds.id)
+                                                            .update({
+                                                          'Order Dilevered to Collection Point':
+                                                              true
+                                                        });
+                                                      },
+                                                    ),
+                                                  ],
+                                                );
+                                              });
                                         },
                                         child: Text('Order Delivered'),
                                       ),
