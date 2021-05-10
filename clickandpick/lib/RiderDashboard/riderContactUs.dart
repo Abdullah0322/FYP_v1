@@ -1,3 +1,4 @@
+import 'package:ClickandPick/RiderDashboard/openmap.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -16,39 +17,44 @@ class _ContactUsState extends State<ContactUs> {
         title: Text('Contact Us'),
       ),
       // drawer: Riderdrawer(),
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            RaisedButton(
-              onPressed: () async {
-                const emailid =
-                    'mailto:clickandpick@gmail.com ?subject=Huston we in trouble, send Help';
-                if (await canLaunch(emailid)) {
-                  await launch(emailid);
-                } else {
-                  throw 'Could not email $emailid';
-                }
-              },
-              child: Text('Have complaints? Mail Us'),
-            ),
-            RaisedButton(
-              onPressed: () async {
-                const tellNumber = 'tel:+9230008812584';
-                if (await canLaunch(tellNumber)) {
-                  await launch(tellNumber);
-                } else {
-                  throw 'Could not call $tellNumber';
-                }
-              },
-              child: Text('Have complaints? Call Us'),
-            ),
-            RaisedButton(
-              onPressed: () {
-                openMap(-3.823216, -38.481700);
-              },
-              child: Text('Have complaints? Call Us'),
-            ),
-          ],
+      body: Center(
+        child: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              RaisedButton(
+                onPressed: () async {
+                  const emailid =
+                      'mailto:clickandpick@gmail.com ?subject=Huston we in trouble, send Help';
+                  if (await canLaunch(emailid)) {
+                    await launch(emailid);
+                  } else {
+                    throw 'Could not email $emailid';
+                  }
+                },
+                child: Text('Have complaints? Mail Us'),
+              ),
+              RaisedButton(
+                onPressed: () async {
+                  const tellNumber = 'tel:+9230008812584';
+                  if (await canLaunch(tellNumber)) {
+                    await launch(tellNumber);
+                  } else {
+                    throw 'Could not call $tellNumber';
+                  }
+                },
+                child: Text('Have complaints? Call Us'),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => OpenMap()));
+                  // openMap(0, 0);
+                },
+                child: Text('Open Map'),
+              ),
+            ],
+          ),
         ),
       ),
     );

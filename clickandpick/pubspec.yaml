@@ -55,6 +55,18 @@ dependencies:
   curved_navigation_bar: ^0.3.7
   google_fonts: ^1.1.2
   smooth_star_rating: ^1.1.1
+  google_maps_flutter: ^0.5.30
+  location: ^3.0.0
+  geolocator: ^5.1.5
+  dio: ^3.0.6
+  http: ^0.12.1
+  flutter_local_notifications: ^4.0.1+2
+  rxdart: ^0.23.1
+  
+  
+  
+
+  
   
   
   

@@ -161,6 +161,7 @@ class _PendingOrdersState extends State<PendingOrders> {
                                                           'Order Dilevered to Collection Point':
                                                               true
                                                         });
+                                                        Navigator.pop(context);
                                                       },
                                                     ),
                                                   ],

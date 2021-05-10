@@ -2,6 +2,8 @@ import 'package:ClickandPick/RiderDashboard/riderContactUs.dart';
 import 'package:ClickandPick/SellerDashboard/ManageOrders.dart';
 import 'package:ClickandPick/SellerDashboard/dileveredorders.dart';
 import 'package:ClickandPick/SellerDashboard/seller.dart';
+import 'package:ClickandPick/SellerDashboard/settingseller.dart';
+import 'package:ClickandPick/settings.dart/setting_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -75,6 +77,21 @@ class _SellerDrawerState extends State<SellerDrawer> {
                       ),
                     ],
                   ),
+                ),
+                ListTile(
+                  leading: Icon(Icons.shopping_bag_sharp),
+                  title: Text(
+                    'Manage Profile',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SettingSeller()),
+                    );
+                  },
                 ),
                 ListTile(
                   leading: Icon(Icons.shopping_bag_sharp),

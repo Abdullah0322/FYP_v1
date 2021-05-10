@@ -3,6 +3,7 @@ import 'package:ClickandPick/BuyerDashboard/favourites.dart';
 import 'package:ClickandPick/Cart/cart.dart';
 import 'package:ClickandPick/RiderDashboard/RiderDileveredOrders.dart';
 import 'package:ClickandPick/RiderDashboard/riderContactUs.dart';
+import 'package:ClickandPick/RiderDashboard/settingRider.dart';
 import 'package:ClickandPick/SellerDashboard/dileveredorders.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -109,10 +110,10 @@ class _RiderdrawerState extends State<Riderdrawer> {
               ),
             ),
             onTap: () {
-              //       Navigator.push(
-              ///       context,
-              //    MaterialPageRoute(builder: (context) => RiderProfile()),
-              //);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SettingRider()),
+              );
             },
           ),
           Divider(

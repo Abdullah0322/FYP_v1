@@ -177,6 +177,7 @@ class _SellerOrdersState extends State<SellerOrders> {
                                                           'picked from vendor':
                                                               true
                                                         });
+                                                         Navigator.pop(context);
                                                       },
                                                     ),
                                                   ],

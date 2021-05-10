@@ -132,7 +132,7 @@ class _ManageRidersState extends State<ManageRiders>
                                       child: RaisedButton(
                                         color: Colors.green[300],
                                         onPressed: () {
-                                           return showDialog(
+                                          return showDialog(
                                               context: context,
                                               builder: (BuildContext context) {
                                                 return AlertDialog(
@@ -164,16 +164,20 @@ class _ManageRidersState extends State<ManageRiders>
                                                                 'Segoe'),
                                                       ),
                                                       onPressed: () {
-                                                          FirebaseFirestore.instance
-                                              .collection('orders')
-                                              .doc(widget.data.id)
-                                              .update({'Rider': ds['email']});
+                                                        FirebaseFirestore
+                                                            .instance
+                                                            .collection(
+                                                                'orders')
+                                                            .doc(widget.data.id)
+                                                            .update({
+                                                          'Rider': ds['email']
+                                                        });
+                                                        Navigator.pop(context);
                                                       },
                                                     ),
                                                   ],
                                                 );
                                               });
-                                        
                                         },
                                         child: Text('Assign Order'),
                                       ),
