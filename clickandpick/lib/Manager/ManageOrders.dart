@@ -1,6 +1,7 @@
 import 'package:ClickandPick/Manager/Manager_drawer.dart';
 import 'package:ClickandPick/Manager/Riders.dart';
 import 'package:ClickandPick/SellerDashboard/data.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -78,6 +79,13 @@ class _ManageOrdersState extends State<ManageOrders> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 280),
+                                    child: Container(
+                                      child: CachedNetworkImage(
+                                          imageUrl: ds['image']),
+                                    ),
+                                  ),
                                   Container(
                                     child: Row(
                                       children: [
@@ -114,57 +122,57 @@ class _ManageOrdersState extends State<ManageOrders> {
                                           fontSize: 17),
                                     ),
                                   ),
-                                  Container(
-                                    child: Text(
-                                      ds.id,
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 17),
-                                    ),
-                                  ),
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Container(
-                                        height: 30,
-                                        width: 150,
-                                        child: RaisedButton(
-                                          color: Color(0xFFAC42A6),
-                                          onPressed: () {
-                                            ds.id;
+                                          height: 30,
+                                          width: 150,
+                                          child: ds['Rider'].toString() == ""
+                                              ? RaisedButton(
+                                                  color: Color(0xFFAC42A6),
+                                                  onPressed: () {
+                                                    ds.id;
 
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        ManageRiders(
-                                                          data: Data(
-                                                            id: ds.id,
-                                                            name: snapshot.data
-                                                                    .docs[index]
-                                                                ['name'],
-                                                            selleremail: snapshot
-                                                                    .data
-                                                                    .docs[index]
-                                                                ['selleremail'],
-                                                            quantity: snapshot
-                                                                    .data
-                                                                    .docs[index]
-                                                                ['quantity'],
-                                                            buyeremail: snapshot
-                                                                    .data
-                                                                    .docs[index]
-                                                                ['buyeremail'],
-                                                          ),
-                                                        )));
-                                          },
-                                          child: Text('Assign Rider',
-                                              style: TextStyle(
-                                                  color: Color(0xFFFFFFFF))),
-                                        ),
-                                      ),
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder:
+                                                                (context) =>
+                                                                    ManageRiders(
+                                                                      data:
+                                                                          Data(
+                                                                        id: ds
+                                                                            .id,
+                                                                        name: snapshot
+                                                                            .data
+                                                                            .docs[index]['name'],
+                                                                        selleremail: snapshot
+                                                                            .data
+                                                                            .docs[index]['selleremail'],
+                                                                        quantity: snapshot
+                                                                            .data
+                                                                            .docs[index]['quantity'],
+                                                                        buyeremail: snapshot
+                                                                            .data
+                                                                            .docs[index]['buyeremail'],
+                                                                      ),
+                                                                    )));
+                                                  },
+                                                  child: Text('Assign Rider',
+                                                      style: TextStyle(
+                                                          color: Color(
+                                                              0xFFFFFFFF))),
+                                                )
+                                              : RaisedButton(
+                                                  onPressed: () {},
+                                                  color: Color(0xFFAC42A6),
+                                                  child: Center(
+                                                    child: Text(
+                                                        'Rider has been Assigned'),
+                                                  ),
+                                                )),
                                       Container(
                                         height: 30,
                                         width: 150,

@@ -66,7 +66,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
       return FirebaseFirestore.instance
           .collection('products')
           .doc('category')
-          .collection('women')
+          .collection('clothing')
           .snapshots();
     } catch (e) {
       print(e);
@@ -92,7 +92,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
       return FirebaseFirestore.instance
           .collection('products')
           .doc('category')
-          .collection('men')
+          .collection('electronics')
           .snapshots();
     } catch (e) {
       print(e);
@@ -104,7 +104,43 @@ class _BuyerDashboardState extends State<BuyerDashboard>
       return FirebaseFirestore.instance
           .collection('products')
           .doc('category')
-          .collection('kids')
+          .collection('watches')
+          .snapshots();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  getfood() {
+    try {
+      return FirebaseFirestore.instance
+          .collection('products')
+          .doc('category')
+          .collection('food')
+          .snapshots();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  getfragances() {
+    try {
+      return FirebaseFirestore.instance
+          .collection('products')
+          .doc('category')
+          .collection('fragances')
+          .snapshots();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  getshoes() {
+    try {
+      return FirebaseFirestore.instance
+          .collection('products')
+          .doc('category')
+          .collection('shoes')
           .snapshots();
     } catch (e) {
       print(e);
@@ -208,7 +244,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                         Padding(
                           padding: const EdgeInsets.only(left: 20.0),
                           child: TitleText(
-                            text: 'Women Collection',
+                            text: 'Clothing',
                             fontSize: 20,
                             fontWeight: FontWeight.w400,
                           ),
@@ -225,7 +261,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
-                                      CategorySelected(type: 'women'),
+                                      CategorySelected(type: 'clothing'),
                                 ));
                           },
                         )
@@ -262,7 +298,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                                   MaterialPageRoute(
                                                     builder: (context) =>
                                                         Details(
-                                                      type: 'women',
+                                                      type: 'clothing',
                                                       data: Data(
                                                         id: snapshot.data
                                                             .docs[index]['id'],
@@ -389,7 +425,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                         Padding(
                           padding: const EdgeInsets.only(left: 20.0),
                           child: TitleText(
-                            text: 'Men Collection',
+                            text: 'Electronics ',
                             fontSize: 20,
                             fontWeight: FontWeight.w400,
                           ),
@@ -406,7 +442,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => CategorySelected(
-                                    type: 'men',
+                                    type: 'electronics',
                                   ),
                                 ));
                           },
@@ -444,7 +480,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                                   MaterialPageRoute(
                                                     builder: (context) =>
                                                         Details(
-                                                      type: 'men',
+                                                      type: 'electronics',
                                                       data: Data(
                                                         id: snapshot.data
                                                             .docs[index]['id'],
@@ -588,7 +624,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                         Padding(
                           padding: const EdgeInsets.only(left: 20.0),
                           child: TitleText(
-                            text: 'Kids Collection',
+                            text: 'Watches',
                             fontSize: 20,
                             fontWeight: FontWeight.w400,
                           ),
@@ -605,7 +641,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => CategorySelected(
-                                    type: 'kids',
+                                    type: 'watches',
                                   ),
                                 ));
                           },
@@ -643,7 +679,604 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                                   MaterialPageRoute(
                                                     builder: (context) =>
                                                         Details(
-                                                      type: 'kids',
+                                                      type: 'watches',
+                                                      data: Data(
+                                                        id: snapshot.data
+                                                            .docs[index]['id'],
+                                                        name: snapshot.data
+                                                                .docs[index]
+                                                            ['name'],
+                                                        price: snapshot.data
+                                                                .docs[index]
+                                                            ['price'],
+                                                        image: snapshot.data
+                                                                .docs[index]
+                                                            ['image_path'],
+                                                        description: snapshot
+                                                                .data
+                                                                .docs[index]
+                                                            ['description'],
+                                                        sellername: snapshot
+                                                                .data
+                                                                .docs[index]
+                                                            ['sellername'],
+                                                        shopaddress: snapshot
+                                                                .data
+                                                                .docs[index]
+                                                            ['shopaddress'],
+                                                        selleremail: snapshot
+                                                                .data
+                                                                .docs[index]
+                                                            ['selleremail'],
+                                                        rating: snapshot.data
+                                                                .docs[index]
+                                                            ['rating'],
+                                                      ),
+                                                    ),
+                                                  ));
+                                            },
+                                            child: Container(
+                                              height: 200,
+                                              decoration: BoxDecoration(
+                                                color: Colors.grey[300],
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                              ),
+                                              width: 160,
+                                              child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
+                                                  child: CachedNetworkImage(
+                                                    imageUrl: ds['image_path']
+                                                        .toString(),
+                                                  )),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 15.0),
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 10),
+                                          width: width * 0.4,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          child: Text(
+                                            ds['name'].toString(),
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w300),
+                                          ),
+                                        ),
+                                      ),
+                                      Row(
+                                        children: <Widget>[
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: .0),
+                                            child: Container(
+                                              padding:
+                                                  EdgeInsets.only(bottom: 10),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                              ),
+                                              child: Text(
+                                                ds['price'].toString(),
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 15,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            padding:
+                                                EdgeInsets.only(bottom: 10),
+                                            child: Text(
+                                              'RS',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 15.0),
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 10),
+                                          width: width * 0.4,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          child: Text(
+                                            'In stock',
+                                            style: TextStyle(
+                                                color: Color(0xFF84A2AF),
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  );
+                                },
+                              ),
+                            )
+                          : CircularProgressIndicator();
+                    },
+                  ),
+                  Container(
+                    alignment: FractionalOffset.center,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20.0),
+                          child: TitleText(
+                            text: 'Food',
+                            fontSize: 20,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        FlatButton(
+                          child: new Text(
+                            'See All',
+                            style: TextStyle(
+                                color: Color(0xFF84A2AF),
+                                fontWeight: FontWeight.bold),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => CategorySelected(
+                                    type: 'food',
+                                  ),
+                                ));
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                  StreamBuilder(
+                    stream: getfood(),
+                    builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                      return snapshot.hasData
+                          ? Container(
+                              height: 370,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: snapshot.data.docs.length,
+                                padding: const EdgeInsets.only(top: 20.0),
+                                itemBuilder: (BuildContext context, int index) {
+                                  DocumentSnapshot ds =
+                                      snapshot.data.docs[index];
+
+                                  return Column(
+                                    children: <Widget>[
+                                      Container(
+                                        height: 200,
+                                        margin: EdgeInsets.symmetric(
+                                            vertical: 10, horizontal: 10),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 10.0),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        Details(
+                                                      type: 'food',
+                                                      data: Data(
+                                                        id: snapshot.data
+                                                            .docs[index]['id'],
+                                                        name: snapshot.data
+                                                                .docs[index]
+                                                            ['name'],
+                                                        price: snapshot.data
+                                                                .docs[index]
+                                                            ['price'],
+                                                        image: snapshot.data
+                                                                .docs[index]
+                                                            ['image_path'],
+                                                        description: snapshot
+                                                                .data
+                                                                .docs[index]
+                                                            ['description'],
+                                                        sellername: snapshot
+                                                                .data
+                                                                .docs[index]
+                                                            ['sellername'],
+                                                        shopaddress: snapshot
+                                                                .data
+                                                                .docs[index]
+                                                            ['shopaddress'],
+                                                        selleremail: snapshot
+                                                                .data
+                                                                .docs[index]
+                                                            ['selleremail'],
+                                                        rating: snapshot.data
+                                                                .docs[index]
+                                                            ['rating'],
+                                                      ),
+                                                    ),
+                                                  ));
+                                            },
+                                            child: Container(
+                                              height: 200,
+                                              decoration: BoxDecoration(
+                                                color: Colors.grey[300],
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                              ),
+                                              width: 160,
+                                              child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
+                                                  child: CachedNetworkImage(
+                                                    imageUrl: ds['image_path']
+                                                        .toString(),
+                                                  )),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 15.0),
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 10),
+                                          width: width * 0.4,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          child: Text(
+                                            ds['name'].toString(),
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w300),
+                                          ),
+                                        ),
+                                      ),
+                                      Row(
+                                        children: <Widget>[
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: .0),
+                                            child: Container(
+                                              padding:
+                                                  EdgeInsets.only(bottom: 10),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                              ),
+                                              child: Text(
+                                                ds['price'].toString(),
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 15,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            padding:
+                                                EdgeInsets.only(bottom: 10),
+                                            child: Text(
+                                              'RS',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 15.0),
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 10),
+                                          width: width * 0.4,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          child: Text(
+                                            'In stock',
+                                            style: TextStyle(
+                                                color: Color(0xFF84A2AF),
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  );
+                                },
+                              ),
+                            )
+                          : CircularProgressIndicator();
+                    },
+                  ),
+                  Container(
+                    alignment: FractionalOffset.center,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20.0),
+                          child: TitleText(
+                            text: 'Fragrances',
+                            fontSize: 20,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        FlatButton(
+                          child: new Text(
+                            'See All',
+                            style: TextStyle(
+                                color: Color(0xFF84A2AF),
+                                fontWeight: FontWeight.bold),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => CategorySelected(
+                                    type: 'fragances',
+                                  ),
+                                ));
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                  StreamBuilder(
+                    stream: getfragances(),
+                    builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                      return snapshot.hasData
+                          ? Container(
+                              height: 370,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: snapshot.data.docs.length,
+                                padding: const EdgeInsets.only(top: 20.0),
+                                itemBuilder: (BuildContext context, int index) {
+                                  DocumentSnapshot ds =
+                                      snapshot.data.docs[index];
+
+                                  return Column(
+                                    children: <Widget>[
+                                      Container(
+                                        height: 200,
+                                        margin: EdgeInsets.symmetric(
+                                            vertical: 10, horizontal: 10),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 10.0),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        Details(
+                                                      type: 'fragances',
+                                                      data: Data(
+                                                        id: snapshot.data
+                                                            .docs[index]['id'],
+                                                        name: snapshot.data
+                                                                .docs[index]
+                                                            ['name'],
+                                                        price: snapshot.data
+                                                                .docs[index]
+                                                            ['price'],
+                                                        image: snapshot.data
+                                                                .docs[index]
+                                                            ['image_path'],
+                                                        description: snapshot
+                                                                .data
+                                                                .docs[index]
+                                                            ['description'],
+                                                        sellername: snapshot
+                                                                .data
+                                                                .docs[index]
+                                                            ['sellername'],
+                                                        shopaddress: snapshot
+                                                                .data
+                                                                .docs[index]
+                                                            ['shopaddress'],
+                                                        selleremail: snapshot
+                                                                .data
+                                                                .docs[index]
+                                                            ['selleremail'],
+                                                        rating: snapshot.data
+                                                                .docs[index]
+                                                            ['rating'],
+                                                      ),
+                                                    ),
+                                                  ));
+                                            },
+                                            child: Container(
+                                              height: 200,
+                                              decoration: BoxDecoration(
+                                                color: Colors.grey[300],
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                              ),
+                                              width: 160,
+                                              child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
+                                                  child: CachedNetworkImage(
+                                                    imageUrl: ds['image_path']
+                                                        .toString(),
+                                                  )),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 15.0),
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 10),
+                                          width: width * 0.4,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          child: Text(
+                                            ds['name'].toString(),
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w300),
+                                          ),
+                                        ),
+                                      ),
+                                      Row(
+                                        children: <Widget>[
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: .0),
+                                            child: Container(
+                                              padding:
+                                                  EdgeInsets.only(bottom: 10),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                              ),
+                                              child: Text(
+                                                ds['price'].toString(),
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 15,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            padding:
+                                                EdgeInsets.only(bottom: 10),
+                                            child: Text(
+                                              'RS',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 15.0),
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 10),
+                                          width: width * 0.4,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          child: Text(
+                                            'In stock',
+                                            style: TextStyle(
+                                                color: Color(0xFF84A2AF),
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  );
+                                },
+                              ),
+                            )
+                          : CircularProgressIndicator();
+                    },
+                  ),
+                  Container(
+                    alignment: FractionalOffset.center,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20.0),
+                          child: TitleText(
+                            text: 'Shoes Collection',
+                            fontSize: 20,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        FlatButton(
+                          child: new Text(
+                            'See All',
+                            style: TextStyle(
+                                color: Color(0xFF84A2AF),
+                                fontWeight: FontWeight.bold),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => CategorySelected(
+                                    type: 'shoes',
+                                  ),
+                                ));
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                  StreamBuilder(
+                    stream: getshoes(),
+                    builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                      return snapshot.hasData
+                          ? Container(
+                              height: 370,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: snapshot.data.docs.length,
+                                padding: const EdgeInsets.only(top: 20.0),
+                                itemBuilder: (BuildContext context, int index) {
+                                  DocumentSnapshot ds =
+                                      snapshot.data.docs[index];
+
+                                  return Column(
+                                    children: <Widget>[
+                                      Container(
+                                        height: 200,
+                                        margin: EdgeInsets.symmetric(
+                                            vertical: 10, horizontal: 10),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 10.0),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        Details(
+                                                      type: 'shoes',
                                                       data: Data(
                                                         id: snapshot.data
                                                             .docs[index]['id'],

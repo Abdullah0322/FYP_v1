@@ -1,5 +1,6 @@
 import 'package:ClickandPick/RiderDashboard/riderContactUs.dart';
 import 'package:ClickandPick/SellerDashboard/ManageOrders.dart';
+import 'package:ClickandPick/SellerDashboard/ManageProducts.dart';
 import 'package:ClickandPick/SellerDashboard/dileveredorders.dart';
 import 'package:ClickandPick/SellerDashboard/seller.dart';
 import 'package:ClickandPick/SellerDashboard/settingseller.dart';
@@ -141,10 +142,9 @@ class _SellerDrawerState extends State<SellerDrawer> {
                   ),
                   onTap: () {
                     Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SellerDashboard()),
-                    );
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ManageProducts()));
                   },
                 ),
                 ListTile(

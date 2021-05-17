@@ -1,3 +1,4 @@
+import 'package:ClickandPick/Login/loginPage.dart';
 import 'package:ClickandPick/Splash.dart';
 import 'package:ClickandPick/test.dart';
 import 'package:ClickandPick/test2.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
         // the app on. For desktop platforms, the controls will be smaller and
         // closer together (more dense) than on mobile platforms.
       ),
-      home: Test(),
+      home: LoginPage(),
     );
   }
 }

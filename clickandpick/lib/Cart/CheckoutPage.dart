@@ -221,297 +221,298 @@ class _CheckoutState extends State<Checkout> {
                                         (BuildContext context, int index) {
                                       DocumentSnapshot ds =
                                           snapshot.data.docs[index];
-                                      return Column(children: <Widget>[
-                                        Stack(
+                                      return Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
                                           children: <Widget>[
-                                            Container(
-                                              height: 250,
-                                              margin: EdgeInsets.only(
-                                                  left: 16, right: 16, top: 16),
-                                              decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(16))),
-                                              child: Row(
-                                                children: <Widget>[
-                                                  Container(
-                                                    margin: EdgeInsets.only(
-                                                        right: 8,
-                                                        left: 8,
-                                                        top: 8,
-                                                        bottom: 8),
-                                                    width: 80,
-                                                    height: 80,
-                                                    child: CachedNetworkImage(
-                                                        imageUrl: ds['image']),
-                                                  ),
-                                                  Expanded(
-                                                    child: Container(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              8.0),
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: <Widget>[
-                                                          Container(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    right: 8,
-                                                                    top: 4),
-                                                            child: Text(
-                                                              ds['name']
-                                                                  .toString(),
-                                                              maxLines: 2,
-                                                              softWrap: true,
-                                                              style: CustomTextStyle
-                                                                  .textFormFieldSemiBold
-                                                                  .copyWith(
-                                                                      fontSize:
-                                                                          14),
-                                                            ),
-                                                          ),
-                                                          Utils.getSizedBox(
-                                                              height: 6),
-                                                          Container(
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceBetween,
-                                                              children: <
-                                                                  Widget>[
-                                                                Text(
-                                                                  ds['total']
-                                                                      .toString(),
-                                                                  style: CustomTextStyle
-                                                                      .textFormFieldBlack
-                                                                      .copyWith(
-                                                                          color:
-                                                                              Colors.black),
-                                                                ),
-                                                                Padding(
-                                                                  padding:
-                                                                      const EdgeInsets
-                                                                              .all(
-                                                                          8.0),
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          Container(
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceBetween,
-                                                              children: <
-                                                                  Widget>[
-                                                                Text(
-                                                                  ds['selleremail']
-                                                                      .toString(),
-                                                                  style: CustomTextStyle
-                                                                      .textFormFieldBlack
-                                                                      .copyWith(
-                                                                          color:
-                                                                              Colors.black),
-                                                                ),
-                                                                Padding(
-                                                                  padding:
-                                                                      const EdgeInsets
-                                                                              .all(
-                                                                          8.0),
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          Container(
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceBetween,
-                                                              children: <
-                                                                  Widget>[
-                                                                Text(
-                                                                  ds['quantity']
-                                                                      .toString(),
-                                                                  style: CustomTextStyle
-                                                                      .textFormFieldBlack
-                                                                      .copyWith(
-                                                                          color:
-                                                                              Colors.black),
-                                                                ),
-                                                                Padding(
-                                                                  padding:
-                                                                      const EdgeInsets
-                                                                              .all(
-                                                                          8.0),
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ],
+                                            Stack(
+                                              children: <Widget>[
+                                                Container(
+                                                  height: 250,
+                                                  margin: EdgeInsets.only(
+                                                      left: 16,
+                                                      right: 16,
+                                                      top: 16),
+                                                  decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  16))),
+                                                  child: Row(
+                                                    children: <Widget>[
+                                                      Container(
+                                                        margin: EdgeInsets.only(
+                                                            right: 8,
+                                                            left: 8,
+                                                            top: 8,
+                                                            bottom: 8),
+                                                        width: 80,
+                                                        height: 80,
+                                                        child:
+                                                            CachedNetworkImage(
+                                                                imageUrl: ds[
+                                                                    'image']),
                                                       ),
-                                                    ),
-                                                    flex: 100,
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 200.0),
-                                              child: Center(
-                                                child: Container(
-                                                  width: 300,
-                                                  margin: EdgeInsets.symmetric(
-                                                      vertical: 8,
-                                                      horizontal: 12),
-                                                  child: RaisedButton(
-                                                    onPressed: () {
-                                                      return showDialog(
-                                                          context: context,
-                                                          builder: (BuildContext
-                                                              context) {
-                                                            return AlertDialog(
-                                                              title: Text(
-                                                                'Are you sure you want to buy this product',
-                                                                style: TextStyle(
-                                                                    color: Colors
-                                                                        .black,
-                                                                    fontFamily:
-                                                                        'Segoe'),
+                                                      Expanded(
+                                                        child: Container(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child: Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: <Widget>[
+                                                              Container(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        right:
+                                                                            8,
+                                                                        top: 4),
+                                                                child: Text(
+                                                                  ds['name']
+                                                                      .toString(),
+                                                                  maxLines: 2,
+                                                                  softWrap:
+                                                                      true,
+                                                                  style: CustomTextStyle
+                                                                      .textFormFieldSemiBold
+                                                                      .copyWith(
+                                                                          fontSize:
+                                                                              14),
+                                                                ),
                                                               ),
-                                                              actions: <Widget>[
-                                                                FlatButton(
-                                                                  child: Text(
-                                                                    "Cancel",
-                                                                    style: TextStyle(
-                                                                        color: Colors
-                                                                            .black,
-                                                                        fontFamily:
-                                                                            'Segoe'),
-                                                                  ),
-                                                                  onPressed:
-                                                                      () {
-                                                                    Navigator.pop(
-                                                                        context);
-                                                                  },
+                                                              Utils.getSizedBox(
+                                                                  height: 6),
+                                                              Container(
+                                                                child: Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
+                                                                  children: <
+                                                                      Widget>[
+                                                                    Text(
+                                                                      ds['total']
+                                                                              .toString() +
+                                                                          " RS ",
+                                                                      style: CustomTextStyle
+                                                                          .textFormFieldBlack
+                                                                          .copyWith(
+                                                                              color: Colors.black),
+                                                                    ),
+                                                                    Padding(
+                                                                      padding:
+                                                                          const EdgeInsets.all(
+                                                                              8.0),
+                                                                    )
+                                                                  ],
                                                                 ),
-                                                                FlatButton(
-                                                                  child: Text(
-                                                                    "Yes",
-                                                                    style: TextStyle(
-                                                                        color: Colors
-                                                                            .black,
-                                                                        fontFamily:
-                                                                            'Segoe'),
+                                                              ),
+                                                              FittedBox(
+                                                                child:
+                                                                    Container(
+                                                                  child: Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    children: <
+                                                                        Widget>[
+                                                                      Text(
+                                                                        ds['selleremail']
+                                                                            .toString(),
+                                                                        style: CustomTextStyle
+                                                                            .textFormFieldBlack
+                                                                            .copyWith(color: Colors.black),
+                                                                      ),
+                                                                      Padding(
+                                                                        padding:
+                                                                            const EdgeInsets.all(8.0),
+                                                                      )
+                                                                    ],
                                                                   ),
-                                                                  onPressed:
-                                                                      () {
-                                                                    User user = FirebaseAuth
-                                                                        .instance
-                                                                        .currentUser;
-                                                                    FirebaseFirestore
-                                                                        .instance
-                                                                        .collection(
-                                                                            'user')
-                                                                        .doc(user
-                                                                            .email)
-                                                                        .collection(
-                                                                            'orders')
-                                                                        .doc()
-                                                                        .set({
-                                                                      'name': ds[
-                                                                          'name'],
-                                                                      'selleremail':
-                                                                          ds['selleremail']
-                                                                              .toString(),
-                                                                      'id': ds[
-                                                                              'id']
-                                                                          .toString(),
-                                                                      'quantity':
-                                                                          ds['quantity']
-                                                                              .toString()
-                                                                    });
-
-                                                                    FirebaseFirestore
-                                                                        .instance
-                                                                        .collection(
-                                                                            'orders')
-                                                                        .doc()
-                                                                        .set({
-                                                                      'name': ds[
-                                                                          'name'],
-                                                                      'selleremail':
-                                                                          ds['selleremail']
-                                                                              .toString(),
-                                                                      'id': ds[
-                                                                              'id']
-                                                                          .toString(),
-                                                                      'quantity':
+                                                                ),
+                                                              ),
+                                                              Container(
+                                                                child: Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
+                                                                  children: <
+                                                                      Widget>[
+                                                                    Text(
+                                                                      " Quantity " +
                                                                           ds['quantity']
                                                                               .toString(),
-                                                                      'price': ds[
-                                                                          'price'],
-                                                                      'total': ds[
-                                                                          'total'],
-                                                                      'image': ds[
-                                                                          'image'],
-                                                                      'buyeremail':
-                                                                          user.email,
-                                                                      'picked from vendor':
-                                                                          false,
-                                                                      'Order Dilevered to Collection Point':
-                                                                          false,
-                                                                      'Order Recieved to Collection Point':
-                                                                          false,
-                                                                    });
-                                                                    FirebaseFirestore
-                                                                        .instance
-                                                                        .collection(
-                                                                            'user')
-                                                                        .doc(user
-                                                                            .email)
-                                                                        .collection(
-                                                                            'cart')
-                                                                        .doc(ds
-                                                                            .id)
-                                                                        .delete();
-                                                                    Navigator.of(
-                                                                            context)
-                                                                        .pop();
-                                                                    showThankYouBottomSheet(
-                                                                        context);
-                                                                  },
+                                                                      style: CustomTextStyle
+                                                                          .textFormFieldBlack
+                                                                          .copyWith(
+                                                                              color: Colors.black),
+                                                                    ),
+                                                                    Padding(
+                                                                      padding:
+                                                                          const EdgeInsets.all(
+                                                                              8.0),
+                                                                    )
+                                                                  ],
                                                                 ),
-                                                              ],
-                                                            );
-                                                          });
-                                                    },
-                                                    child: Text(
-                                                      "Place Order",
-                                                      style: CustomTextStyle
-                                                          .textFormFieldMedium
-                                                          .copyWith(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 14,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                    ),
-                                                    color: Colors.pink,
-                                                    textColor: Colors.white,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        flex: 100,
+                                                      )
+                                                    ],
                                                   ),
                                                 ),
-                                              ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 200.0),
+                                                  child: Center(
+                                                    child: Container(
+                                                      width: 300,
+                                                      margin:
+                                                          EdgeInsets.symmetric(
+                                                              vertical: 8,
+                                                              horizontal: 12),
+                                                      child: RaisedButton(
+                                                        onPressed: () {
+                                                          return showDialog(
+                                                              context: context,
+                                                              builder:
+                                                                  (BuildContext
+                                                                      context) {
+                                                                return AlertDialog(
+                                                                  title: Text(
+                                                                    'Are you sure you want to buy this product',
+                                                                    style: TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontFamily:
+                                                                            'Segoe'),
+                                                                  ),
+                                                                  actions: <
+                                                                      Widget>[
+                                                                    FlatButton(
+                                                                      child:
+                                                                          Text(
+                                                                        "Cancel",
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                Colors.black,
+                                                                            fontFamily: 'Segoe'),
+                                                                      ),
+                                                                      onPressed:
+                                                                          () {
+                                                                        Navigator.pop(
+                                                                            context);
+                                                                      },
+                                                                    ),
+                                                                    FlatButton(
+                                                                      child:
+                                                                          Text(
+                                                                        "Yes",
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                Colors.black,
+                                                                            fontFamily: 'Segoe'),
+                                                                      ),
+                                                                      onPressed:
+                                                                          () {
+                                                                        User user = FirebaseAuth
+                                                                            .instance
+                                                                            .currentUser;
+                                                                        FirebaseFirestore
+                                                                            .instance
+                                                                            .collection('user')
+                                                                            .doc(user.email)
+                                                                            .collection('orders')
+                                                                            .doc()
+                                                                            .set({
+                                                                          'name':
+                                                                              ds['name'],
+                                                                          'selleremail':
+                                                                              ds['selleremail'].toString(),
+                                                                          'id':
+                                                                              ds['id'].toString(),
+                                                                          'quantity':
+                                                                              ds['quantity'].toString()
+                                                                        });
+
+                                                                        FirebaseFirestore
+                                                                            .instance
+                                                                            .collection('orders')
+                                                                            .doc()
+                                                                            .set({
+                                                                          'name':
+                                                                              ds['name'],
+                                                                          'selleremail':
+                                                                              ds['selleremail'].toString(),
+                                                                          'id':
+                                                                              ds['id'].toString(),
+                                                                          'quantity':
+                                                                              ds['quantity'].toString(),
+                                                                          'price':
+                                                                              ds['price'],
+                                                                          'total':
+                                                                              ds['total'],
+                                                                          'image':
+                                                                              ds['image'],
+                                                                          'buyeremail':
+                                                                              user.email,
+                                                                          'picked from vendor':
+                                                                              false,
+                                                                          'Order Dilevered to Collection Point':
+                                                                              false,
+                                                                          'Order Recieved to Collection Point':
+                                                                              false,
+                                                                          'Rider':
+                                                                              ""
+                                                                        });
+                                                                        FirebaseFirestore
+                                                                            .instance
+                                                                            .collection('user')
+                                                                            .doc(user.email)
+                                                                            .collection('cart')
+                                                                            .doc(ds.id)
+                                                                            .delete();
+                                                                        Navigator.of(context)
+                                                                            .pop();
+                                                                        showThankYouBottomSheet(
+                                                                            context);
+                                                                      },
+                                                                    ),
+                                                                  ],
+                                                                );
+                                                              });
+                                                        },
+                                                        child: Text(
+                                                          "Place Order",
+                                                          style: CustomTextStyle
+                                                              .textFormFieldMedium
+                                                              .copyWith(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize: 14,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                        ),
+                                                        color: Colors.pink,
+                                                        textColor: Colors.white,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
-                                          ],
-                                        ),
-                                      ]);
+                                          ]);
                                     },
                                   )
                                 : Container(
@@ -546,7 +547,7 @@ class _CheckoutState extends State<Checkout> {
                         Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: TitleText(
-                            text: '${price}' ?? "",
+                            text: '${price}' + " RS " ?? "",
                             fontSize: 18,
                           ),
                         ),
