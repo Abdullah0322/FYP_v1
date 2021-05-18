@@ -18,7 +18,7 @@ class Checkout extends StatefulWidget {
 
 class _CheckoutState extends State<Checkout> {
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
-
+  var g;
   getUsers() {
     User user = FirebaseAuth.instance.currentUser;
     try {
@@ -31,7 +31,18 @@ class _CheckoutState extends State<Checkout> {
     }
   }
 
+  getphone() async {
+    DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection('user')
+        .doc(user.email)
+        .get();
+    setState(() {
+      g = snap['phone'];
+    });
+  }
+
   void initState() {
+    getphone();
     getprice();
     super.initState();
   }
@@ -466,6 +477,8 @@ class _CheckoutState extends State<Checkout> {
                                                                               ds['image'],
                                                                           'buyeremail':
                                                                               user.email,
+                                                                          'phone':
+                                                                              g.toString(),
                                                                           'picked from vendor':
                                                                               false,
                                                                           'Order Dilevered to Collection Point':

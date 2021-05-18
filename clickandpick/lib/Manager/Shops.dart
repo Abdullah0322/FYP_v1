@@ -108,12 +108,21 @@ class _ManageShopsState extends State<ManageShops> {
                                 padding:
                                     const EdgeInsets.only(top: 38.0, left: 25),
                                 child: Container(
-                                  child: Text(
-                                    sellerSnap.docs[index]['email'],
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 17),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        ' Email :',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        sellerSnap.docs[index]['email'],
+                                        style: TextStyle(
+                                            color: Colors.blue,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 15),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
@@ -121,12 +130,21 @@ class _ManageShopsState extends State<ManageShops> {
                                 padding:
                                     const EdgeInsets.only(top: 58.0, left: 25),
                                 child: Container(
-                                  child: Text(
-                                    sellerSnap.docs[index]['shopname'],
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 17),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        ' shopname :',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        sellerSnap.docs[index]['shopname'],
+                                        style: TextStyle(
+                                            color: Colors.blue,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 15),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
@@ -134,12 +152,21 @@ class _ManageShopsState extends State<ManageShops> {
                                 padding:
                                     const EdgeInsets.only(top: 78.0, left: 25),
                                 child: Container(
-                                  child: Text(
-                                    sellerSnap.docs[index]['address'],
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 17),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        ' shopAddress :',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        sellerSnap.docs[index]['address'],
+                                        style: TextStyle(
+                                            color: Colors.blue,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 15),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),

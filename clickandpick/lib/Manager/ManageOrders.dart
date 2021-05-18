@@ -90,7 +90,7 @@ class _ManageOrdersState extends State<ManageOrders> {
                                     child: Row(
                                       children: [
                                         Text(
-                                          'ID:',
+                                          ' ID: ',
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
                                         ),
@@ -105,21 +105,57 @@ class _ManageOrdersState extends State<ManageOrders> {
                                     ),
                                   ),
                                   Container(
-                                    child: Text(
-                                      ds['name'],
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 17),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          ' Name :',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          ds['name'],
+                                          style: TextStyle(
+                                              color: Colors.blue,
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 15),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                   Container(
-                                    child: Text(
-                                      ds['buyeremail'],
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 17),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          ' Buyer Email :',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          ds['buyeremail'],
+                                          style: TextStyle(
+                                              color: Colors.blue,
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 15),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          ' Phone Number :',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          ds['phone'],
+                                          style: TextStyle(
+                                              color: Colors.blue,
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 15),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                   Row(

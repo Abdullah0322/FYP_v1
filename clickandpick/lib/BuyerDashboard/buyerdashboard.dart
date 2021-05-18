@@ -8,6 +8,7 @@ import 'package:ClickandPick/BuyerDashboard/details.dart';
 import 'package:ClickandPick/BuyerDashboard/favourites.dart';
 import 'package:ClickandPick/BuyerDashboard/title_text.dart';
 import 'package:ClickandPick/Cart/cart.dart';
+import 'package:ClickandPick/Login/loginPage.dart';
 import 'package:ClickandPick/SellerDashboard/data.dart';
 import 'package:ClickandPick/settings.dart/setting_page.dart';
 import 'package:ClickandPick/utils/colors.dart';

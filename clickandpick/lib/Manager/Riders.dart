@@ -117,12 +117,43 @@ class _ManageRidersState extends State<ManageRiders>
                                     padding: const EdgeInsets.only(
                                         top: 38.0, left: 25),
                                     child: Container(
-                                      child: Text(
-                                        ds['email'],
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 17),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            ' Email:',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Text(
+                                            ds['email'],
+                                            style: TextStyle(
+                                                color: Colors.blue,
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 15),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 58.0, left: 25),
+                                    child: Container(
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            ' Phone:',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Text(
+                                            ds['phone'],
+                                            style: TextStyle(
+                                                color: Colors.blue,
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 15),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
