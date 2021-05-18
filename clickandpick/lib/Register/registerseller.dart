@@ -370,12 +370,12 @@ class _RegisterSellerState extends State<RegisterSeller> {
                             "value": "Valencia",
                           },
                           {
-                            "display": "Ichra",
-                            "value": "Ichra",
+                            "display": "Cantt",
+                            "value": "Cantt",
                           },
                           {
-                            "display": "Kent",
-                            "value": "Kent",
+                            "display": "DHA",
+                            "value": "DHA",
                           },
                         ],
                         textField: 'display',

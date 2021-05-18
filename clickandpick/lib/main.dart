@@ -1,10 +1,10 @@
 import 'package:ClickandPick/Splash.dart';
-import 'package:ClickandPick/test.dart';
-import 'package:ClickandPick/test2.dart';
-import 'package:ClickandPick/test3.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
+
+import 'Login/loginPage.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         // the app on. For desktop platforms, the controls will be smaller and
         // closer together (more dense) than on mobile platforms.
       ),
-      home: Test(),
+      home: LoginPage(),
     );
   }
 }

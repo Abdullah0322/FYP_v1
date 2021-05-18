@@ -299,21 +299,21 @@ class _SellerDashboardState extends State<SellerDashboard>
               tabs: [
                 Tab(
                   child: Text(
-                    'Men',
+                    'Foods',
                     style: TextStyle(
                         fontFamily: 'Segoe', fontWeight: FontWeight.bold),
                   ),
                 ),
                 Tab(
                   child: Text(
-                    'Women',
+                    'Electronics',
                     style: TextStyle(
                         fontFamily: 'Segoe', fontWeight: FontWeight.bold),
                   ),
                 ),
                 Tab(
                   child: Text(
-                    'Kids',
+                    'Clothes',
                     style: TextStyle(
                         fontFamily: 'Segoe', fontWeight: FontWeight.bold),
                   ),

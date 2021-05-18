@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:dropdown_formfield/dropdown_formfield.dart';
 import 'package:ClickandPick/Login/LoginPage.dart';
 import 'package:ClickandPick/Register/registerbuyer.dart';
 import 'package:ClickandPick/utils/colors.dart';
@@ -16,6 +16,8 @@ class RegisterRider extends StatefulWidget {
 
 class _RegisterRiderState extends State<RegisterRider> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  String _myActivity;
+  String _myActivityResult;
   final password = TextEditingController();
   final email = TextEditingController();
   final confirm = TextEditingController();
@@ -24,6 +26,12 @@ class _RegisterRiderState extends State<RegisterRider> {
   final vehicle = TextEditingController();
   final register = TextEditingController();
   var signUp;
+  void initState() {
+    super.initState();
+    _myActivity = '';
+    _myActivityResult = '';
+  }
+
   final requiredValidator =
       RequiredValidator(errorText: 'this field is required');
   final passwordValidator = MultiValidator([
@@ -53,7 +61,9 @@ class _RegisterRiderState extends State<RegisterRider> {
             'email': email.text.toLowerCase(),
             'phone': phone.text,
             'vehiclename': vehicle.text,
-            'Vehicle Registration Number': register.text
+            'Vehicle Registration Number': register.text,
+            'available': false,
+            'collection point': _myActivity,
           });
         } catch (e) {
           print('Error is: ' + e);
@@ -355,6 +365,45 @@ class _RegisterRiderState extends State<RegisterRider> {
                             border: InputBorder.none,
                           ),
                         ),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(16),
+                      child: DropDownFormField(
+                        validator: requiredValidator,
+                        titleText: 'Collection Point',
+                        hintText: 'Please choose one',
+                        value: _myActivity,
+                        onSaved: (value) {
+                          setState(() {
+                            _myActivity = value;
+                          });
+                        },
+                        onChanged: (value) {
+                          setState(() {
+                            _myActivity = value;
+                          });
+                        },
+                        dataSource: [
+                          {
+                            "display": "Bahria",
+                            "value": "Bahria",
+                          },
+                          {
+                            "display": "Valencia",
+                            "value": "Valencia",
+                          },
+                          {
+                            "display": "Cantt",
+                            "value": "Cantt",
+                          },
+                          {
+                            "display": "DHA",
+                            "value": "DHA",
+                          },
+                        ],
+                        textField: 'display',
+                        valueField: 'value',
                       ),
                     ),
                     SizedBox(

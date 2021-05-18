@@ -11,6 +11,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class ManageRiders extends StatefulWidget {
   final Data data;
+
   ManageRiders({Key key, this.data}) : super(key: key);
   @override
   _ManageRidersState createState() => _ManageRidersState();
@@ -19,37 +20,39 @@ class ManageRiders extends StatefulWidget {
 class _ManageRidersState extends State<ManageRiders>
     with TickerProviderStateMixin {
   int riderCount;
+  var snap1;
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  QuerySnapshot riderSnap;
+  var riderSnap;
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 
-  getRider() {
-    try {
-      return FirebaseFirestore.instance
-          .collection('rider')
-          .where('available', isEqualTo: true)
-          .snapshots();
+  var currentCollectionPoint;
+  getRider() async {
+    User user = FirebaseAuth.instance.currentUser;
+    var snap2 = await FirebaseFirestore.instance
+        .collection("manager")
+        .doc(user.email)
+        .get()
+        .then((value) {
+      setState(() {
+        currentCollectionPoint = value.data()['collection point'];
+        snap1 = FirebaseFirestore.instance
+            .collection('rider')
+            .where('available', isEqualTo: true)
+            .where('collection point', isEqualTo: currentCollectionPoint)
+            .snapshots();
+      });
+    });
 
-      _refreshController.refreshCompleted();
-      _refreshController.loadComplete();
-    } catch (e) {
-      print(e);
-      Fluttertoast.showToast(
-        msg: e,
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 3,
-        backgroundColor: Colors.red[400],
-        textColor: Colors.white,
-        fontSize: 15,
-      );
-    }
+    _refreshController.refreshCompleted();
+    _refreshController.loadComplete();
+    return snap1;
   }
 
   void initState() {
     super.initState();
+    getRider();
     User user = FirebaseAuth.instance.currentUser;
   }
 
@@ -78,8 +81,8 @@ class _ManageRidersState extends State<ManageRiders>
       ),
       drawer: ManagerDrawer(),
       body: StreamBuilder(
-        stream: getRider(),
-        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        stream: snap1,
+        builder: (context, snapshot) {
           return snapshot.hasData
               ? ListView.builder(
                   itemCount: snapshot.data.docs.length,
