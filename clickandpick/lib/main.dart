@@ -1,3 +1,4 @@
+import 'package:ClickandPick/Login/loginPage.dart';
 import 'package:ClickandPick/Splash.dart';
 
 import 'package:flutter/material.dart';

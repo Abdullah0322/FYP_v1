@@ -5,6 +5,8 @@ import 'package:ClickandPick/Manager/ManageOrders.dart';
 import 'package:ClickandPick/Register/registerbuyer.dart';
 import 'package:ClickandPick/Register/registertype.dart';
 import 'package:ClickandPick/RiderDashboard/riderPendingOrders.dart';
+import 'package:ClickandPick/SellerDashboard/ManageOrders.dart';
+import 'package:ClickandPick/SellerDashboard/ManageProducts.dart';
 import 'package:ClickandPick/SellerDashboard/seller.dart';
 import 'package:ClickandPick/utils/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -303,7 +305,7 @@ class _LoginPageState extends State<LoginPage> {
               }
               Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => SellerDashboard()),
+                  MaterialPageRoute(builder: (context) => SellerOrders()),
                   (route) => false);
             } on FirebaseAuthException catch (e) {
               if (e.code == 'user-not-found') {
@@ -717,6 +719,7 @@ class Sell {
   String gender;
   String address;
   String email;
+
   List<String> favProdcts;
 }
 

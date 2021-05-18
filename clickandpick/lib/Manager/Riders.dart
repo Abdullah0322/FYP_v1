@@ -175,6 +175,27 @@ class _ManageRidersState extends State<ManageRiders>
                                                             .update({
                                                           'Rider': ds['email']
                                                         });
+                                                        FirebaseFirestore
+                                                            .instance
+                                                            .collection('rider')
+                                                            .doc(ds['email'])
+                                                            .update({
+                                                          'available': false
+                                                        });
+                                                        Fluttertoast.showToast(
+                                                          msg:
+                                                              'The Rider is Busy Now',
+                                                          toastLength:
+                                                              Toast.LENGTH_LONG,
+                                                          gravity: ToastGravity
+                                                              .BOTTOM,
+                                                          timeInSecForIosWeb: 3,
+                                                          backgroundColor:
+                                                              Colors.red[400],
+                                                          textColor:
+                                                              Colors.white,
+                                                          fontSize: 15,
+                                                        );
                                                         Navigator.pop(context);
                                                       },
                                                     ),

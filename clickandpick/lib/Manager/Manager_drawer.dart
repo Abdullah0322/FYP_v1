@@ -128,7 +128,7 @@ class ManagerDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.bike_scooter),
             title: Text(
-              'Manage Riders',
+              'View Available Riders',
               style: TextStyle(
                 fontSize: 18,
               ),
@@ -137,22 +137,6 @@ class ManagerDrawer extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => ManageRiders()),
-              );
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.shopping_bag_outlined),
-            title: Text(
-              'Collection Point ',
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => CollectionPointInformation()),
               );
             },
           ),

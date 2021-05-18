@@ -1,6 +1,7 @@
 import 'package:ClickandPick/Login/loginPage.dart';
 import 'package:ClickandPick/RiderDashboard/riderContactUs.dart';
 import 'package:ClickandPick/SellerDashboard/changesellername.dart';
+import 'package:ClickandPick/SellerDashboard/chnageShop.dart';
 import 'package:ClickandPick/app_properties.dart';
 import 'package:ClickandPick/custom_background.dart';
 import 'package:ClickandPick/settings.dart/change_password_page.dart';
@@ -95,6 +96,14 @@ class _SettingSellerState extends State<SettingSeller> {
                               onTap: () => Navigator.of(context).push(
                                   MaterialPageRoute(
                                       builder: (_) => ChnageSellername())),
+                            ),
+                            ListTile(
+                              title: Text('Change Shop Name'),
+                              leading:
+                                  Image.asset('assets/icons/change_pass.png'),
+                              onTap: () => Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (_) => ChangeShop())),
                             ),
                             ListTile(
                               leading: Icon(Icons.exit_to_app),

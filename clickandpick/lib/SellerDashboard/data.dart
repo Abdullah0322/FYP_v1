@@ -15,20 +15,21 @@ class Data {
   double total;
   double rating;
 
-  Data(
-      {this.name,
-      this.quantity,
-      this.category,
-      this.image,
-      this.price,
-      this.id,
-      this.description,
-      this.sellername,
-      this.shopaddress,
-      this.selleremail,
-      this.buyeremail,
-      this.total,
-      this.rating});
+  Data({
+    this.name,
+    this.quantity,
+    this.category,
+    this.image,
+    this.price,
+    this.id,
+    this.description,
+    this.sellername,
+    this.shopaddress,
+    this.selleremail,
+    this.buyeremail,
+    this.total,
+    this.rating,
+  });
 }
 
 class Seller {
