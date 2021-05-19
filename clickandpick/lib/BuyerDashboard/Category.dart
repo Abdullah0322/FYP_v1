@@ -53,7 +53,8 @@ class _CategoryState extends State<Category> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => CategorySelected(type: 'women'),
+                          builder: (context) =>
+                              CategorySelected(type: 'clothing'),
                         ));
                   },
                   child: Container(
@@ -67,16 +68,16 @@ class _CategoryState extends State<Category> {
                               image: new DecorationImage(
                                 fit: BoxFit.cover,
                                 colorFilter: new ColorFilter.mode(
-                                    Colors.black.withOpacity(0.5),
+                                    Colors.black.withOpacity(0.35),
                                     BlendMode.dstATop),
-                                image: AssetImage('assets/women.jpg'),
+                                image: AssetImage('assets/clothing.png'),
                               ),
                             ),
                           ),
                           Center(
                               child: Container(
                             child: Text(
-                              'Women',
+                              'Clothes',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500,
@@ -96,7 +97,7 @@ class _CategoryState extends State<Category> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => CategorySelected(type: 'men'),
+                          builder: (context) => CategorySelected(type: 'shoes'),
                         ));
                   },
                   child: Container(
@@ -110,16 +111,16 @@ class _CategoryState extends State<Category> {
                               image: new DecorationImage(
                                 fit: BoxFit.cover,
                                 colorFilter: new ColorFilter.mode(
-                                    Colors.black.withOpacity(0.5),
+                                    Colors.black.withOpacity(0.4),
                                     BlendMode.dstATop),
-                                image: AssetImage('assets/Men.jpg'),
+                                image: AssetImage('assets/shoes.png'),
                               ),
                             ),
                           ),
                           Center(
                               child: Container(
                             child: Text(
-                              'Men',
+                              'Shoes',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500,
@@ -139,7 +140,8 @@ class _CategoryState extends State<Category> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => CategorySelected(type: 'kids'),
+                          builder: (context) =>
+                              CategorySelected(type: 'watches'),
                         ));
                   },
                   child: Container(
@@ -153,16 +155,147 @@ class _CategoryState extends State<Category> {
                               image: new DecorationImage(
                                 fit: BoxFit.cover,
                                 colorFilter: new ColorFilter.mode(
-                                    Colors.black.withOpacity(0.5),
+                                    Colors.black.withOpacity(0.3),
                                     BlendMode.dstATop),
-                                image: AssetImage('assets/Shoes.jpg'),
+                                image: AssetImage('assets/watches.png'),
                               ),
                             ),
                           ),
                           Center(
                               child: Container(
                             child: Text(
-                              'Kids',
+                              'Watches',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 40),
+                            ),
+                          )),
+                        ],
+                      )),
+                ),
+              ),
+            ),
+            Center(
+              child: Card(
+                child: InkWell(
+                  splashColor: Colors.blue.withAlpha(30),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              CategorySelected(type: 'electronics'),
+                        ));
+                  },
+                  child: Container(
+                      width: width * 0.93,
+                      height: 150,
+                      child: Stack(
+                        children: <Widget>[
+                          Container(
+                            decoration: new BoxDecoration(
+                              color: const Color(0xff7c94b6),
+                              image: new DecorationImage(
+                                fit: BoxFit.cover,
+                                colorFilter: new ColorFilter.mode(
+                                    Colors.black.withOpacity(0.4),
+                                    BlendMode.dstATop),
+                                image: AssetImage('assets/electronics.png'),
+                              ),
+                            ),
+                          ),
+                          Center(
+                              child: Container(
+                            child: Text(
+                              'Electronics & Tech',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 40),
+                            ),
+                          )),
+                        ],
+                      )),
+                ),
+              ),
+            ),
+            Center(
+              child: Card(
+                child: InkWell(
+                  splashColor: Colors.blue.withAlpha(30),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CategorySelected(type: 'food'),
+                        ));
+                  },
+                  child: Container(
+                      width: width * 0.93,
+                      height: 150,
+                      child: Stack(
+                        children: <Widget>[
+                          Container(
+                            decoration: new BoxDecoration(
+                              color: const Color(0xff7c94b6),
+                              image: new DecorationImage(
+                                fit: BoxFit.cover,
+                                colorFilter: new ColorFilter.mode(
+                                    Colors.black.withOpacity(0.35),
+                                    BlendMode.dstATop),
+                                image: AssetImage('assets/food.png'),
+                              ),
+                            ),
+                          ),
+                          Center(
+                              child: Container(
+                            child: Text(
+                              'Food Products',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 40),
+                            ),
+                          )),
+                        ],
+                      )),
+                ),
+              ),
+            ),
+            Center(
+              child: Card(
+                child: InkWell(
+                  splashColor: Colors.blue.withAlpha(30),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              CategorySelected(type: 'fragances'),
+                        ));
+                  },
+                  child: Container(
+                      width: width * 0.93,
+                      height: 150,
+                      child: Stack(
+                        children: <Widget>[
+                          Container(
+                            decoration: new BoxDecoration(
+                              color: const Color(0xff7c94b6),
+                              image: new DecorationImage(
+                                fit: BoxFit.cover,
+                                colorFilter: new ColorFilter.mode(
+                                    Colors.black.withOpacity(0.3),
+                                    BlendMode.dstATop),
+                                image: AssetImage('assets/fragrances.png'),
+                              ),
+                            ),
+                          ),
+                          Center(
+                              child: Container(
+                            child: Text(
+                              'Fragrances',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w500,
