@@ -1,6 +1,7 @@
 import 'package:ClickandPick/Login/LoginPage.dart';
 import 'package:ClickandPick/RiderDashboard/changeRidername.dart';
 import 'package:ClickandPick/RiderDashboard/riderContactUs.dart';
+import 'package:ClickandPick/RiderDashboard/vehicleinfo.dart';
 import 'package:ClickandPick/app_properties.dart';
 import 'package:ClickandPick/custom_background.dart';
 import 'package:ClickandPick/settings.dart/notifications_settings_page.dart';
@@ -63,17 +64,12 @@ class _SettingRiderState extends State<SettingRider> {
                                           NotificationSettingsPage())),
                             ),
                             ListTile(
-                              title: Text('Contact Us'),
+                              title: Text('Edit Vehicle Information'),
                               leading: Image.asset('assets/icons/about_us.png'),
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (_) => ContactUs()));
+                                    builder: (_) => VehicleInfo()));
                               },
-                            ),
-                            ListTile(
-                              title: Text('ABout Us'),
-                              leading: Image.asset('assets/icons/about_us.png'),
-                              onTap: () {},
                             ),
                             Padding(
                               padding:

@@ -1,5 +1,6 @@
 import 'package:ClickandPick/Login/LoginPage.dart';
 import 'package:ClickandPick/Manager/Collectionpointinfo.dart';
+import 'package:ClickandPick/Manager/Myprofile.dart';
 import 'package:ClickandPick/Manager/Riders.dart';
 import 'package:ClickandPick/Manager/Shops.dart';
 import 'package:ClickandPick/RiderDashboard/riderContactUs.dart';
@@ -75,10 +76,10 @@ class ManagerDrawer extends StatelessWidget {
               ),
             ),
             onTap: () {
-              //       Navigator.push(
-              ///       context,
-              //    MaterialPageRoute(builder: (context) => RiderProfile()),
-              //);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyProfile()),
+              );
             },
           ),
           Divider(
