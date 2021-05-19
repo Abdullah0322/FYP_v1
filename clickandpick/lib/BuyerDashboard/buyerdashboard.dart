@@ -129,7 +129,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
       return FirebaseFirestore.instance
           .collection('products')
           .doc('category')
-          .collection('fragances')
+          .collection('fragrances')
           .snapshots();
     } catch (e) {
       print(e);
