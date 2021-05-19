@@ -703,7 +703,8 @@ class Rider {
 
   String username;
   String phone;
-
+  String vehicle;
+  String vehiclereg;
   String email;
 }
 

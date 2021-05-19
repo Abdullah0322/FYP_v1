@@ -1,5 +1,7 @@
+import 'package:ClickandPick/BuyerDashboard/title_text.dart';
 import 'package:ClickandPick/Login/loginPage.dart';
 import 'package:ClickandPick/RiderDashboard/Rider_drawer.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +46,8 @@ class _RiderDileveredState extends State<RiderDilevered> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
+    var screenWidth = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -54,7 +58,7 @@ class _RiderDileveredState extends State<RiderDilevered> {
       body: StreamBuilder(
         stream: getOrders(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          return snapshot.hasData
+          return snapshot.hasData && snapshot.data.docs.isNotEmpty
               ? ListView.builder(
                   itemCount: snapshot.data.docs.length,
                   itemBuilder: (context, index) {
@@ -72,41 +76,72 @@ class _RiderDileveredState extends State<RiderDilevered> {
                               child: Stack(
                                 children: <Widget>[
                                   Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 25.0, top: 10),
+                                    padding: const EdgeInsets.only(left: 280),
                                     child: Container(
-                                      child: Text(
-                                        ds['id'],
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 20),
+                                      child: CachedNetworkImage(
+                                          imageUrl: ds['image']),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 18.0),
+                                    child: Container(
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            ' ID: ',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Text(
+                                            ds['id'],
+                                            style: TextStyle(
+                                                color: Colors.blue,
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 15),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 38.0, left: 25),
+                                    padding: const EdgeInsets.only(top: 38.0),
                                     child: Container(
-                                      child: Text(
-                                        ds['name'],
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 17),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            ' Name: ',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Text(
+                                            ds['name'],
+                                            style: TextStyle(
+                                                color: Colors.blue,
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 15),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 68.0, left: 25),
+                                    padding: const EdgeInsets.only(top: 58.0),
                                     child: Container(
-                                      child: Text(
-                                        ds['selleremail'],
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 17),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            ' Seller email: ',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Text(
+                                            ds['selleremail'],
+                                            style: TextStyle(
+                                                color: Colors.blue,
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 15),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
@@ -116,7 +151,16 @@ class _RiderDileveredState extends State<RiderDilevered> {
                       ),
                     );
                   })
-              : Container();
+              : Container(
+                  height: height * 0.2,
+                  width: screenWidth,
+                  child: Center(
+                    child: TitleText(
+                      text: 'You have Dilevered No Order',
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ));
         },
       ),
     );

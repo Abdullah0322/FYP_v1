@@ -23,10 +23,11 @@ class _VehicleInfoState extends State<VehicleInfo> {
           .doc(user.email)
           .get();
       setState(() {
-        Sell.userData.username = snap1['username'].toString();
-        Sell.userData.email = snap1['email'].toString();
-        Sell.userData.address = snap1['Vehicle Registration Number'].toString();
-        Sell.userData.phone = snap1['vehclename'].toString();
+        Rider.userData.username = snap1['username'].toString();
+        Rider.userData.email = snap1['email'].toString();
+        Rider.userData.vehicle =
+            snap1['Vehicle Registration Number'].toString();
+        Rider.userData.vehiclereg = snap1['vehiclename'].toString();
       });
     } catch (e) {
       print(e);
@@ -169,7 +170,7 @@ class _VehicleInfoState extends State<VehicleInfo> {
                               child: TextField(
                                   decoration: InputDecoration(
                                       border: InputBorder.none,
-                                      hintText: Sell.userData.phone,
+                                      hintText: Rider.userData.vehiclereg,
                                       hintStyle: TextStyle(
                                           fontSize: 20.0,
                                           fontWeight: FontWeight.bold)))),
@@ -191,7 +192,7 @@ class _VehicleInfoState extends State<VehicleInfo> {
                               child: TextField(
                                   decoration: InputDecoration(
                                       border: InputBorder.none,
-                                      hintText: Sell.userData.phone,
+                                      hintText: Rider.userData.vehicle,
                                       hintStyle: TextStyle(
                                           fontSize: 20.0,
                                           fontWeight: FontWeight.bold)))),

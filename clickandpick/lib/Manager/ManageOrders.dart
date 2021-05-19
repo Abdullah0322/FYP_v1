@@ -158,6 +158,24 @@ class _ManageOrdersState extends State<ManageOrders> {
                                       ],
                                     ),
                                   ),
+                                  Container(
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          ' Seller Shop Address :',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          ds['shopaddress'],
+                                          style: TextStyle(
+                                              color: Colors.blue,
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 15),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,

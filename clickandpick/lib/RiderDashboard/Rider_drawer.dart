@@ -3,6 +3,7 @@ import 'package:ClickandPick/BuyerDashboard/favourites.dart';
 import 'package:ClickandPick/Cart/cart.dart';
 import 'package:ClickandPick/RiderDashboard/RiderDileveredOrders.dart';
 import 'package:ClickandPick/RiderDashboard/riderContactUs.dart';
+import 'package:ClickandPick/RiderDashboard/riderPendingOrders.dart';
 import 'package:ClickandPick/RiderDashboard/settingRider.dart';
 import 'package:ClickandPick/SellerDashboard/dileveredorders.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -126,7 +127,7 @@ class _RiderdrawerState extends State<Riderdrawer> {
           ListTile(
             leading: Icon(Icons.shopping_bag_outlined),
             title: Text(
-              'Order Dilevered',
+              'Dilevered Orders',
               style: TextStyle(
                 fontSize: 18,
               ),
@@ -135,6 +136,21 @@ class _RiderdrawerState extends State<Riderdrawer> {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => RiderDilevered()),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.shopping_bag_outlined),
+            title: Text(
+              'Pending Orders',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PendingOrders()),
               );
             },
           ),

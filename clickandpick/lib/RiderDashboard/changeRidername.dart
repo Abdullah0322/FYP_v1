@@ -168,7 +168,7 @@ class _RidernameState extends State<Ridername> {
                               child: TextField(
                                   decoration: InputDecoration(
                                       border: InputBorder.none,
-                                      hintText: Sell.userData.username,
+                                      hintText: Rider.userData.username,
                                       hintStyle: TextStyle(
                                           fontSize: 20.0,
                                           fontWeight: FontWeight.bold)))),

@@ -41,6 +41,16 @@ class _CheckoutState extends State<Checkout> {
     });
   }
 
+  setquant() async {
+    QuerySnapshot snap2 = await FirebaseFirestore.instance
+        .collection('seller')
+        .doc(user.email)
+        .collection('products')
+        .doc('category')
+        .collection('kids')
+        .get();
+  }
+
   void initState() {
     getphone();
     getprice();
@@ -486,7 +496,9 @@ class _CheckoutState extends State<Checkout> {
                                                                           'Order Recieved to Collection Point':
                                                                               false,
                                                                           'Rider':
-                                                                              ""
+                                                                              "",
+                                                                          'shopaddress':
+                                                                              ds['selleraddress']
                                                                         });
                                                                         FirebaseFirestore
                                                                             .instance

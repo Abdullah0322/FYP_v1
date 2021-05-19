@@ -72,6 +72,7 @@ class _DetailsState extends State<Details> {
     );
   }
 
+  changequnat() async {}
   DocumentSnapshot favsnap;
 
   bool _isFavorited;
@@ -109,6 +110,17 @@ class _DetailsState extends State<Details> {
     });
   }
 
+  var dec;
+  var cd;
+  setquant() {
+    cd = int.parse(widget.data.quantity) - quantity;
+
+    setState(() {
+      dec = cd;
+    });
+    return dec;
+  }
+
   getpri() {
     double abc = 0;
 
@@ -139,6 +151,7 @@ class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
     getpri();
+    setquant();
     print(_isFavorited);
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
@@ -634,12 +647,27 @@ class _DetailsState extends State<Details> {
                                     'price': widget.data.price,
                                     'description': widget.data.description,
                                     'quantity': quantity,
-                                    'total': price
+                                    'total': price,
+                                    'selleraddress': widget.data.shopaddress
                                   });
-
                                   Fluttertoast.showToast(
                                       msg: "Item Added to Cart",
                                       toastLength: Toast.LENGTH_LONG);
+                                  await FirebaseFirestore.instance
+                                      .collection('products')
+                                      .doc('category')
+                                      .collection(widget.type)
+                                      .doc(widget.data.id)
+                                      .update({'quantity': dec.toString()});
+
+                                  await FirebaseFirestore.instance
+                                      .collection('seller')
+                                      .doc(widget.data.selleremail)
+                                      .collection('products')
+                                      .doc('category')
+                                      .collection(widget.type)
+                                      .doc(widget.data.id)
+                                      .update({'quantity': dec.toString()});
                                 },
                                 child: Center(
                                   child: Container(

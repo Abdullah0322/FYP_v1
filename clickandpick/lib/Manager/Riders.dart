@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:ClickandPick/BuyerDashboard/title_text.dart';
 import 'package:ClickandPick/Manager/Manager_drawer.dart';
 import 'package:ClickandPick/SellerDashboard/data.dart';
 import 'package:ClickandPick/utils/colors.dart';
@@ -57,6 +58,8 @@ class _ManageRidersState extends State<ManageRiders>
   }
 
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       key: scaffoldKey,
@@ -83,7 +86,7 @@ class _ManageRidersState extends State<ManageRiders>
       body: StreamBuilder(
         stream: snap1,
         builder: (context, snapshot) {
-          return snapshot.hasData
+          return snapshot.hasData && snapshot.data.docs.isNotEmpty
               ? ListView.builder(
                   itemCount: snapshot.data.docs.length,
                   itemBuilder: (context, index) {
@@ -244,7 +247,16 @@ class _ManageRidersState extends State<ManageRiders>
                       ),
                     );
                   })
-              : Container();
+              : Container(
+                  height: height * 0.2,
+                  width: screenWidth,
+                  child: Center(
+                    child: TitleText(
+                      text: 'You Dont have any Rider Available',
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ));
         },
       ),
     );

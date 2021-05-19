@@ -294,49 +294,54 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                               const EdgeInsets.only(left: 10.0),
                                           child: GestureDetector(
                                             onTap: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        Details(
-                                                      type: 'clothing',
-                                                      data: Data(
-                                                        id: snapshot.data
-                                                            .docs[index]['id'],
-                                                        name: snapshot.data
-                                                                .docs[index]
-                                                            ['name'],
-                                                        price: snapshot.data
-                                                                .docs[index]
-                                                            ['price'],
-                                                        image: snapshot.data
-                                                                .docs[index]
-                                                            ['image_path'],
-                                                        description: snapshot
-                                                                .data
-                                                                .docs[index]
-                                                            ['description'],
-                                                        sellername: snapshot
-                                                                .data
-                                                                .docs[index]
-                                                            ['sellername'],
-                                                        shopaddress: snapshot
-                                                                .data
-                                                                .docs[index]
-                                                            ['shopaddress'],
-                                                        selleremail: snapshot
-                                                                .data
-                                                                .docs[index]
-                                                            ['selleremail'],
-                                                        quantity: snapshot.data
-                                                                .docs[index]
-                                                            ['quantity'],
-                                                        rating: snapshot.data
-                                                                .docs[index]
-                                                            ['rating'],
-                                                      ),
-                                                    ),
-                                                  ));
+                                              ds['quantity'].toString() == "0"
+                                                  ? "Out of Stock"
+                                                  : Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            Details(
+                                                          type: 'clothing',
+                                                          data: Data(
+                                                            id: snapshot.data
+                                                                    .docs[index]
+                                                                ['id'],
+                                                            name: snapshot.data
+                                                                    .docs[index]
+                                                                ['name'],
+                                                            price: snapshot.data
+                                                                    .docs[index]
+                                                                ['price'],
+                                                            image: snapshot.data
+                                                                    .docs[index]
+                                                                ['image_path'],
+                                                            description: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['description'],
+                                                            sellername: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['sellername'],
+                                                            shopaddress: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['shopaddress'],
+                                                            selleremail: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['selleremail'],
+                                                            quantity: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['quantity'],
+                                                            rating: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['rating'],
+                                                          ),
+                                                        ),
+                                                      ));
                                             },
                                             child: Container(
                                               height: 200,
@@ -400,7 +405,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                                 BorderRadius.circular(20),
                                           ),
                                           child: Text(
-                                            ds['quantity'].toString() == '0'
+                                            ds['quantity'].toString() == "0"
                                                 ? 'Out of Stock'
                                                 : 'In stock',
                                             style: TextStyle(
@@ -476,46 +481,54 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                               const EdgeInsets.only(left: 10.0),
                                           child: GestureDetector(
                                             onTap: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        Details(
-                                                      type: 'electronics',
-                                                      data: Data(
-                                                        id: snapshot.data
-                                                            .docs[index]['id'],
-                                                        name: snapshot.data
-                                                                .docs[index]
-                                                            ['name'],
-                                                        price: snapshot.data
-                                                                .docs[index]
-                                                            ['price'],
-                                                        image: snapshot.data
-                                                                .docs[index]
-                                                            ['image_path'],
-                                                        description: snapshot
-                                                                .data
-                                                                .docs[index]
-                                                            ['description'],
-                                                        sellername: snapshot
-                                                                .data
-                                                                .docs[index]
-                                                            ['sellername'],
-                                                        shopaddress: snapshot
-                                                                .data
-                                                                .docs[index]
-                                                            ['shopaddress'],
-                                                        selleremail: snapshot
-                                                                .data
-                                                                .docs[index]
-                                                            ['selleremail'],
-                                                        rating: snapshot.data
-                                                                .docs[index]
-                                                            ['rating'],
-                                                      ),
-                                                    ),
-                                                  ));
+                                              ds['quantity'].toString() == "0"
+                                                  ? "Out of Stock"
+                                                  : Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            Details(
+                                                          type: 'electronics',
+                                                          data: Data(
+                                                            id: snapshot.data
+                                                                    .docs[index]
+                                                                ['id'],
+                                                            name: snapshot.data
+                                                                    .docs[index]
+                                                                ['name'],
+                                                            price: snapshot.data
+                                                                    .docs[index]
+                                                                ['price'],
+                                                            image: snapshot.data
+                                                                    .docs[index]
+                                                                ['image_path'],
+                                                            description: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['description'],
+                                                            sellername: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['sellername'],
+                                                            shopaddress: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['shopaddress'],
+                                                            selleremail: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['selleremail'],
+                                                            rating: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['rating'],
+                                                            quantity: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['quantity'],
+                                                          ),
+                                                        ),
+                                                      ));
                                             },
                                             child: Container(
                                               height: 200,
@@ -601,7 +614,9 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                                 BorderRadius.circular(20),
                                           ),
                                           child: Text(
-                                            'In stock',
+                                            ds['quantity'].toString() == "0"
+                                                ? "Out of Stock"
+                                                : 'In stock',
                                             style: TextStyle(
                                                 color: Color(0xFF84A2AF),
                                                 fontSize: 15,
@@ -675,46 +690,54 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                               const EdgeInsets.only(left: 10.0),
                                           child: GestureDetector(
                                             onTap: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        Details(
-                                                      type: 'watches',
-                                                      data: Data(
-                                                        id: snapshot.data
-                                                            .docs[index]['id'],
-                                                        name: snapshot.data
-                                                                .docs[index]
-                                                            ['name'],
-                                                        price: snapshot.data
-                                                                .docs[index]
-                                                            ['price'],
-                                                        image: snapshot.data
-                                                                .docs[index]
-                                                            ['image_path'],
-                                                        description: snapshot
-                                                                .data
-                                                                .docs[index]
-                                                            ['description'],
-                                                        sellername: snapshot
-                                                                .data
-                                                                .docs[index]
-                                                            ['sellername'],
-                                                        shopaddress: snapshot
-                                                                .data
-                                                                .docs[index]
-                                                            ['shopaddress'],
-                                                        selleremail: snapshot
-                                                                .data
-                                                                .docs[index]
-                                                            ['selleremail'],
-                                                        rating: snapshot.data
-                                                                .docs[index]
-                                                            ['rating'],
-                                                      ),
-                                                    ),
-                                                  ));
+                                              ds['quantity'].toString() == "0"
+                                                  ? "Out of Stock"
+                                                  : Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            Details(
+                                                          type: 'watches',
+                                                          data: Data(
+                                                            id: snapshot.data
+                                                                    .docs[index]
+                                                                ['id'],
+                                                            name: snapshot.data
+                                                                    .docs[index]
+                                                                ['name'],
+                                                            price: snapshot.data
+                                                                    .docs[index]
+                                                                ['price'],
+                                                            image: snapshot.data
+                                                                    .docs[index]
+                                                                ['image_path'],
+                                                            description: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['description'],
+                                                            sellername: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['sellername'],
+                                                            shopaddress: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['shopaddress'],
+                                                            selleremail: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['selleremail'],
+                                                            rating: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['rating'],
+                                                            quantity: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['quantity'],
+                                                          ),
+                                                        ),
+                                                      ));
                                             },
                                             child: Container(
                                               height: 200,
@@ -800,7 +823,9 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                                 BorderRadius.circular(20),
                                           ),
                                           child: Text(
-                                            'In stock',
+                                            ds['quantity'].toString() == "0"
+                                                ? "Out of Stock"
+                                                : 'In stock',
                                             style: TextStyle(
                                                 color: Color(0xFF84A2AF),
                                                 fontSize: 15,
@@ -874,46 +899,54 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                               const EdgeInsets.only(left: 10.0),
                                           child: GestureDetector(
                                             onTap: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        Details(
-                                                      type: 'food',
-                                                      data: Data(
-                                                        id: snapshot.data
-                                                            .docs[index]['id'],
-                                                        name: snapshot.data
-                                                                .docs[index]
-                                                            ['name'],
-                                                        price: snapshot.data
-                                                                .docs[index]
-                                                            ['price'],
-                                                        image: snapshot.data
-                                                                .docs[index]
-                                                            ['image_path'],
-                                                        description: snapshot
-                                                                .data
-                                                                .docs[index]
-                                                            ['description'],
-                                                        sellername: snapshot
-                                                                .data
-                                                                .docs[index]
-                                                            ['sellername'],
-                                                        shopaddress: snapshot
-                                                                .data
-                                                                .docs[index]
-                                                            ['shopaddress'],
-                                                        selleremail: snapshot
-                                                                .data
-                                                                .docs[index]
-                                                            ['selleremail'],
-                                                        rating: snapshot.data
-                                                                .docs[index]
-                                                            ['rating'],
-                                                      ),
-                                                    ),
-                                                  ));
+                                              ds['quantity'].toString() == "0"
+                                                  ? "Product Unavilable"
+                                                  : Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            Details(
+                                                          type: 'food',
+                                                          data: Data(
+                                                            id: snapshot.data
+                                                                    .docs[index]
+                                                                ['id'],
+                                                            name: snapshot.data
+                                                                    .docs[index]
+                                                                ['name'],
+                                                            price: snapshot.data
+                                                                    .docs[index]
+                                                                ['price'],
+                                                            image: snapshot.data
+                                                                    .docs[index]
+                                                                ['image_path'],
+                                                            description: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['description'],
+                                                            sellername: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['sellername'],
+                                                            shopaddress: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['shopaddress'],
+                                                            selleremail: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['selleremail'],
+                                                            rating: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['rating'],
+                                                            quantity: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['quantity'],
+                                                          ),
+                                                        ),
+                                                      ));
                                             },
                                             child: Container(
                                               height: 200,
@@ -953,40 +986,23 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                           ),
                                         ),
                                       ),
-                                      Row(
-                                        children: <Widget>[
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: .0),
-                                            child: Container(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 10),
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
-                                              ),
-                                              child: Text(
-                                                ds['price'].toString(),
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 15,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 85),
+                                        child: Container(
+                                          padding: EdgeInsets.only(bottom: 10),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
                                           ),
-                                          Container(
-                                            padding:
-                                                EdgeInsets.only(bottom: 10),
-                                            child: Text(
-                                              'RS',
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          )
-                                        ],
+                                          child: Text(
+                                            ds['price'].toString() + " RS ",
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
                                       ),
                                       Padding(
                                         padding:
@@ -999,7 +1015,9 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                                 BorderRadius.circular(20),
                                           ),
                                           child: Text(
-                                            'In stock',
+                                            ds['quantity'].toString() == "0"
+                                                ? "Out of Stock"
+                                                : 'In stock',
                                             style: TextStyle(
                                                 color: Color(0xFF84A2AF),
                                                 fontSize: 15,
@@ -1073,46 +1091,54 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                               const EdgeInsets.only(left: 10.0),
                                           child: GestureDetector(
                                             onTap: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        Details(
-                                                      type: 'fragances',
-                                                      data: Data(
-                                                        id: snapshot.data
-                                                            .docs[index]['id'],
-                                                        name: snapshot.data
-                                                                .docs[index]
-                                                            ['name'],
-                                                        price: snapshot.data
-                                                                .docs[index]
-                                                            ['price'],
-                                                        image: snapshot.data
-                                                                .docs[index]
-                                                            ['image_path'],
-                                                        description: snapshot
-                                                                .data
-                                                                .docs[index]
-                                                            ['description'],
-                                                        sellername: snapshot
-                                                                .data
-                                                                .docs[index]
-                                                            ['sellername'],
-                                                        shopaddress: snapshot
-                                                                .data
-                                                                .docs[index]
-                                                            ['shopaddress'],
-                                                        selleremail: snapshot
-                                                                .data
-                                                                .docs[index]
-                                                            ['selleremail'],
-                                                        rating: snapshot.data
-                                                                .docs[index]
-                                                            ['rating'],
-                                                      ),
-                                                    ),
-                                                  ));
+                                              ds['quantity'].toString() == "0"
+                                                  ? "Out of Stock"
+                                                  : Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            Details(
+                                                          type: 'fragances',
+                                                          data: Data(
+                                                            id: snapshot.data
+                                                                    .docs[index]
+                                                                ['id'],
+                                                            name: snapshot.data
+                                                                    .docs[index]
+                                                                ['name'],
+                                                            price: snapshot.data
+                                                                    .docs[index]
+                                                                ['price'],
+                                                            image: snapshot.data
+                                                                    .docs[index]
+                                                                ['image_path'],
+                                                            description: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['description'],
+                                                            sellername: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['sellername'],
+                                                            shopaddress: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['shopaddress'],
+                                                            selleremail: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['selleremail'],
+                                                            rating: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['rating'],
+                                                            quantity: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['quantity'],
+                                                          ),
+                                                        ),
+                                                      ));
                                             },
                                             child: Container(
                                               height: 200,
@@ -1198,7 +1224,9 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                                 BorderRadius.circular(20),
                                           ),
                                           child: Text(
-                                            'In stock',
+                                            ds['quantity'].toString() == "0"
+                                                ? "Out of Stock"
+                                                : 'In stock',
                                             style: TextStyle(
                                                 color: Color(0xFF84A2AF),
                                                 fontSize: 15,
@@ -1272,46 +1300,54 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                               const EdgeInsets.only(left: 10.0),
                                           child: GestureDetector(
                                             onTap: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        Details(
-                                                      type: 'shoes',
-                                                      data: Data(
-                                                        id: snapshot.data
-                                                            .docs[index]['id'],
-                                                        name: snapshot.data
-                                                                .docs[index]
-                                                            ['name'],
-                                                        price: snapshot.data
-                                                                .docs[index]
-                                                            ['price'],
-                                                        image: snapshot.data
-                                                                .docs[index]
-                                                            ['image_path'],
-                                                        description: snapshot
-                                                                .data
-                                                                .docs[index]
-                                                            ['description'],
-                                                        sellername: snapshot
-                                                                .data
-                                                                .docs[index]
-                                                            ['sellername'],
-                                                        shopaddress: snapshot
-                                                                .data
-                                                                .docs[index]
-                                                            ['shopaddress'],
-                                                        selleremail: snapshot
-                                                                .data
-                                                                .docs[index]
-                                                            ['selleremail'],
-                                                        rating: snapshot.data
-                                                                .docs[index]
-                                                            ['rating'],
-                                                      ),
-                                                    ),
-                                                  ));
+                                              ds['quantity'].toString() == "0"
+                                                  ? "Out of Stock"
+                                                  : Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            Details(
+                                                          type: 'shoes',
+                                                          data: Data(
+                                                            id: snapshot.data
+                                                                    .docs[index]
+                                                                ['id'],
+                                                            name: snapshot.data
+                                                                    .docs[index]
+                                                                ['name'],
+                                                            price: snapshot.data
+                                                                    .docs[index]
+                                                                ['price'],
+                                                            image: snapshot.data
+                                                                    .docs[index]
+                                                                ['image_path'],
+                                                            description: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['description'],
+                                                            sellername: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['sellername'],
+                                                            shopaddress: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['shopaddress'],
+                                                            selleremail: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['selleremail'],
+                                                            rating: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['rating'],
+                                                            quantity: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                ['quantity'],
+                                                          ),
+                                                        ),
+                                                      ));
                                             },
                                             child: Container(
                                               height: 200,
@@ -1397,7 +1433,9 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                                 BorderRadius.circular(20),
                                           ),
                                           child: Text(
-                                            'In stock',
+                                            ds['quantity'].toString() == "0"
+                                                ? "Out of Stock"
+                                                : 'In stock',
                                             style: TextStyle(
                                                 color: Color(0xFF84A2AF),
                                                 fontSize: 15,

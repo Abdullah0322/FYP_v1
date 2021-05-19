@@ -168,7 +168,7 @@ class _MyProfileState extends State<MyProfile> {
                               child: TextField(
                                   decoration: InputDecoration(
                                       border: InputBorder.none,
-                                      hintText: Manager.userData.address,
+                                      hintText: Manager.userData.username,
                                       hintStyle: TextStyle(
                                           fontSize: 20.0,
                                           fontWeight: FontWeight.bold)))),
