@@ -106,6 +106,12 @@ flutter:
   - assets/bag_3.png
   - assets/bag_4.png
   - assets/bag_5.png
+  - assets/clothing.png
+  - assets/shoes.png
+  - assets/watches.png
+  - assets/electronics.png
+  - assets/food.png
+  - assets/fragrances.png
   - assets/jeans_1.png
   - assets/Men.jpg
   - assets/women.jpg
