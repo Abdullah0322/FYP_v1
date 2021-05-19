@@ -1,5 +1,6 @@
 import 'package:ClickandPick/Login/loginPage.dart';
 import 'package:ClickandPick/RiderDashboard/riderContactUs.dart';
+import 'package:ClickandPick/SellerDashboard/aboutUS.dart';
 import 'package:ClickandPick/SellerDashboard/changesellername.dart';
 import 'package:ClickandPick/SellerDashboard/chnageShop.dart';
 import 'package:ClickandPick/app_properties.dart';
@@ -76,7 +77,10 @@ class _SettingSellerState extends State<SettingSeller> {
                             ListTile(
                               title: Text('ABout Us'),
                               leading: Image.asset('assets/icons/about_us.png'),
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => AboutUs()));
+                              },
                             ),
                             Padding(
                               padding:
