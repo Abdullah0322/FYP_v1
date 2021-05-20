@@ -254,7 +254,7 @@ class _ManageProductsState extends State<ManageProducts>
                     /* Write listener code here */
                   },
                   child: Icon(Icons.menu,
-                      color: Colors.black // add custom icons also
+                      color: Colors.white // add custom icons also
                       ),
                 ),
                 centerTitle: true,
