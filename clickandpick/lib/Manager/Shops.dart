@@ -68,12 +68,12 @@ class _ManageShopsState extends State<ManageShops> {
                   /* Write listener code here */
                 },
                 child: Icon(Icons.menu,
-                    color: Colors.black // add custom icons also
+                    color: Colors.white // add custom icons also
                     ),
               ),
               centerTitle: true,
               elevation: 0,
-              backgroundColor: Colors.green[400],
+              backgroundColor: Color(0xFFBB03B2),
             ),
             drawer: ManagerDrawer(),
             body: Container(
