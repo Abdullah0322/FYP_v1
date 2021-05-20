@@ -12,6 +12,7 @@ class _VehicleInformationState extends State<VehicleInformation> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFFBB03B2),
         title: Text(
           "Vehicle Information",
         ),
