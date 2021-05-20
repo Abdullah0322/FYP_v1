@@ -29,15 +29,15 @@ class _CategoryState extends State<Category> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color(0xFFBB03B2),
         elevation: 0.0,
         title: Center(
           child: Padding(
             padding: const EdgeInsets.only(right: 30.0),
             child: Text("Category",
                 style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w300,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
                     fontSize: 20)),
           ),
         ),
@@ -313,7 +313,7 @@ class _CategoryState extends State<Category> {
       bottomNavigationBar: CurvedNavigationBar(
           height: 50,
           color: Colors.black54,
-          backgroundColor: Color(0xFFA579A3),
+          backgroundColor: Color(0xFFBB03B2),
           buttonBackgroundColor: Colors.black54,
           items: <Widget>[
             Icon(Icons.home, size: 20, color: Color(0xFFFFFFFF)),
