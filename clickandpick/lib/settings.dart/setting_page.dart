@@ -24,13 +24,13 @@ class SettingsPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           iconTheme: IconThemeData(
-            color: Colors.black,
+            color: Colors.white,
           ),
           brightness: Brightness.light,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Color(0xFFBB03B2),
           title: Text(
             'Settings',
-            style: TextStyle(color: darkGrey),
+            style: TextStyle(color: Colors.white),
           ),
           elevation: 0,
         ),
@@ -125,7 +125,7 @@ class SettingsPage extends StatelessWidget {
         bottomNavigationBar: CurvedNavigationBar(
           height: 50,
           color: Colors.black54,
-          backgroundColor: Color(0xFFA579A3),
+          backgroundColor: Color(0xFFBB03B2),
           buttonBackgroundColor: Colors.black54,
           items: <Widget>[
             Icon(Icons.home, size: 20, color: Color(0xFFFFFFFF)),
