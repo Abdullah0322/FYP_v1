@@ -284,7 +284,7 @@ class _CartState extends State<Cart> {
                 height: 50.0,
                 width: 300.0,
                 child: RaisedButton(
-                  color: Color(0xFFA579A3),
+                  color: Color(0xFFBB03B2),
                   child: Text(
                     'CHECK OUT',
                     style: TextStyle(
@@ -312,7 +312,7 @@ class _CartState extends State<Cart> {
       bottomNavigationBar: CurvedNavigationBar(
           height: 50,
           color: Colors.black54,
-          backgroundColor: Color(0xFFA579A3),
+          backgroundColor: Color(0xFFBB03B2),
           buttonBackgroundColor: Colors.black54,
           items: <Widget>[
             Icon(Icons.home, size: 20, color: Color(0xFFFFFFFF)),
