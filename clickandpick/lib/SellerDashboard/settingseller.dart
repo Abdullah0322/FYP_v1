@@ -24,13 +24,13 @@ class _SettingSellerState extends State<SettingSeller> {
       child: Scaffold(
         appBar: AppBar(
           iconTheme: IconThemeData(
-            color: Colors.black,
+            color: Colors.white,
           ),
           brightness: Brightness.light,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Color(0xFFBB03B2),
           title: Text(
             'Settings',
-            style: TextStyle(color: darkGrey),
+            style: TextStyle(color: Colors.white),
           ),
           elevation: 0,
         ),
@@ -75,7 +75,7 @@ class _SettingSellerState extends State<SettingSeller> {
                               },
                             ),
                             ListTile(
-                              title: Text('ABout Us'),
+                              title: Text('About Us'),
                               leading: Image.asset('assets/icons/about_us.png'),
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
