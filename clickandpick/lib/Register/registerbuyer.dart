@@ -374,7 +374,7 @@ class _RegisterState extends State<Register> {
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
-                              color: buttoncolor,
+                              color: Color(0xFFBB03B2),
                             ),
                             height: 55,
                             width: width * 0.8,
@@ -382,7 +382,9 @@ class _RegisterState extends State<Register> {
                               child: Text(
                                 'Sign Up',
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: 15),
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
                           ),
@@ -420,7 +422,7 @@ class _RegisterState extends State<Register> {
                             child: Text(
                               'Signin',
                               style: TextStyle(
-                                color: headingcolor,
+                                color: Color(0xFFBB03B2),
                                 fontWeight: FontWeight.bold,
                                 decoration: TextDecoration.underline,
                               ),
