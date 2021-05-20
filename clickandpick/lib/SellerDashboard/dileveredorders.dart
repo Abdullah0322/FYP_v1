@@ -47,7 +47,7 @@ class _DileveredOrdersState extends State<DileveredOrders> {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFA579A3),
+        backgroundColor: Color(0xFFBB03B2),
         title: Text("Dilevered Orders"),
       ),
       drawer: SellerDrawer(),
