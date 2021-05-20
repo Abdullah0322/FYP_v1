@@ -23,7 +23,7 @@ class _PendingOrdersState extends State<PendingOrders> {
     try {
       return FirebaseFirestore.instance
           .collection('orders')
-          .where('Rider', isEqualTo: Rider.userData.email)
+          .where('Rider', isEqualTo: user.email)
           .where('Order Dilevered to Collection Point', isEqualTo: false)
           .snapshots();
     } catch (e) {
@@ -40,12 +40,20 @@ class _PendingOrdersState extends State<PendingOrders> {
     }
   }
 
+  Future<bool> isLoggedIn() async {
+    User user = FirebaseAuth.instance.currentUser;
+    print(user.emailVerified);
+  }
+
   void initState() {
     super.initState();
+    FirebaseAuth.instance.currentUser;
+    getOrders();
   }
 
   @override
   Widget build(BuildContext context) {
+    isLoggedIn();
     var width = MediaQuery.of(context).size.width;
     var screenWidth = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
@@ -71,78 +79,19 @@ class _PendingOrdersState extends State<PendingOrders> {
                           onTap: () {
                             print('Card tapped.');
                           },
-                          child: SizedBox(
+                          child: Container(
                               width: width * 0.93,
-                              height: 120,
-                              child: Stack(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 280),
-                                    child: Container(
-                                      child: CachedNetworkImage(
-                                          imageUrl: ds['image']),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 18.0),
-                                    child: Container(
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            ' ID: ',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          Text(
-                                            ds['id'],
-                                            style: TextStyle(
-                                                color: Colors.blue,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 15),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 38.0),
-                                    child: Container(
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            ' Name: ',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          Text(
-                                            ds['name'],
-                                            style: TextStyle(
-                                                color: Colors.blue,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 15),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 58.0),
-                                    child: Container(
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            ' Seller email: ',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          Text(
-                                            ds['selleremail'],
-                                            style: TextStyle(
-                                                color: Colors.blue,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 15),
-                                          ),
-                                        ],
+                                  //   padding: const EdgeInsets.only(left: 280),
+                                  Container(
+                                    height: 100,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 320),
+                                      child: Container(
+                                        child: CachedNetworkImage(
+                                            imageUrl: ds['image']),
                                       ),
                                     ),
                                   ),
@@ -150,12 +99,12 @@ class _PendingOrdersState extends State<PendingOrders> {
                                     child: Row(
                                       children: [
                                         Text(
-                                          ' Seller Shop Address :',
+                                          ' ID: ',
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
                                         ),
                                         Text(
-                                          ds['shopaddress'],
+                                          ds['id'],
                                           style: TextStyle(
                                               color: Colors.blue,
                                               fontWeight: FontWeight.w700,
@@ -164,9 +113,82 @@ class _PendingOrdersState extends State<PendingOrders> {
                                       ],
                                     ),
                                   ),
+                                  Container(
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          ' Name :',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          ds['name'],
+                                          style: TextStyle(
+                                              color: Colors.blue,
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 15),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          ' Buyer Email :',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          ds['buyeremail'],
+                                          style: TextStyle(
+                                              color: Colors.blue,
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 15),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          ' Phone Number :',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          ds['phone'],
+                                          style: TextStyle(
+                                              color: Colors.blue,
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 15),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  FittedBox(
+                                    child: Container(
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            ' Seller Shop Address :',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Text(
+                                            ds['shopaddress'],
+                                            style: TextStyle(
+                                                color: Colors.blue,
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 15),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                   Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 88.0, left: 100),
+                                    padding: const EdgeInsets.only(left: 98.0),
                                     child: Container(
                                       height: 30,
                                       width: 150,
@@ -204,16 +226,32 @@ class _PendingOrdersState extends State<PendingOrders> {
                                                             fontFamily:
                                                                 'Segoe'),
                                                       ),
-                                                      onPressed: () {
-                                                        FirebaseFirestore
+                                                      onPressed: () async {
+                                                        User user = FirebaseAuth
+                                                            .instance
+                                                            .currentUser;
+                                                        await FirebaseFirestore
                                                             .instance
                                                             .collection(
                                                                 'orders')
                                                             .doc(ds.id)
                                                             .update({
                                                           'Order Dilevered to Collection Point':
-                                                              true
+                                                              true,
                                                         });
+
+                                                        await FirebaseFirestore
+                                                            .instance
+                                                            .collection('rider')
+                                                            .doc(user.email)
+                                                            .collection(
+                                                                'earning')
+                                                            .doc('earning')
+                                                            .update({
+                                                          "earn": FieldValue
+                                                              .increment(50)
+                                                        });
+
                                                         Navigator.pop(context);
                                                       },
                                                     ),
@@ -224,7 +262,7 @@ class _PendingOrdersState extends State<PendingOrders> {
                                         child: Text('Order Delivered'),
                                       ),
                                     ),
-                                  )
+                                  ),
                                 ],
                               )),
                         ),
@@ -236,7 +274,7 @@ class _PendingOrdersState extends State<PendingOrders> {
                   width: screenWidth,
                   child: Center(
                     child: TitleText(
-                      text: 'You Dont have any Order',
+                      text: 'You Dont have any Orders',
                       fontSize: 20,
                       fontWeight: FontWeight.w400,
                     ),

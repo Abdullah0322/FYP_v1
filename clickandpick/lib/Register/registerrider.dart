@@ -65,6 +65,12 @@ class _RegisterRiderState extends State<RegisterRider> {
             'available': false,
             'collection point': _myActivity,
           });
+          FirebaseFirestore.instance
+              .collection("rider")
+              .doc("${email.text.toLowerCase()}")
+              .collection('earning')
+              .doc('earning')
+              .set({'earn': 0});
         } catch (e) {
           print('Error is: ' + e);
         }

@@ -1,6 +1,7 @@
 import 'package:ClickandPick/BuyerDashboard/Category.dart';
 import 'package:ClickandPick/BuyerDashboard/favourites.dart';
 import 'package:ClickandPick/Cart/cart.dart';
+import 'package:ClickandPick/RiderDashboard/RiderDashboard.dart';
 import 'package:ClickandPick/RiderDashboard/RiderDileveredOrders.dart';
 import 'package:ClickandPick/RiderDashboard/riderContactUs.dart';
 import 'package:ClickandPick/RiderDashboard/riderPendingOrders.dart';
@@ -114,6 +115,21 @@ class _RiderdrawerState extends State<Riderdrawer> {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => SettingRider()),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.shopping_bag_outlined),
+            title: Text(
+              'Dashboard',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => RiderDashboard()),
               );
             },
           ),

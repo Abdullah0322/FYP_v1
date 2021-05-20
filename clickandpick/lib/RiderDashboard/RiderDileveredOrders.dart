@@ -72,7 +72,7 @@ class _RiderDileveredState extends State<RiderDilevered> {
                           },
                           child: SizedBox(
                               width: width * 0.93,
-                              height: 120,
+                              height: 150,
                               child: Stack(
                                 children: <Widget>[
                                   Padding(
@@ -136,6 +136,27 @@ class _RiderDileveredState extends State<RiderDilevered> {
                                           ),
                                           Text(
                                             ds['selleremail'],
+                                            style: TextStyle(
+                                                color: Colors.blue,
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 15),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 78.0),
+                                    child: Container(
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            ' Seller Shop Address :',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Text(
+                                            ds['shopaddress'],
                                             style: TextStyle(
                                                 color: Colors.blue,
                                                 fontWeight: FontWeight.w700,
