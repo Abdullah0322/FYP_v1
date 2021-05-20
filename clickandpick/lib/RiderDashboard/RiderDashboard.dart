@@ -111,7 +111,7 @@ class _RiderDashboardState extends State<RiderDashboard> {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFA579A3),
+        backgroundColor: Color(0xFFBB03B2),
         elevation: 0.0,
         title: Center(
           child: Padding(
@@ -119,7 +119,7 @@ class _RiderDashboardState extends State<RiderDashboard> {
             child: Text("Click and Pick",
                 style: TextStyle(
                     color: Colors.white,
-                    fontWeight: FontWeight.w300,
+                    fontWeight: FontWeight.bold,
                     fontSize: 20)),
           ),
         ),
