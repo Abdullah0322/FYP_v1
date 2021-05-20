@@ -49,7 +49,7 @@ class _RegisterInterfaceState extends State<RegisterInterface> {
                                       Theme.of(context).textTheme.display1,
                                   fontSize: 30,
                                   fontWeight: FontWeight.w700,
-                                  color: Color(0xffe46b10),
+                                  color: Color(0xFFBB03B2),
                                 ),
                                 children: [
                                   TextSpan(
@@ -60,7 +60,7 @@ class _RegisterInterfaceState extends State<RegisterInterface> {
                                   TextSpan(
                                     text: 'ck',
                                     style: TextStyle(
-                                        color: Color(0xffe46b10), fontSize: 30),
+                                        color: Color(0xFFBB03B2), fontSize: 30),
                                   ),
                                   TextSpan(
                                     text: '&',
@@ -70,7 +70,7 @@ class _RegisterInterfaceState extends State<RegisterInterface> {
                                   TextSpan(
                                     text: 'Pi',
                                     style: TextStyle(
-                                        color: Color(0xffe46b10), fontSize: 30),
+                                        color: Color(0xFFBB03B2), fontSize: 30),
                                   ),
                                   TextSpan(
                                     text: 'ck',
@@ -84,10 +84,10 @@ class _RegisterInterfaceState extends State<RegisterInterface> {
                     ),
                     SizedBox(height: 20),
                     Container(
-                      color: buttoncolor,
+                      color: Color(0xFFBB03B2),
                       width: width * 0.9,
                       child: Card(
-                        color: buttoncolor,
+                        color: Color(0xFFBB03B2),
                         child: ListTile(
                           title: Center(
                             child: Text(
@@ -113,10 +113,10 @@ class _RegisterInterfaceState extends State<RegisterInterface> {
                     ),
                     SizedBox(height: 20),
                     Container(
-                      color: buttoncolor,
+                      color: Color(0xFFBB03B2),
                       width: width * 0.9,
                       child: Card(
-                        color: buttoncolor,
+                        color: Color(0xFFBB03B2),
                         child: ListTile(
                           title: Center(
                             child: Text(
@@ -142,10 +142,10 @@ class _RegisterInterfaceState extends State<RegisterInterface> {
                     ),
                     SizedBox(height: 20),
                     Container(
-                      color: buttoncolor,
+                      color: Color(0xFFBB03B2),
                       width: width * 0.9,
                       child: Card(
-                        color: buttoncolor,
+                        color: Color(0xFFBB03B2),
                         child: ListTile(
                           title: Center(
                             child: Text(
@@ -199,7 +199,7 @@ class _RegisterInterfaceState extends State<RegisterInterface> {
                                 child: Text(
                                   'Signin',
                                   style: TextStyle(
-                                      color: Color(0xfff79c4f),
+                                      color: Color(0xFFBB03B2),
                                       fontSize: 13,
                                       fontWeight: FontWeight.w600),
                                 ),
