@@ -87,8 +87,8 @@ class _ChnageSellernameState extends State<ChnageSellername> {
             });
       },
       child: Container(
-        height: 80,
-        width: width / 1.5,
+        height: 60,
+        width: 180,
         decoration: BoxDecoration(
             gradient: mainButton,
             boxShadow: [
@@ -115,13 +115,13 @@ class _ChnageSellernameState extends State<ChnageSellername> {
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: Colors.black,
+          color: Colors.white,
         ),
         brightness: Brightness.light,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color(0xFFBB03B2),
         title: Text(
           'Settings',
-          style: TextStyle(color: darkGrey),
+          style: TextStyle(color: Colors.white),
         ),
         elevation: 0,
       ),
