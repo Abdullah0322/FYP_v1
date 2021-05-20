@@ -1,29 +1,24 @@
-import 'package:ClickandPick/BuyerDashboard/details.dart';
-import 'package:ClickandPick/BuyerDashboard/search.dart';
-import 'package:ClickandPick/SellerDashboard/data.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ClickandPick/Cart/cart.dart';
+import 'package:ClickandPick/settings.dart/setting_page.dart';
+import 'package:ClickandPick/utils/colors.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:ClickandPick/BuyerDashboard/buyerdashboard.dart';
 
-class CategorySelected extends StatefulWidget {
-  String type;
-  CategorySelected({this.type});
+import 'Categoryselect.dart';
+import 'buyerdashboard.dart';
+
+class Category extends StatefulWidget {
   @override
-  _CategorySelectedState createState() => _CategorySelectedState();
+  _CategoryState createState() => _CategoryState();
 }
 
-class _CategorySelectedState extends State<CategorySelected> {
-  getProducts() {
-    try {
-      return FirebaseFirestore.instance
-          .collection('products')
-          .doc('category')
-          .collection(widget.type.toLowerCase())
-          .snapshots();
-    } catch (e) {
-      print(e);
-    }
+class _CategoryState extends State<Category> {
+  int _currentPage;
+  int index;
+  void initState() {
+    super.initState();
+    index = 1;
   }
 
   @override
@@ -31,163 +26,335 @@ class _CategorySelectedState extends State<CategorySelected> {
     var height = MediaQuery.of(context).size.height;
     //width of the screen
     var width = MediaQuery.of(context).size.width;
+
     return Scaffold(
-        appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0.0,
-            title: Center(
-              child: Text("Products",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w300,
-                      fontSize: 20)),
-            ),
-            leading: GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Icon(Icons.arrow_back,
-                  color: Colors.black // add custom icons also
-                  ),
-            ),
-            actions: <Widget>[
-              Padding(
-                  padding: EdgeInsets.only(right: 20.0),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
+      appBar: AppBar(
+        backgroundColor: Color(0xFFBB03B2),
+        elevation: 0.0,
+        title: Center(
+          child: Padding(
+            padding: const EdgeInsets.only(right: 30.0),
+            child: Text("Category",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20)),
+          ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Center(
+              child: Card(
+                child: InkWell(
+                  splashColor: Colors.blue.withAlpha(30),
+                  onTap: () {
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => Search(
-                            type: widget.type,
+                          builder: (context) =>
+                              CategorySelected(type: 'clothing'),
+                        ));
+                  },
+                  child: Container(
+                      width: width * 0.93,
+                      height: 150,
+                      child: Stack(
+                        children: <Widget>[
+                          Container(
+                            decoration: new BoxDecoration(
+                              color: const Color(0xff7c94b6),
+                              image: new DecorationImage(
+                                fit: BoxFit.cover,
+                                colorFilter: new ColorFilter.mode(
+                                    Colors.black.withOpacity(0.35),
+                                    BlendMode.dstATop),
+                                image: AssetImage('assets/clothing.png'),
+                              ),
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                    child: Icon(
-                      Icons.search,
-                      size: 26.0,
-                      color: Colors.black,
-                    ),
-                  )),
-            ]),
-        body: StreamBuilder(
-            stream: getProducts(),
-            builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              return snapshot.hasData
-                  ? GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          childAspectRatio: MediaQuery.of(context).size.width /
-                              (MediaQuery.of(context).size.height * 1),
-                          crossAxisCount: 2),
-                      itemCount: snapshot.data.docs.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        DocumentSnapshot ds = snapshot.data.docs[index];
+                          Center(
+                              child: Container(
+                            child: Text(
+                              'Clothes',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 40),
+                            ),
+                          )),
+                        ],
+                      )),
+                ),
+              ),
+            ),
+            Center(
+              child: Card(
+                child: InkWell(
+                  splashColor: Colors.blue.withAlpha(30),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CategorySelected(type: 'shoes'),
+                        ));
+                  },
+                  child: Container(
+                      width: width * 0.93,
+                      height: 150,
+                      child: Stack(
+                        children: <Widget>[
+                          Container(
+                            decoration: new BoxDecoration(
+                              color: const Color(0xff7c94b6),
+                              image: new DecorationImage(
+                                fit: BoxFit.cover,
+                                colorFilter: new ColorFilter.mode(
+                                    Colors.black.withOpacity(0.4),
+                                    BlendMode.dstATop),
+                                image: AssetImage('assets/shoes.png'),
+                              ),
+                            ),
+                          ),
+                          Center(
+                              child: Container(
+                            child: Text(
+                              'Shoes',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 40),
+                            ),
+                          )),
+                        ],
+                      )),
+                ),
+              ),
+            ),
+            Center(
+              child: Card(
+                child: InkWell(
+                  splashColor: Colors.blue.withAlpha(30),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              CategorySelected(type: 'watches'),
+                        ));
+                  },
+                  child: Container(
+                      width: width * 0.93,
+                      height: 150,
+                      child: Stack(
+                        children: <Widget>[
+                          Container(
+                            decoration: new BoxDecoration(
+                              color: const Color(0xff7c94b6),
+                              image: new DecorationImage(
+                                fit: BoxFit.cover,
+                                colorFilter: new ColorFilter.mode(
+                                    Colors.black.withOpacity(0.3),
+                                    BlendMode.dstATop),
+                                image: AssetImage('assets/watches.png'),
+                              ),
+                            ),
+                          ),
+                          Center(
+                              child: Container(
+                            child: Text(
+                              'Watches',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 40),
+                            ),
+                          )),
+                        ],
+                      )),
+                ),
+              ),
+            ),
+            Center(
+              child: Card(
+                child: InkWell(
+                  splashColor: Colors.blue.withAlpha(30),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              CategorySelected(type: 'electronics'),
+                        ));
+                  },
+                  child: Container(
+                      width: width * 0.93,
+                      height: 150,
+                      child: Stack(
+                        children: <Widget>[
+                          Container(
+                            decoration: new BoxDecoration(
+                              color: const Color(0xff7c94b6),
+                              image: new DecorationImage(
+                                fit: BoxFit.cover,
+                                colorFilter: new ColorFilter.mode(
+                                    Colors.black.withOpacity(0.4),
+                                    BlendMode.dstATop),
+                                image: AssetImage('assets/electronics.png'),
+                              ),
+                            ),
+                          ),
+                          Center(
+                              child: Container(
+                            child: Text(
+                              'Electronics & Tech',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 40),
+                            ),
+                          )),
+                        ],
+                      )),
+                ),
+              ),
+            ),
+            Center(
+              child: Card(
+                child: InkWell(
+                  splashColor: Colors.blue.withAlpha(30),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CategorySelected(type: 'food'),
+                        ));
+                  },
+                  child: Container(
+                      width: width * 0.93,
+                      height: 150,
+                      child: Stack(
+                        children: <Widget>[
+                          Container(
+                            decoration: new BoxDecoration(
+                              color: const Color(0xff7c94b6),
+                              image: new DecorationImage(
+                                fit: BoxFit.cover,
+                                colorFilter: new ColorFilter.mode(
+                                    Colors.black.withOpacity(0.35),
+                                    BlendMode.dstATop),
+                                image: AssetImage('assets/food.png'),
+                              ),
+                            ),
+                          ),
+                          Center(
+                              child: Container(
+                            child: Text(
+                              'Food Products',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 40),
+                            ),
+                          )),
+                        ],
+                      )),
+                ),
+              ),
+            ),
+            Center(
+              child: Card(
+                child: InkWell(
+                  splashColor: Colors.blue.withAlpha(30),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              CategorySelected(type: 'fragances'),
+                        ));
+                  },
+                  child: Container(
+                      width: width * 0.93,
+                      height: 150,
+                      child: Stack(
+                        children: <Widget>[
+                          Container(
+                            decoration: new BoxDecoration(
+                              color: const Color(0xff7c94b6),
+                              image: new DecorationImage(
+                                fit: BoxFit.cover,
+                                colorFilter: new ColorFilter.mode(
+                                    Colors.black.withOpacity(0.3),
+                                    BlendMode.dstATop),
+                                image: AssetImage('assets/fragrances.png'),
+                              ),
+                            ),
+                          ),
+                          Center(
+                              child: Container(
+                            child: Text(
+                              'Fragrances',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 40),
+                            ),
+                          )),
+                        ],
+                      )),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: CurvedNavigationBar(
+          height: 50,
+          color: Colors.black54,
+          backgroundColor: Color(0xFFA579A3),
+          buttonBackgroundColor: Colors.black54,
+          items: <Widget>[
+            Icon(Icons.home, size: 20, color: Color(0xFFFFFFFF)),
+            Icon(Icons.category, size: 20, color: Color(0xFFFFFFFF)),
+            Icon(Icons.shopping_bag, size: 20, color: Color(0xFFFFFFFF)),
+            Icon(Icons.people, size: 20, color: Color(0xFFFFFFFF)),
+          ],
+          animationDuration: Duration(milliseconds: 300),
+          animationCurve: Curves.easeInOut,
+          index: 1,
+          onTap: (index) {
+            print(index);
+            if (index == 0) {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => BuyerDashboard()));
+            }
+            if (index == 1) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Category(),
+                  ));
+            }
+            if (index == 2) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Cart(),
+                  ));
+            }
+            if (index == 3) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SettingsPage(),
+                  ));
+            }
+          }
 
-                        return Column(
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20.0),
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => Details(
-                                          data: Data(
-                                              id: snapshot.data.docs[index]
-                                                  ['id'],
-                                              name: snapshot.data.docs[index]
-                                                  ['name'],
-                                              price: snapshot.data.docs[index]
-                                                  ['price'],
-                                              image: snapshot.data.docs[index]
-                                                  ['image_path'],
-                                              description: snapshot.data
-                                                  .docs[index]['description'],
-                                              sellername: snapshot.data.docs[index]
-                                                  ['sellername'],
-                                              shopaddress: snapshot.data
-                                                  .docs[index]['shopaddress'],
-                                              selleremail: snapshot.data
-                                                  .docs[index]['selleremail'],
-                                              rating: snapshot.data.docs[index]
-                                                  ['rating'],
-                                              quantity: snapshot.data.docs[index]
-                                                  ['quantity']),
-                                        ),
-                                      ));
-                                },
-                                child: Container(
-                                  height: 250,
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey[300],
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: CachedNetworkImage(
-                                      imageUrl: ds['image_path'].toString(),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 15.0),
-                              child: Container(
-                                padding: EdgeInsets.only(bottom: 10),
-                                width: width * 0.4,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Text(
-                                  ds['name'],
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w300),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 15.0),
-                              child: Container(
-                                padding: EdgeInsets.only(bottom: 10),
-                                width: width * 0.4,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Text(
-                                  ds['price'],
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 15.0),
-                              child: Container(
-                                padding: EdgeInsets.only(bottom: 10),
-                                width: width * 0.4,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Text(
-                                  'In stock',
-                                  style: TextStyle(
-                                      color: Color(0xFF84A2AF),
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                          ],
-                        );
-                      })
-                  : CircularProgressIndicator();
-            }));
+          //other params
+          ),
+    );
   }
 }
