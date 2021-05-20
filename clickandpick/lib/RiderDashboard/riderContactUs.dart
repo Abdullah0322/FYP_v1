@@ -15,6 +15,7 @@ class _ContactUsState extends State<ContactUs> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFFBB03B2),
         title: Text('Contact Us'),
       ),
       drawer: Riderdrawer(),
