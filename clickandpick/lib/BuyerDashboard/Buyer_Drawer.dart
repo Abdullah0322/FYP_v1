@@ -57,7 +57,7 @@ class _BuyerDrawerState extends State<BuyerDrawer> {
                 Container(
                   width: double.infinity,
                   padding: EdgeInsets.all(40),
-                  color: Color(0xFFA579A3),
+                  color: Color(0xFFBB03B2),
                   child: Column(
                     children: <Widget>[
                       Container(
