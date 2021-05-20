@@ -53,6 +53,7 @@ class _RiderDileveredState extends State<RiderDilevered> {
         title: Text(
           "Delivered Orders",
         ),
+        backgroundColor: Color(0xFFBB03B2),
       ),
       drawer: Riderdrawer(),
       body: StreamBuilder(
