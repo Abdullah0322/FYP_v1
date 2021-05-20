@@ -214,7 +214,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                   /* Write listener code here */
                 },
                 child: Icon(Icons.menu,
-                    color: Colors.black // add custom icons also
+                    color: Colors.white // add custom icons also
                     ),
               ),
             ),
@@ -1457,7 +1457,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
             bottomNavigationBar: CurvedNavigationBar(
               height: 50,
               color: Colors.black54,
-              backgroundColor: Color(0xFFA579A3),
+              backgroundColor: Color(0xFFBB03B2),
               buttonBackgroundColor: Colors.black54,
               items: <Widget>[
                 Icon(Icons.home, size: 20, color: Color(0xFFFFFFFF)),
