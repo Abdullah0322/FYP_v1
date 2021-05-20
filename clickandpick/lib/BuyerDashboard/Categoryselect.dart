@@ -313,7 +313,7 @@ class _CategoryState extends State<Category> {
       bottomNavigationBar: CurvedNavigationBar(
           height: 50,
           color: Colors.black54,
-          backgroundColor: Color(0xFFA579A3),
+          backgroundColor: Color(0xFFBB03B2),
           buttonBackgroundColor: Colors.black54,
           items: <Widget>[
             Icon(Icons.home, size: 20, color: Color(0xFFFFFFFF)),
