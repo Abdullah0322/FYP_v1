@@ -123,14 +123,14 @@ class _RiderDashboardState extends State<RiderDashboard> {
                     fontSize: 20)),
           ),
         ),
-        leading: GestureDetector(
-          onTap: () {
-            scaffoldKey.currentState.openDrawer();
-            /* Write listener code here */
-          },
-          child: Icon(Icons.menu, color: Colors.black // add custom icons also
-              ),
-        ),
+        // leading: GestureDetector(
+        //   onTap: () {
+        //     scaffoldKey.currentState.openDrawer();
+        //     /* Write listener code here */
+        //   },
+        //   child: Icon(Icons.menu, color: Colors.black // add custom icons also
+        //       ),
+        // ),
       ),
       drawer: Riderdrawer(),
       body: Stack(

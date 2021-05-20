@@ -390,7 +390,7 @@ class _LoginPageState extends State<LoginPage> {
               }
               Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => PendingOrders()),
+                  MaterialPageRoute(builder: (context) => RiderDashboard()),
                   (route) => false);
             } on FirebaseAuthException catch (e) {
               if (e.code == 'user-not-found') {

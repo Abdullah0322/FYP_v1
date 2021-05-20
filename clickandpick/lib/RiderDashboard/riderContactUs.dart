@@ -1,3 +1,4 @@
+import 'package:ClickandPick/RiderDashboard/Rider_drawer.dart';
 import 'package:ClickandPick/RiderDashboard/openmap.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -16,7 +17,7 @@ class _ContactUsState extends State<ContactUs> {
       appBar: AppBar(
         title: Text('Contact Us'),
       ),
-      // drawer: Riderdrawer(),
+      drawer: Riderdrawer(),
       body: Center(
         child: Container(
           child: Column(
