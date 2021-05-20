@@ -101,485 +101,476 @@ class _CheckoutState extends State<Checkout> {
                 Navigator.pop(context);
               }),
           title: Text(
-            "ADDRESS",
+            "Checkout Page",
             style: TextStyle(color: Colors.white, fontSize: 14),
           ),
         ),
         body: Builder(builder: (context) {
-          return Column(
+          return Stack(
             children: <Widget>[
-              Expanded(
+              Positioned(
+                bottom: 450.0,
+                right: 100.0,
                 child: Container(
-                  child: ListView(
-                    children: <Widget>[
-                      StreamBuilder(
-                          stream: getUsers(),
-                          builder: (context,
-                              AsyncSnapshot<DocumentSnapshot> snapshot) {
-                            return snapshot.hasData
-                                ? Container(
-                                    margin: EdgeInsets.all(4),
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(4)),
-                                    ),
-                                    child: Card(
-                                      elevation: 0,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(4))),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(4)),
-                                            border: Border.all(
-                                                color: Colors.grey.shade200)),
-                                        padding: EdgeInsets.only(
-                                            left: 12, top: 8, right: 12),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            SizedBox(
-                                              height: 6,
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: <Widget>[
-                                                Text(
-                                                  snapshot.data['username'],
-                                                  style: CustomTextStyle
-                                                      .textFormFieldSemiBold
-                                                      .copyWith(fontSize: 14),
-                                                ),
-                                                Container(
-                                                  padding: EdgeInsets.only(
-                                                      left: 8,
-                                                      right: 8,
-                                                      top: 4,
-                                                      bottom: 4),
-                                                  decoration: BoxDecoration(
-                                                      shape: BoxShape.rectangle,
-                                                      color:
-                                                          Colors.grey.shade300,
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  16))),
-                                                  child: Text(
-                                                    "HOME",
-                                                    style: CustomTextStyle
-                                                        .textFormFieldBlack
-                                                        .copyWith(
-                                                            color: Colors
-                                                                .indigoAccent
-                                                                .shade200,
-                                                            fontSize: 8),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                            createAddressText(
-                                                snapshot.data['email'], 6),
-                                            SizedBox(
-                                              height: 6,
-                                            ),
-                                            RichText(
-                                              text: TextSpan(children: [
-                                                TextSpan(
-                                                    text: "Mobile : ",
-                                                    style: CustomTextStyle
-                                                        .textFormFieldMedium
-                                                        .copyWith(
-                                                            fontSize: 12,
-                                                            color: Colors.grey
-                                                                .shade800)),
-                                                TextSpan(
-                                                    text:
-                                                        snapshot.data['phone'],
-                                                    style: CustomTextStyle
-                                                        .textFormFieldBold
-                                                        .copyWith(
-                                                            color: Colors.black,
-                                                            fontSize: 12)),
-                                              ]),
-                                            ),
-                                            SizedBox(
-                                              height: 16,
-                                            ),
-                                            Container(
-                                              color: Colors.grey.shade300,
-                                              height: 1,
-                                              width: double.infinity,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                : Container(
-                                    height: 30,
-                                    width: 30,
-                                    child: Center(
-                                        child: CircularProgressIndicator()));
-                          }),
-                      StreamBuilder(
-                          stream: FirebaseFirestore.instance
-                              .collection('user')
-                              .doc(user.email)
-                              .collection('cart')
-                              .snapshots(),
-                          builder: (BuildContext context,
-                              AsyncSnapshot<QuerySnapshot> snapshot) {
-                            return snapshot.hasData
-                                ? ListView.builder(
-                                    itemCount: snapshot.data.docs.length,
-                                    shrinkWrap: true,
-                                    primary: false,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      DocumentSnapshot ds =
-                                          snapshot.data.docs[index];
-                                      return Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: <Widget>[
-                                            Stack(
-                                              children: <Widget>[
-                                                Container(
-                                                  height: 250,
-                                                  margin: EdgeInsets.only(
-                                                      left: 16,
-                                                      right: 16,
-                                                      top: 16),
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  16))),
-                                                  child: Row(
-                                                    children: <Widget>[
-                                                      Container(
-                                                        margin: EdgeInsets.only(
-                                                            right: 8,
-                                                            left: 8,
-                                                            top: 8,
-                                                            bottom: 8),
-                                                        width: 80,
-                                                        height: 80,
-                                                        child:
-                                                            CachedNetworkImage(
-                                                                imageUrl: ds[
-                                                                    'image']),
-                                                      ),
-                                                      Expanded(
-                                                        child: Container(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(8.0),
-                                                          child: Column(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: <Widget>[
-                                                              Container(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        right:
-                                                                            8,
-                                                                        top: 4),
-                                                                child: Text(
-                                                                  ds['name']
-                                                                      .toString(),
-                                                                  maxLines: 2,
-                                                                  softWrap:
-                                                                      true,
-                                                                  style: CustomTextStyle
-                                                                      .textFormFieldSemiBold
-                                                                      .copyWith(
-                                                                          fontSize:
-                                                                              14),
-                                                                ),
-                                                              ),
-                                                              Utils.getSizedBox(
-                                                                  height: 6),
-                                                              Container(
-                                                                child: Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: <
-                                                                      Widget>[
-                                                                    Text(
-                                                                      ds['total']
-                                                                              .toString() +
-                                                                          " RS ",
-                                                                      style: CustomTextStyle
-                                                                          .textFormFieldBlack
-                                                                          .copyWith(
-                                                                              color: Colors.black),
-                                                                    ),
-                                                                    Padding(
-                                                                      padding:
-                                                                          const EdgeInsets.all(
-                                                                              8.0),
-                                                                    )
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                              FittedBox(
-                                                                child:
-                                                                    Container(
-                                                                  child: Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    children: <
-                                                                        Widget>[
-                                                                      Text(
-                                                                        ds['selleremail']
-                                                                            .toString(),
-                                                                        style: CustomTextStyle
-                                                                            .textFormFieldBlack
-                                                                            .copyWith(color: Colors.black),
-                                                                      ),
-                                                                      Padding(
-                                                                        padding:
-                                                                            const EdgeInsets.all(8.0),
-                                                                      )
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Container(
-                                                                child: Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: <
-                                                                      Widget>[
-                                                                    Text(
-                                                                      " Quantity " +
-                                                                          ds['quantity']
-                                                                              .toString(),
-                                                                      style: CustomTextStyle
-                                                                          .textFormFieldBlack
-                                                                          .copyWith(
-                                                                              color: Colors.black),
-                                                                    ),
-                                                                    Padding(
-                                                                      padding:
-                                                                          const EdgeInsets.all(
-                                                                              8.0),
-                                                                    )
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        flex: 100,
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 200.0),
-                                                  child: Center(
-                                                    child: Container(
-                                                      width: 300,
-                                                      margin:
-                                                          EdgeInsets.symmetric(
-                                                              vertical: 8,
-                                                              horizontal: 12),
-                                                      child: RaisedButton(
-                                                        onPressed: () {
-                                                          return showDialog(
-                                                              context: context,
-                                                              builder:
-                                                                  (BuildContext
-                                                                      context) {
-                                                                return AlertDialog(
-                                                                  title: Text(
-                                                                    'Are you sure you want to buy this product',
-                                                                    style: TextStyle(
-                                                                        color: Colors
-                                                                            .black,
-                                                                        fontFamily:
-                                                                            'Segoe'),
-                                                                  ),
-                                                                  actions: <
-                                                                      Widget>[
-                                                                    FlatButton(
-                                                                      child:
-                                                                          Text(
-                                                                        "Cancel",
-                                                                        style: TextStyle(
-                                                                            color:
-                                                                                Colors.black,
-                                                                            fontFamily: 'Segoe'),
-                                                                      ),
-                                                                      onPressed:
-                                                                          () {
-                                                                        Navigator.pop(
-                                                                            context);
-                                                                      },
-                                                                    ),
-                                                                    FlatButton(
-                                                                      child:
-                                                                          Text(
-                                                                        "Yes",
-                                                                        style: TextStyle(
-                                                                            color:
-                                                                                Colors.black,
-                                                                            fontFamily: 'Segoe'),
-                                                                      ),
-                                                                      onPressed:
-                                                                          () {
-                                                                        User user = FirebaseAuth
-                                                                            .instance
-                                                                            .currentUser;
-                                                                        FirebaseFirestore
-                                                                            .instance
-                                                                            .collection('user')
-                                                                            .doc(user.email)
-                                                                            .collection('orders')
-                                                                            .doc()
-                                                                            .set({
-                                                                          'name':
-                                                                              ds['name'],
-                                                                          'selleremail':
-                                                                              ds['selleremail'].toString(),
-                                                                          'id':
-                                                                              ds['id'].toString(),
-                                                                          'quantity':
-                                                                              ds['quantity'].toString()
-                                                                        });
-
-                                                                        FirebaseFirestore
-                                                                            .instance
-                                                                            .collection('orders')
-                                                                            .doc()
-                                                                            .set({
-                                                                          'name':
-                                                                              ds['name'],
-                                                                          'selleremail':
-                                                                              ds['selleremail'].toString(),
-                                                                          'id':
-                                                                              ds['id'].toString(),
-                                                                          'quantity':
-                                                                              ds['quantity'].toString(),
-                                                                          'price':
-                                                                              ds['price'],
-                                                                          'total':
-                                                                              ds['total'],
-                                                                          'image':
-                                                                              ds['image'],
-                                                                          'buyeremail':
-                                                                              user.email,
-                                                                          'phone':
-                                                                              g.toString(),
-                                                                          'picked from vendor':
-                                                                              false,
-                                                                          'Order Dilevered to Collection Point':
-                                                                              false,
-                                                                          'Order Recieved to Collection Point':
-                                                                              false,
-                                                                          'Rider':
-                                                                              "",
-                                                                          'shopaddress':
-                                                                              ds['selleraddress']
-                                                                        });
-                                                                        FirebaseFirestore
-                                                                            .instance
-                                                                            .collection('user')
-                                                                            .doc(user.email)
-                                                                            .collection('cart')
-                                                                            .doc(ds.id)
-                                                                            .delete();
-                                                                        Navigator.of(context)
-                                                                            .pop();
-                                                                        showThankYouBottomSheet(
-                                                                            context);
-                                                                      },
-                                                                    ),
-                                                                  ],
-                                                                );
-                                                              });
-                                                        },
-                                                        child: Text(
-                                                          "Place Order",
-                                                          style: CustomTextStyle
-                                                              .textFormFieldMedium
-                                                              .copyWith(
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontSize: 14,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                        ),
-                                                        color: Colors.pink,
-                                                        textColor: Colors.white,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ]);
-                                    },
-                                  )
-                                : Container(
-                                    height: 30,
-                                    width: 30,
-                                    child: Center(
-                                        child: CircularProgressIndicator()));
-                          }),
-                    ],
+                  height: 400.0,
+                  width: 400.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(200.0),
+                    color: Color(0xFFFEE16D),
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 100.0),
-                child: Align(
-                  alignment: FractionalOffset.bottomCenter,
-                  child: Container(
-                    height: 50.0,
+              Positioned(
+                bottom: 500.0,
+                left: 150.0,
+                child: Container(
+                    height: 300.0,
                     width: 300.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: TitleText(
-                            text: 'Total',
-                            color: LightColor.red,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: TitleText(
-                            text: '${price}' + " RS " ?? "",
-                            fontSize: 18,
-                          ),
-                        ),
-                      ],
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(150.0),
+                        color: Color(0xFFFEE16D).withOpacity(0.5))),
+              ),
+              Column(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(
+                      child: ListView(
+                        children: <Widget>[
+                          StreamBuilder(
+                              stream: getUsers(),
+                              builder: (context,
+                                  AsyncSnapshot<DocumentSnapshot> snapshot) {
+                                return snapshot.hasData
+                                    ? Container(
+                                        margin: EdgeInsets.all(4),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(4)),
+                                        ),
+                                        child: Card(
+                                          elevation: 0,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(4))),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(4)),
+                                                border: Border.all(
+                                                    color:
+                                                        Colors.grey.shade200)),
+                                            padding: EdgeInsets.only(
+                                                left: 12, top: 8, right: 12),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                SizedBox(
+                                                  height: 6,
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: <Widget>[
+                                                    Text(
+                                                      snapshot.data['username'],
+                                                      style: CustomTextStyle
+                                                          .textFormFieldSemiBold
+                                                          .copyWith(
+                                                              fontSize: 14),
+                                                    ),
+                                                    Container(
+                                                      padding: EdgeInsets.only(
+                                                          left: 8,
+                                                          right: 8,
+                                                          top: 4,
+                                                          bottom: 4),
+                                                      decoration: BoxDecoration(
+                                                          shape: BoxShape
+                                                              .rectangle,
+                                                          color: Colors
+                                                              .grey.shade300,
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          16))),
+                                                      child: Text(
+                                                        "HOME",
+                                                        style: CustomTextStyle
+                                                            .textFormFieldBlack
+                                                            .copyWith(
+                                                                color: Colors
+                                                                    .indigoAccent
+                                                                    .shade200,
+                                                                fontSize: 8),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                                createAddressText(
+                                                    snapshot.data['email'], 6),
+                                                SizedBox(
+                                                  height: 6,
+                                                ),
+                                                RichText(
+                                                  text: TextSpan(children: [
+                                                    TextSpan(
+                                                        text: "Mobile : ",
+                                                        style: CustomTextStyle
+                                                            .textFormFieldMedium
+                                                            .copyWith(
+                                                                fontSize: 12,
+                                                                color: Colors
+                                                                    .grey
+                                                                    .shade800)),
+                                                    TextSpan(
+                                                        text: snapshot
+                                                            .data['phone'],
+                                                        style: CustomTextStyle
+                                                            .textFormFieldBold
+                                                            .copyWith(
+                                                                color: Colors
+                                                                    .black,
+                                                                fontSize: 12)),
+                                                  ]),
+                                                ),
+                                                SizedBox(
+                                                  height: 16,
+                                                ),
+                                                Container(
+                                                  color: Colors.grey.shade300,
+                                                  height: 1,
+                                                  width: double.infinity,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    : Container(
+                                        height: 30,
+                                        width: 30,
+                                        child: Center(
+                                            child:
+                                                CircularProgressIndicator()));
+                              }),
+                          StreamBuilder(
+                              stream: FirebaseFirestore.instance
+                                  .collection('user')
+                                  .doc(user.email)
+                                  .collection('cart')
+                                  .snapshots(),
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                                return snapshot.hasData
+                                    ? ListView.builder(
+                                        itemCount: snapshot.data.docs.length,
+                                        shrinkWrap: true,
+                                        primary: false,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          DocumentSnapshot ds =
+                                              snapshot.data.docs[index];
+                                          return Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: <Widget>[
+                                                Stack(
+                                                  children: <Widget>[
+                                                    Container(
+                                                      height: 250,
+                                                      margin: EdgeInsets.only(
+                                                          left: 16,
+                                                          right: 16,
+                                                          top: 16),
+                                                      decoration: BoxDecoration(
+                                                          color: Colors.white,
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          16))),
+                                                      child: Row(
+                                                        children: <Widget>[
+                                                          Container(
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                                    right: 8,
+                                                                    left: 8,
+                                                                    top: 8,
+                                                                    bottom: 8),
+                                                            width: 80,
+                                                            height: 80,
+                                                            child: CachedNetworkImage(
+                                                                imageUrl: ds[
+                                                                    'image']),
+                                                          ),
+                                                          Expanded(
+                                                            child: Container(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(8.0),
+                                                              child: Column(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: <
+                                                                    Widget>[
+                                                                  Container(
+                                                                    padding: EdgeInsets.only(
+                                                                        right:
+                                                                            8,
+                                                                        top: 4),
+                                                                    child: Text(
+                                                                      ds['name']
+                                                                          .toString(),
+                                                                      maxLines:
+                                                                          2,
+                                                                      softWrap:
+                                                                          true,
+                                                                      style: CustomTextStyle
+                                                                          .textFormFieldSemiBold
+                                                                          .copyWith(
+                                                                              fontSize: 14),
+                                                                    ),
+                                                                  ),
+                                                                  Utils.getSizedBox(
+                                                                      height:
+                                                                          6),
+                                                                  Container(
+                                                                    child: Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: <
+                                                                          Widget>[
+                                                                        Text(
+                                                                          ds['total'].toString() +
+                                                                              " RS ",
+                                                                          style: CustomTextStyle
+                                                                              .textFormFieldBlack
+                                                                              .copyWith(color: Colors.black),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding:
+                                                                              const EdgeInsets.all(8.0),
+                                                                        )
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                  FittedBox(
+                                                                    child:
+                                                                        Container(
+                                                                      child:
+                                                                          Row(
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.spaceBetween,
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Text(
+                                                                            ds['selleremail'].toString(),
+                                                                            style:
+                                                                                CustomTextStyle.textFormFieldBlack.copyWith(color: Colors.black),
+                                                                          ),
+                                                                          Padding(
+                                                                            padding:
+                                                                                const EdgeInsets.all(8.0),
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  Container(
+                                                                    child: Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: <
+                                                                          Widget>[
+                                                                        Text(
+                                                                          " Quantity " +
+                                                                              ds['quantity'].toString(),
+                                                                          style: CustomTextStyle
+                                                                              .textFormFieldBlack
+                                                                              .copyWith(color: Colors.black),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding:
+                                                                              const EdgeInsets.all(8.0),
+                                                                        )
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            flex: 100,
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 200.0),
+                                                      child: Center(
+                                                        child: Container(
+                                                          width: 300,
+                                                          margin: EdgeInsets
+                                                              .symmetric(
+                                                                  vertical: 8,
+                                                                  horizontal:
+                                                                      12),
+                                                          child: RaisedButton(
+                                                            onPressed: () {
+                                                              return showDialog(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (BuildContext
+                                                                          context) {
+                                                                    return AlertDialog(
+                                                                      title:
+                                                                          Text(
+                                                                        'Are you sure you want to buy this product',
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                Colors.black,
+                                                                            fontFamily: 'Segoe'),
+                                                                      ),
+                                                                      actions: <
+                                                                          Widget>[
+                                                                        FlatButton(
+                                                                          child:
+                                                                              Text(
+                                                                            "Cancel",
+                                                                            style:
+                                                                                TextStyle(color: Colors.black, fontFamily: 'Segoe'),
+                                                                          ),
+                                                                          onPressed:
+                                                                              () {
+                                                                            Navigator.pop(context);
+                                                                          },
+                                                                        ),
+                                                                        FlatButton(
+                                                                          child:
+                                                                              Text(
+                                                                            "Yes",
+                                                                            style:
+                                                                                TextStyle(color: Colors.black, fontFamily: 'Segoe'),
+                                                                          ),
+                                                                          onPressed:
+                                                                              () {
+                                                                            User
+                                                                                user =
+                                                                                FirebaseAuth.instance.currentUser;
+                                                                            FirebaseFirestore.instance.collection('user').doc(user.email).collection('orders').doc().set({
+                                                                              'name': ds['name'],
+                                                                              'selleremail': ds['selleremail'].toString(),
+                                                                              'id': ds['id'].toString(),
+                                                                              'quantity': ds['quantity'].toString()
+                                                                            });
+
+                                                                            FirebaseFirestore.instance.collection('orders').doc().set({
+                                                                              'name': ds['name'],
+                                                                              'selleremail': ds['selleremail'].toString(),
+                                                                              'id': ds['id'].toString(),
+                                                                              'quantity': ds['quantity'].toString(),
+                                                                              'price': ds['price'],
+                                                                              'total': ds['total'],
+                                                                              'image': ds['image'],
+                                                                              'buyeremail': user.email,
+                                                                              'phone': g.toString(),
+                                                                              'picked from vendor': false,
+                                                                              'Order Dilevered to Collection Point': false,
+                                                                              'Order Recieved to Collection Point': false,
+                                                                              'Rider': "",
+                                                                              'shopaddress': ds['selleraddress']
+                                                                            });
+                                                                            FirebaseFirestore.instance.collection('user').doc(user.email).collection('cart').doc(ds.id).delete();
+                                                                            Navigator.of(context).pop();
+                                                                            showThankYouBottomSheet(context);
+                                                                          },
+                                                                        ),
+                                                                      ],
+                                                                    );
+                                                                  });
+                                                            },
+                                                            child: Text(
+                                                              "Place Order",
+                                                              style: CustomTextStyle
+                                                                  .textFormFieldMedium
+                                                                  .copyWith(
+                                                                      color: Colors
+                                                                          .white,
+                                                                      fontSize:
+                                                                          14,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold),
+                                                            ),
+                                                            color: Colors.pink,
+                                                            textColor:
+                                                                Colors.white,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ]);
+                                        },
+                                      )
+                                    : Container(
+                                        height: 30,
+                                        width: 30,
+                                        child: Center(
+                                            child:
+                                                CircularProgressIndicator()));
+                              }),
+                        ],
+                      ),
                     ),
                   ),
-                ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 100.0),
+                    child: Align(
+                      alignment: FractionalOffset.bottomCenter,
+                      child: Container(
+                        height: 50.0,
+                        width: 300.0,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: TitleText(
+                                text: 'Total',
+                                color: LightColor.red,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: TitleText(
+                                text: '${price}' + " RS " ?? "",
+                                fontSize: 18,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           );

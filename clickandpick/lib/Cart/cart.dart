@@ -3,6 +3,7 @@ import 'package:ClickandPick/BuyerDashboard/buyerdashboard.dart';
 import 'package:ClickandPick/BuyerDashboard/light_color.dart';
 import 'package:ClickandPick/BuyerDashboard/title_text.dart';
 import 'package:ClickandPick/Cart/CheckoutPage.dart';
+import 'package:ClickandPick/Cart/check.dart';
 import 'package:ClickandPick/SellerDashboard/data.dart';
 import 'package:ClickandPick/settings.dart/setting_page.dart';
 import 'package:ClickandPick/utils/colors.dart';

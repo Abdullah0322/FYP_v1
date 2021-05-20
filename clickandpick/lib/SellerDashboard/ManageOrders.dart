@@ -22,10 +22,11 @@ class _SellerOrdersState extends State<SellerOrders> {
       RefreshController(initialRefresh: false);
 
   getOrders() {
+    User user = FirebaseAuth.instance.currentUser;
     try {
       return FirebaseFirestore.instance
           .collection('orders')
-          .where('selleremail', isEqualTo: Sell.userData.email)
+          .where('selleremail', isEqualTo: user.email)
           .where('picked from vendor', isEqualTo: false)
           .snapshots();
     } catch (e) {
@@ -177,7 +178,7 @@ class _SellerOrdersState extends State<SellerOrders> {
                                                           'picked from vendor':
                                                               true
                                                         });
-                                                         Navigator.pop(context);
+                                                        Navigator.pop(context);
                                                       },
                                                     ),
                                                   ],
