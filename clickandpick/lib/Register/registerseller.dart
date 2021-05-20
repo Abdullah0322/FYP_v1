@@ -392,10 +392,15 @@ class _RegisterSellerState extends State<RegisterSeller> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: RaisedButton(
-                                color: buttoncolor,
+                                color: Color(0xFFBB03B2),
                                 child: Center(
-                                  child: Text('Signup',
-                                      style: TextStyle(color: Colors.white)),
+                                  child: Text(
+                                    'Signup',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                                 onPressed: () async {
                                   if (_formKey.currentState.validate()) {
@@ -462,7 +467,7 @@ class _RegisterSellerState extends State<RegisterSeller> {
                             child: Text(
                               'Signin',
                               style: TextStyle(
-                                color: headingcolor,
+                                color: Color(0xFFBB03B2),
                                 fontWeight: FontWeight.bold,
                                 decoration: TextDecoration.underline,
                               ),
