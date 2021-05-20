@@ -240,7 +240,7 @@ class _ManageProductsState extends State<ManageProducts>
               key: scaffoldKey,
               backgroundColor: Color(0xFFFFFFFF),
               appBar: AppBar(
-                backgroundColor: Color(0xFFA579A3),
+                backgroundColor: Color(0xFFBB03B2),
                 title: Text(
                   'Products',
                   style: TextStyle(
@@ -1546,7 +1546,7 @@ class _ManageProductsState extends State<ManageProducts>
                     });
                   });
                 },
-                backgroundColor: Color.fromRGBO(102, 126, 234, 1),
+                backgroundColor: Color(0xFFBB03B2),
                 child: Icon(Icons.add),
                 heroTag: Text('Add Product'),
               ),
