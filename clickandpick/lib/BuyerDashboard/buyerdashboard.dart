@@ -196,7 +196,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
             key: scaffoldKey,
             backgroundColor: Color(0xFFFFFFFF),
             appBar: AppBar(
-              backgroundColor: Color(0xFFA579A3),
+              backgroundColor: Color(0xFFBB03B2),
               elevation: 0.0,
               title: Center(
                 child: Padding(
@@ -204,7 +204,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                   child: Text("Click and Pick",
                       style: TextStyle(
                           color: Colors.white,
-                          fontWeight: FontWeight.w300,
+                          fontWeight: FontWeight.bold,
                           fontSize: 20)),
                 ),
               ),
@@ -254,7 +254,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                           child: new Text(
                             'See All',
                             style: TextStyle(
-                                color: Color(0xFF84A2AF),
+                                color: Color(0xFFBB03B2),
                                 fontWeight: FontWeight.bold),
                           ),
                           onPressed: () {
@@ -440,7 +440,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                           child: new Text(
                             'See All',
                             style: TextStyle(
-                                color: Color(0xFF84A2AF),
+                                color: Color(0xFFBB03B2),
                                 fontWeight: FontWeight.bold),
                           ),
                           onPressed: () {
@@ -649,7 +649,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                           child: new Text(
                             'See All',
                             style: TextStyle(
-                                color: Color(0xFF84A2AF),
+                                color: Color(0xFFBB03B2),
                                 fontWeight: FontWeight.bold),
                           ),
                           onPressed: () {
@@ -858,7 +858,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                           child: new Text(
                             'See All',
                             style: TextStyle(
-                                color: Color(0xFF84A2AF),
+                                color: Color(0xFFBB03B2),
                                 fontWeight: FontWeight.bold),
                           ),
                           onPressed: () {
@@ -1050,7 +1050,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                           child: new Text(
                             'See All',
                             style: TextStyle(
-                                color: Color(0xFF84A2AF),
+                                color: Color(0xFFBB03B2),
                                 fontWeight: FontWeight.bold),
                           ),
                           onPressed: () {
@@ -1259,7 +1259,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                           child: new Text(
                             'See All',
                             style: TextStyle(
-                                color: Color(0xFF84A2AF),
+                                color: Color(0xFFBB03B2),
                                 fontWeight: FontWeight.bold),
                           ),
                           onPressed: () {
