@@ -75,12 +75,13 @@ class _ManageRidersState extends State<ManageRiders>
             scaffoldKey.currentState.openDrawer();
             /* Write listener code here */
           },
-          child: Icon(Icons.menu, color: Colors.black // add custom icons also
-              ),
+          child: Icon(
+            Icons.menu, color: Colors.white, // add custom icons also
+          ),
         ),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Colors.green[400],
+        backgroundColor: Color(0xFFBB03B2),
       ),
       drawer: ManagerDrawer(),
       body: StreamBuilder(
