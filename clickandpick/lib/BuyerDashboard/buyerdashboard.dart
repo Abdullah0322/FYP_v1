@@ -1058,7 +1058,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => CategorySelected(
-                                    type: 'fragances',
+                                    type: 'fragrances',
                                   ),
                                 ));
                           },

@@ -1,3 +1,4 @@
+import 'package:ClickandPick/BuyerDashboard/title_text.dart';
 import 'package:ClickandPick/Manager/Riders.dart';
 import 'package:ClickandPick/SellerDashboard/Seller_drawer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -51,6 +52,8 @@ class _SellerOrdersState extends State<SellerOrders> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
+    var screenWidth = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
@@ -61,7 +64,7 @@ class _SellerOrdersState extends State<SellerOrders> {
       body: StreamBuilder(
         stream: getOrders(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          return snapshot.hasData
+          return snapshot.hasData && snapshot.data.docs.isNotEmpty
               ? ListView.builder(
                   itemCount: snapshot.data.docs.length,
                   itemBuilder: (context, index) {
@@ -195,7 +198,16 @@ class _SellerOrdersState extends State<SellerOrders> {
                       ),
                     );
                   })
-              : Container();
+              : Container(
+                  height: height * 0.2,
+                  width: screenWidth,
+                  child: Center(
+                    child: TitleText(
+                      text: 'You Dont have any Orders',
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ));
         },
       ),
     );

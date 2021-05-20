@@ -204,19 +204,22 @@ class _SearchState extends State<Search> {
                                                                 ['id'],
                                                             name: snapshot.data.docs[index]
                                                                 ['name'],
-                                                            price: snapshot.data.docs[index]
-                                                                ['price'],
+                                                            price:
+                                                                snapshot.data.docs[index]
+                                                                    ['price'],
                                                             image: snapshot.data.docs[index]
                                                                 ['image_path'],
-                                                            description: snapshot.data.docs[index]
+                                                            description: snapshot
+                                                                    .data
+                                                                    .docs[index]
                                                                 ['description'],
                                                             sellername: snapshot
                                                                     .data
                                                                     .docs[index]
                                                                 ['sellername'],
-                                                            shopaddress: snapshot
-                                                                .data
-                                                                .docs[index]['shopaddress'],
+                                                            rating: snapshot.data.docs[index]['rating'],
+                                                            quantity: snapshot.data.docs[index]['quantity'],
+                                                            shopaddress: snapshot.data.docs[index]['shopaddress'],
                                                             selleremail: snapshot.data.docs[index]['selleremail']),
                                                       ),
                                                     ),

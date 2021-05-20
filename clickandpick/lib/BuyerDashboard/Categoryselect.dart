@@ -105,14 +105,16 @@ class _CategorySelectedState extends State<CategorySelected> {
                                                   ['image_path'],
                                               description: snapshot.data
                                                   .docs[index]['description'],
-                                              sellername: snapshot.data
-                                                  .docs[index]['sellername'],
+                                              sellername: snapshot.data.docs[index]
+                                                  ['sellername'],
                                               shopaddress: snapshot.data
                                                   .docs[index]['shopaddress'],
                                               selleremail: snapshot.data
                                                   .docs[index]['selleremail'],
                                               rating: snapshot.data.docs[index]
-                                                  ['rating']),
+                                                  ['rating'],
+                                              quantity: snapshot.data.docs[index]
+                                                  ['quantity']),
                                         ),
                                       ));
                                 },
