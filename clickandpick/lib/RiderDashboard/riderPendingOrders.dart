@@ -62,6 +62,7 @@ class _PendingOrdersState extends State<PendingOrders> {
         title: Text(
           "Pending Orders",
         ),
+        backgroundColor: Color(0xFFBB03B2),
       ),
       drawer: Riderdrawer(),
       body: StreamBuilder(
