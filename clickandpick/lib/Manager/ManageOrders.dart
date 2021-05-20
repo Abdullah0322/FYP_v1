@@ -55,7 +55,7 @@ class _ManageOrdersState extends State<ManageOrders> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFA579A3),
+        backgroundColor: Color(0xFFBB03B2),
         title: Text("Orders"),
       ),
       drawer: ManagerDrawer(),
