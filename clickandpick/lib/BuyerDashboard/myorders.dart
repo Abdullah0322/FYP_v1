@@ -47,7 +47,7 @@ class _MyordersState extends State<Myorders> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFA579A3),
+        backgroundColor: Color(0xFFBB03B2),
         title: Text("Orders"),
       ),
       drawer: BuyerDrawer(),
