@@ -18,7 +18,7 @@ class _FavoritesState extends State<Favorites> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Color(0xFFB33771),
+        backgroundColor: Color(0xFFBB03B2),
         title: Text("Favorites"),
       ),
       body: Padding(
