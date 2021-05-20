@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:ClickandPick/BuyerDashboard/title_text.dart';
 import 'package:ClickandPick/Manager/Riders.dart';
 import 'package:ClickandPick/SellerDashboard/Seller_drawer.dart';
@@ -57,7 +59,7 @@ class _SellerOrdersState extends State<SellerOrders> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFA579A3),
+        backgroundColor: Color(0xFFBB03B2),
         title: Text("Pending Orders"),
       ),
       drawer: SellerDrawer(),
@@ -138,7 +140,7 @@ class _SellerOrdersState extends State<SellerOrders> {
                                       height: 30,
                                       width: 150,
                                       child: RaisedButton(
-                                        color: Colors.green[300],
+                                        color: Color(0xFFBB03B2),
                                         onPressed: () {
                                           return showDialog(
                                               context: context,
@@ -188,7 +190,12 @@ class _SellerOrdersState extends State<SellerOrders> {
                                                 );
                                               });
                                         },
-                                        child: Text('Picked by Rider'),
+                                        child: Text(
+                                          'Picked by Rider',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   )
