@@ -206,7 +206,7 @@ class _ManageProductsState extends State<ManageProducts>
     var padding = MediaQuery.of(context).padding;
     var height = MediaQuery.of(context).size.height - h - padding.top;
     isLoggedIn();
-    print(ge['shopname']);
+
     return SafeArea(
         child: WillPopScope(
             onWillPop: () {
