@@ -1,3 +1,4 @@
+import 'package:ClickandPick/BuyerDashboard/title_text.dart';
 import 'package:ClickandPick/Manager/Manager_drawer.dart';
 import 'package:ClickandPick/Manager/Riders.dart';
 import 'package:ClickandPick/SellerDashboard/data.dart';
@@ -20,37 +21,66 @@ class _ManageOrdersState extends State<ManageOrders> {
   QuerySnapshot riderSnap;
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
+  var currentCollectionPoint;
+  var snap1;
+  getOrders() async {
+    User user = FirebaseAuth.instance.currentUser;
+    var snap2 = await FirebaseFirestore.instance
+        .collection("manager")
+        .doc(user.email)
+        .get()
+        .then((value) {
+      setState(() {
+        currentCollectionPoint = value.data()['collection point'];
+        snap1 = FirebaseFirestore.instance
+            .collection('orders')
+            .where('Order Recieved to Collection Point', isEqualTo: false)
+            .where('collection point', isEqualTo: currentCollectionPoint)
+            .snapshots();
+      });
+    });
 
-  getOrders() {
-    try {
-      return FirebaseFirestore.instance
-          .collection('orders')
-          .where('Order Recieved to Collection Point', isEqualTo: false)
-          .snapshots();
-
-      _refreshController.refreshCompleted();
-      _refreshController.loadComplete();
-    } catch (e) {
-      print(e);
-      Fluttertoast.showToast(
-        msg: e,
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 3,
-        backgroundColor: Colors.red[400],
-        textColor: Colors.white,
-        fontSize: 15,
-      );
-    }
+    _refreshController.refreshCompleted();
+    _refreshController.loadComplete();
+    return snap1;
   }
+
+  // getOrders() {
+  //   User user = FirebaseAuth.instance.currentUser;
+
+  //   try {
+  //     return FirebaseFirestore.instance
+  //         .collection('orders')
+  //         .where('Order Recieved to Collection Point', isEqualTo: false)
+  //         .where(field)
+  //         .snapshots();
+
+  //     _refreshController.refreshCompleted();
+  //     _refreshController.loadComplete();
+  //   } catch (e) {
+  //     print(e);
+  //     Fluttertoast.showToast(
+  //       msg: e,
+  //       toastLength: Toast.LENGTH_LONG,
+  //       gravity: ToastGravity.BOTTOM,
+  //       timeInSecForIosWeb: 3,
+  //       backgroundColor: Colors.red[400],
+  //       textColor: Colors.white,
+  //       fontSize: 15,
+  //     );
+  //   }
+  // }
 
   void initState() {
     super.initState();
+    getOrders();
     User user = FirebaseAuth.instance.currentUser;
   }
 
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -60,9 +90,9 @@ class _ManageOrdersState extends State<ManageOrders> {
       ),
       drawer: ManagerDrawer(),
       body: StreamBuilder(
-        stream: getOrders(),
+        stream: snap1,
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          return snapshot.hasData
+          return snapshot.hasData && snapshot.data.docs.isNotEmpty
               ? ListView.builder(
                   itemCount: snapshot.data.docs.length,
                   itemBuilder: (context, index) {
@@ -297,7 +327,16 @@ class _ManageOrdersState extends State<ManageOrders> {
                       ),
                     );
                   })
-              : Container();
+              : Container(
+                  height: height * 0.2,
+                  width: screenWidth,
+                  child: Center(
+                    child: TitleText(
+                      text: 'You Dont have any Orders',
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ));
         },
       ),
     );

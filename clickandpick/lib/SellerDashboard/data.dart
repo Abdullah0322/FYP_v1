@@ -14,6 +14,7 @@ class Data {
   String buyeremail;
   double total;
   double rating;
+  String collectionpoint;
 
   Data({
     this.name,
@@ -29,6 +30,7 @@ class Data {
     this.buyeremail,
     this.total,
     this.rating,
+    this.collectionpoint,
   });
 }
 

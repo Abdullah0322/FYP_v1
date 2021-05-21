@@ -648,7 +648,9 @@ class _DetailsState extends State<Details> {
                                     'description': widget.data.description,
                                     'quantity': quantity,
                                     'total': price,
-                                    'selleraddress': widget.data.shopaddress
+                                    'selleraddress': widget.data.shopaddress,
+                                    'collection point':
+                                        widget.data.collectionpoint
                                   });
                                   Fluttertoast.showToast(
                                       msg: "Item Added to Cart",

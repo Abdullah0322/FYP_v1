@@ -90,6 +90,8 @@ class _ManageProductsState extends State<ManageProducts>
   var sizeEItems = null;
   var edititems = null;
   bool saved;
+  QuerySnapshot getsell;
+  QuerySnapshot sellcount;
   bool reload = false;
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
@@ -106,6 +108,25 @@ class _ManageProductsState extends State<ManageProducts>
     });
   }
 
+  DocumentSnapshot coll;
+  QuerySnapshot shop;
+  getsellers() async {
+    try {
+      User user = FirebaseAuth.instance.currentUser;
+      DocumentSnapshot snap8 = await FirebaseFirestore.instance
+          .collection('seller')
+          .doc(user.email)
+          .get();
+
+      setState(() {
+        ge = snap8;
+      });
+    } catch (e) {}
+  }
+
+  DocumentSnapshot ge;
+
+  var g;
   void initState() {
     super.initState();
 
@@ -185,6 +206,7 @@ class _ManageProductsState extends State<ManageProducts>
     var padding = MediaQuery.of(context).padding;
     var height = MediaQuery.of(context).size.height - h - padding.top;
     isLoggedIn();
+    print(ge['shopname']);
     return SafeArea(
         child: WillPopScope(
             onWillPop: () {
@@ -483,52 +505,6 @@ class _ManageProductsState extends State<ManageProducts>
                                                             color:
                                                                 Colors.black)),
                                                 hintText: 'Enter description',
-                                                hintStyle: TextStyle(
-                                                    fontFamily: 'Segoe',
-                                                    fontSize: 12)),
-                                          ),
-                                        ),
-                                        Theme(
-                                          data: new ThemeData(
-                                            primaryColor: Colors.grey[700],
-                                          ),
-                                          child: TextField(
-                                            textInputAction:
-                                                TextInputAction.next,
-                                            style:
-                                                TextStyle(fontFamily: 'Segoe'),
-                                            controller: sellername,
-                                            cursorColor: Colors.grey[700],
-                                            decoration: InputDecoration(
-                                                enabledBorder:
-                                                    UnderlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                            color:
-                                                                Colors.black)),
-                                                hintText: 'Enter Seller name',
-                                                hintStyle: TextStyle(
-                                                    fontFamily: 'Segoe',
-                                                    fontSize: 12)),
-                                          ),
-                                        ),
-                                        Theme(
-                                          data: new ThemeData(
-                                            primaryColor: Colors.grey[700],
-                                          ),
-                                          child: TextField(
-                                            textInputAction:
-                                                TextInputAction.next,
-                                            style:
-                                                TextStyle(fontFamily: 'Segoe'),
-                                            controller: shopaddress,
-                                            cursorColor: Colors.grey[700],
-                                            decoration: InputDecoration(
-                                                enabledBorder:
-                                                    UnderlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                            color:
-                                                                Colors.black)),
-                                                hintText: 'Enter shop address',
                                                 hintStyle: TextStyle(
                                                     fontFamily: 'Segoe',
                                                     fontSize: 12)),
@@ -985,83 +961,11 @@ class _ManageProductsState extends State<ManageProducts>
                                                     setState(() {
                                                       saved = true;
                                                     });
-                                                  } else if (sellername.text ==
-                                                      '') {
-                                                    Fluttertoast.showToast(
-                                                      msg:
-                                                          "Seller name cannot be empty",
-                                                      toastLength:
-                                                          Toast.LENGTH_LONG,
-                                                      gravity:
-                                                          ToastGravity.BOTTOM,
-                                                      timeInSecForIosWeb: 3,
-                                                      backgroundColor:
-                                                          Colors.red[400],
-                                                      textColor: Colors.white,
-                                                      fontSize: 15,
-                                                    );
-                                                    setState(() {
-                                                      saved = true;
-                                                    });
-                                                  } else if (shopaddress.text ==
-                                                      '') {
-                                                    Fluttertoast.showToast(
-                                                      msg:
-                                                          "Shop address cannot be empty",
-                                                      toastLength:
-                                                          Toast.LENGTH_LONG,
-                                                      gravity:
-                                                          ToastGravity.BOTTOM,
-                                                      timeInSecForIosWeb: 3,
-                                                      backgroundColor:
-                                                          Colors.red[400],
-                                                      textColor: Colors.white,
-                                                      fontSize: 15,
-                                                    );
-                                                    setState(() {
-                                                      saved = true;
-                                                    });
                                                   } else if (desCon.text ==
                                                       '') {
                                                     Fluttertoast.showToast(
                                                       msg:
                                                           "Description cannot be empty",
-                                                      toastLength:
-                                                          Toast.LENGTH_LONG,
-                                                      gravity:
-                                                          ToastGravity.BOTTOM,
-                                                      timeInSecForIosWeb: 3,
-                                                      backgroundColor:
-                                                          Colors.red[400],
-                                                      textColor: Colors.white,
-                                                      fontSize: 15,
-                                                    );
-                                                    setState(() {
-                                                      saved = true;
-                                                    });
-                                                  } else if (sellername.text ==
-                                                      '') {
-                                                    Fluttertoast.showToast(
-                                                      msg:
-                                                          "Seller name cannot be empty",
-                                                      toastLength:
-                                                          Toast.LENGTH_LONG,
-                                                      gravity:
-                                                          ToastGravity.BOTTOM,
-                                                      timeInSecForIosWeb: 3,
-                                                      backgroundColor:
-                                                          Colors.red[400],
-                                                      textColor: Colors.white,
-                                                      fontSize: 15,
-                                                    );
-                                                    setState(() {
-                                                      saved = true;
-                                                    });
-                                                  } else if (shopaddress.text ==
-                                                      '') {
-                                                    Fluttertoast.showToast(
-                                                      msg:
-                                                          "Shop address cannot be empty",
                                                       toastLength:
                                                           Toast.LENGTH_LONG,
                                                       gravity:
@@ -1212,13 +1116,15 @@ class _ManageProductsState extends State<ManageProducts>
                                                                           desCon
                                                                               .text,
                                                                       'sellername':
-                                                                          sellername
-                                                                              .text,
+                                                                          ge['username'],
                                                                       'rating':
                                                                           0.0,
                                                                       'shopaddress':
-                                                                          shopaddress
-                                                                              .text,
+                                                                          ge['address'],
+                                                                      'collection point':
+                                                                          ge['collection point'],
+                                                                      'shopname':
+                                                                          ge['shopname'],
                                                                       'size': stap == true &&
                                                                               mtap == false &&
                                                                               ltap == false
@@ -1287,13 +1193,15 @@ class _ManageProductsState extends State<ManageProducts>
                                                                           desCon
                                                                               .text,
                                                                       'sellername':
-                                                                          sellername
-                                                                              .text,
+                                                                          ge['username'],
                                                                       'rating':
                                                                           0.0,
                                                                       'shopaddress':
-                                                                          shopaddress
-                                                                              .text,
+                                                                          ge['address'],
+                                                                      'collection point':
+                                                                          ge['collection point'],
+                                                                      'shopname':
+                                                                          ge['shopname'],
                                                                       'size': stap == true &&
                                                                               mtap == false &&
                                                                               ltap == false

@@ -339,6 +339,11 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                                                     .data
                                                                     .docs[index]
                                                                 ['rating'],
+                                                            collectionpoint: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                [
+                                                                'collection point'],
                                                           ),
                                                         ),
                                                       ));
@@ -526,6 +531,11 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                                                     .data
                                                                     .docs[index]
                                                                 ['quantity'],
+                                                            collectionpoint: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                [
+                                                                'collection point'],
                                                           ),
                                                         ),
                                                       ));
@@ -735,6 +745,11 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                                                     .data
                                                                     .docs[index]
                                                                 ['quantity'],
+                                                            collectionpoint: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                [
+                                                                'collection point'],
                                                           ),
                                                         ),
                                                       ));
@@ -944,6 +959,11 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                                                     .data
                                                                     .docs[index]
                                                                 ['quantity'],
+                                                            collectionpoint: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                [
+                                                                'collection point'],
                                                           ),
                                                         ),
                                                       ));
@@ -1136,6 +1156,11 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                                                     .data
                                                                     .docs[index]
                                                                 ['quantity'],
+                                                            collectionpoint: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                [
+                                                                'collection point'],
                                                           ),
                                                         ),
                                                       ));
@@ -1345,6 +1370,11 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                                                                     .data
                                                                     .docs[index]
                                                                 ['quantity'],
+                                                            collectionpoint: snapshot
+                                                                    .data
+                                                                    .docs[index]
+                                                                [
+                                                                'collection point'],
                                                           ),
                                                         ),
                                                       ));

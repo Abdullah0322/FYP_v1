@@ -91,7 +91,10 @@ class _CheckoutState extends State<Checkout> {
 
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     return Scaffold(
+        key: _scaffoldKey,
         backgroundColor: containercolor,
         body: Stack(
           children: <Widget>[
@@ -158,7 +161,7 @@ class _CheckoutState extends State<Checkout> {
                           .snapshots(),
                       builder: (BuildContext context,
                           AsyncSnapshot<QuerySnapshot> snapshot) {
-                        return snapshot.hasData
+                        return snapshot.hasData && snapshot.data.docs.isNotEmpty
                             ? ListView.builder(
                                 shrinkWrap: true,
                                 primary: false,
@@ -450,7 +453,9 @@ class _CheckoutState extends State<Checkout> {
                                                                         'Rider':
                                                                             "",
                                                                         'shopaddress':
-                                                                            ds['selleraddress']
+                                                                            ds['selleraddress'],
+                                                                        'collection point':
+                                                                            ds['collection point']
                                                                       });
                                                                       FirebaseFirestore
                                                                           .instance
@@ -502,10 +507,15 @@ class _CheckoutState extends State<Checkout> {
                                 },
                               )
                             : Container(
-                                height: 30,
-                                width: 30,
-                                child:
-                                    Center(child: CircularProgressIndicator()));
+                                height: height * 0.2,
+                                width: screenWidth,
+                                child: Center(
+                                  child: TitleText(
+                                    text: 'Your Cart is Empty',
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ));
                       }),
                 ),
               ),
