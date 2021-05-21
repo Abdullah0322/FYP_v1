@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:ClickandPick/BuyerDashboard/buyerdashboard.dart';
+import 'package:ClickandPick/Login/Reset.dart';
 import 'package:ClickandPick/Manager/ManageOrders.dart';
 import 'package:ClickandPick/Register/registerbuyer.dart';
 import 'package:ClickandPick/Register/registertype.dart';
@@ -67,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
         //    context, MaterialPageRoute(builder: (context) => SignUpPage()));
       },
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 20),
+        margin: EdgeInsets.symmetric(vertical: 10),
         padding: EdgeInsets.all(15),
         alignment: Alignment.bottomCenter,
         child: Row(
@@ -686,6 +687,44 @@ class _LoginPageState extends State<LoginPage> {
                         )),
                     _divider(),
                     _createAccountLabel(),
+                    InkWell(
+                      onTap: () {
+                        //  Navigator.push(
+                        //    context, MaterialPageRoute(builder: (context) => SignUpPage()));
+                      },
+                      child: Container(
+                        margin: EdgeInsets.symmetric(vertical: 0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              'Forget your Password ?',
+                              style: TextStyle(
+                                  fontSize: 13, fontWeight: FontWeight.w600),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Reset(),
+                                    ));
+                              },
+                              child: Text(
+                                'Reset Passoword',
+                                style: TextStyle(
+                                    color: Color(0xFFBB03B2),
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

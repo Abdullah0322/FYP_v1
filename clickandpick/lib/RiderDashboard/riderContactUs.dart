@@ -18,7 +18,6 @@ class _ContactUsState extends State<ContactUs> {
         backgroundColor: Color(0xFFBB03B2),
         title: Text('Contact Us'),
       ),
-      drawer: Riderdrawer(),
       body: Center(
         child: Container(
           child: Column(
