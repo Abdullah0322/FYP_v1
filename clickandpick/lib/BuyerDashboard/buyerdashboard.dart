@@ -32,6 +32,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:android_intent/android_intent.dart';
 
 final List<String> imgList = [
   'https://images.unsplash.com/photo-1523381294911-8d3cead13475?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80',
@@ -187,7 +188,6 @@ class _BuyerDashboardState extends State<BuyerDashboard>
 
   @override
   Widget build(BuildContext context) {
-    print(_currentAddress);
     index = 0;
     var height = MediaQuery.of(context).size.height;
     //width of the screen
@@ -275,13 +275,14 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                             ))
                         .toList(),
                   )),
-                  if (_currentPosition != null && _currentAddress != null)
-                    Container(
-                        height: 250,
-                        child: Text(
-                          _currentAddress,
-                          style: TextStyle(color: Colors.black),
-                        )),
+                  _currentPosition == null
+                      ? Container()
+                      : Container(
+                          child: Text(_currentPosition.latitude.toString())),
+                  _currentPosition == null
+                      ? Container()
+                      : Container(
+                          child: Text(_currentPosition.longitude.toString())),
                   Container(
                     alignment: FractionalOffset.center,
                     child: Row(
