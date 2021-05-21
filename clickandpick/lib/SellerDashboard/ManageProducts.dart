@@ -128,6 +128,7 @@ class _ManageProductsState extends State<ManageProducts>
 
   var g;
   void initState() {
+    getsellers();
     super.initState();
 
     tabController = TabController(length: 6, vsync: this);
@@ -1119,12 +1120,12 @@ class _ManageProductsState extends State<ManageProducts>
                                                                           ge['username'],
                                                                       'rating':
                                                                           0.0,
+                                                                      'shopname':
+                                                                          ge['shopname'],
                                                                       'shopaddress':
                                                                           ge['address'],
                                                                       'collection point':
                                                                           ge['collection point'],
-                                                                      'shopname':
-                                                                          ge['shopname'],
                                                                       'size': stap == true &&
                                                                               mtap == false &&
                                                                               ltap == false
@@ -1192,6 +1193,8 @@ class _ManageProductsState extends State<ManageProducts>
                                                                       'description':
                                                                           desCon
                                                                               .text,
+                                                                      'shopname':
+                                                                          ge['shopname'],
                                                                       'sellername':
                                                                           ge['username'],
                                                                       'rating':
@@ -1200,8 +1203,6 @@ class _ManageProductsState extends State<ManageProducts>
                                                                           ge['address'],
                                                                       'collection point':
                                                                           ge['collection point'],
-                                                                      'shopname':
-                                                                          ge['shopname'],
                                                                       'size': stap == true &&
                                                                               mtap == false &&
                                                                               ltap == false
