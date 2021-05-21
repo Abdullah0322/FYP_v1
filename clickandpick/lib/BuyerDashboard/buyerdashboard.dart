@@ -25,9 +25,13 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:flutter/services.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+
+import 'package:url_launcher/url_launcher.dart';
+import 'package:geolocator/geolocator.dart';
 
 final List<String> imgList = [
   'https://images.unsplash.com/photo-1523381294911-8d3cead13475?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80',
@@ -49,7 +53,39 @@ class BuyerDashboard extends StatefulWidget {
 class _BuyerDashboardState extends State<BuyerDashboard>
     with SingleTickerProviderStateMixin {
   var _bottomNavIndex = 0;
+
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  Position _currentPosition;
+  String _currentAddress;
+  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+
+  _getCurrentLocation() {
+    geolocator
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+        .then((Position position) {
+      setState(() {
+        _currentPosition = position;
+      });
+      _getAddressFromLatLng();
+    }).catchError((e) {
+      print(e);
+    });
+  }
+
+  _getAddressFromLatLng() async {
+    try {
+      List<Placemark> p = await geolocator.placemarkFromCoordinates(
+          _currentPosition.latitude, _currentPosition.longitude);
+      Placemark place = p[0];
+      setState(() {
+        _currentAddress =
+            "${place.locality}, ${place.postalCode}, ${place.country}";
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
   Future<bool> isLoggedIn() async {
     User user = FirebaseAuth.instance.currentUser;
     print(user.emailVerified);
@@ -59,6 +95,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
 
   int index;
   void initState() {
+    _getCurrentLocation();
     super.initState();
   }
 
@@ -150,6 +187,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
 
   @override
   Widget build(BuildContext context) {
+    print(_currentAddress);
     index = 0;
     var height = MediaQuery.of(context).size.height;
     //width of the screen
@@ -237,6 +275,13 @@ class _BuyerDashboardState extends State<BuyerDashboard>
                             ))
                         .toList(),
                   )),
+                  if (_currentPosition != null && _currentAddress != null)
+                    Container(
+                        height: 250,
+                        child: Text(
+                          _currentAddress,
+                          style: TextStyle(color: Colors.black),
+                        )),
                   Container(
                     alignment: FractionalOffset.center,
                     child: Row(
