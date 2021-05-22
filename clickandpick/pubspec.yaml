@@ -63,7 +63,7 @@ dependencies:
   flutter_local_notifications: ^4.0.1+2
   rxdart: ^0.23.1
   android_intent: ^0.3.5+1
-  
+  latlong: ^0.6.1
   
   
   

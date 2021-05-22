@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:ClickandPick/BuyerDashboard/Search.dart';
-
+//import 'package:latlong/latlong.dart';
 import 'package:ClickandPick/BuyerDashboard/Buyer_drawer.dart';
 import 'package:ClickandPick/BuyerDashboard/Category.dart';
 import 'package:ClickandPick/BuyerDashboard/Categoryselect.dart';
@@ -25,7 +25,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+//import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:latlong/latlong.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:flutter/services.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -54,6 +55,32 @@ class BuyerDashboard extends StatefulWidget {
 class _BuyerDashboardState extends State<BuyerDashboard>
     with SingleTickerProviderStateMixin {
   var _bottomNavIndex = 0;
+  List<int> distances = [];
+  final Distance distance = Distance();
+  List<GeoPoint> collection = [];
+  var small;
+  var collect;
+  getlocation() async {
+    await FirebaseFirestore.instance
+        .collection('manager')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        distances.add(distance(
+          LatLng(_currentPosition.latitude, _currentPosition.longitude),
+          LatLng(doc['location'].latitude, doc['location'].longitude),
+        ).toInt());
+
+        setState(() {
+          small = distances
+              .reduce((value, element) => value < element ? value : element);
+          collect = doc['collection point'];
+        });
+
+        // collection.add(doc["location"]);
+      });
+    });
+  }
 
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
   Position _currentPosition;
@@ -97,6 +124,7 @@ class _BuyerDashboardState extends State<BuyerDashboard>
   int index;
   void initState() {
     _getCurrentLocation();
+    getlocation();
     super.initState();
   }
 
@@ -188,6 +216,11 @@ class _BuyerDashboardState extends State<BuyerDashboard>
 
   @override
   Widget build(BuildContext context) {
+    //getlocation();
+    //print(distances
+    //   .reduce((value, element) => value < element ? value : element));
+    print(small);
+    //print(collect);
     index = 0;
     var height = MediaQuery.of(context).size.height;
     //width of the screen
